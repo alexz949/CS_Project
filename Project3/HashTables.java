@@ -35,6 +35,7 @@ public class HashTables{
     // Problem 5.
     public static int DistinctValues(int[] array){
         // TODO.
+        return 0;
     }
 
     public static void main(String[] args){
