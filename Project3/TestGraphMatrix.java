@@ -13,7 +13,7 @@ public class TestGraphMatrix{
         
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
-                graph.addEdge(0, j, j+1);
+                graph.addEdge(1, j, j+1);
             }
 
         }
@@ -37,13 +37,15 @@ public class TestGraphMatrix{
         for (int i = 0; i < bfsTest.size(); i++) {
             System.out.println(bfsTest.get(i));
         }
+        graph.resetVisited();
 
 
-        bfsTest.clear();
-        bfsTest = graph.BFS(0);
-        for (int i = 0; i < bfsTest.size(); i++) {
-            System.out.println(bfsTest.get(i));
-        }
+        System.out.println(graph.hasPath(0,3));
+
+
+
+
+
 
 
 

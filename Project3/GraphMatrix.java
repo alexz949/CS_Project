@@ -145,19 +145,19 @@ public class GraphMatrix implements Graph{
     @Override
     public boolean hasPath(int v, int w) {
         // TODO Auto-generated method stub
-        /*
-        while(true){
-            int num1 = v;
-            int num2 = 0;
-            while(hasEdge(v,w)){
-
-            }
+        ArrayList<Integer> array = BFS(v);
+        if(array.contains(w)){
+            resetVisited();
+            return true;
+        }
+        else{
+            resetVisited();
+            return false;
         }
 
 
-         */
 
-        return false;
+
     }
 
     @Override
