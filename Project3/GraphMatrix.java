@@ -1,6 +1,5 @@
 import java.util.ArrayList;
-
-
+import java.util.LinkedList;
 
 
 public class GraphMatrix implements Graph{
@@ -8,6 +7,7 @@ public class GraphMatrix implements Graph{
     private int[][] array_2D;
     private int edgeNum = 0;
     private boolean[][] check_2D;
+    private int nodeNum = 0;
 
     
 
@@ -16,6 +16,7 @@ public class GraphMatrix implements Graph{
         // TODO Auto-generated method stub
         array_2D = new int[n][n];
         check_2D = new boolean[n][n];
+        nodeNum = n;
         
         return;
         
@@ -111,21 +112,32 @@ public class GraphMatrix implements Graph{
     public ArrayList<Integer> BFS(int v) {
         // TODO Auto-generated method stub
         ArrayList<Integer> array = new ArrayList<>();
-        array.add(v);
+
+
+        LinkedList<Integer> queue = new LinkedList<>();
+        queue.add(v);
         check_2D[v][v] = true;
-        
-        int num = 0;
-        int num2 = v;
-        while(true){
-            if(hasEdge(num2, num) && check_2D[num2][num] == false){
-                array.add(num);
-                check_2D[num2][num] = true;
-                num2 = num;
-                num = 0;
+        while(!queue.isEmpty()){
+            int num1 = v;
+            int num2 = 0;
+            array.add(queue.remove());
+            while(hasEdge(num1, num2)){
+                if(!check_2D[num1][num2]){
+                    check_2D[num1][num2] = true;
+                    queue.add(num2);
+                    num1 = num2;
+                    num2 = 0;
+                }
+
+                num2++;
+                if(num2 >= nodeNum)
+                    break;
+
             }
-            if(num > nodeCount())
-                break;
         }
+        
+
+
 
         return array;
     }
@@ -133,6 +145,18 @@ public class GraphMatrix implements Graph{
     @Override
     public boolean hasPath(int v, int w) {
         // TODO Auto-generated method stub
+        /*
+        while(true){
+            int num1 = v;
+            int num2 = 0;
+            while(hasEdge(v,w)){
+
+            }
+        }
+
+
+         */
+
         return false;
     }
 
