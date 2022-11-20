@@ -1,0 +1,264 @@
+---
+title: "Project 2"
+author: "Alex Zhang"
+date: "2022-11-11"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ggplot2)
+serengeti <- read.csv("https://sta214-f22.github.io/projects/serengeti.csv")
+```
+```{r}
+logodds_plot <- function(data, num_bins, bin_method,
+                         x_name, y_name, grouping = NULL, reg_formula = y ~ x){
+  
+  if(is.null(grouping)){
+    dat <- data.frame(x = data %>% pull(x_name), 
+                      y = data %>% pull(y_name),
+                      group = 1)
+  } else {
+    dat <- data.frame(x = data %>% pull(x_name), 
+                      y = data %>% pull(y_name),
+                      group = data %>% pull(grouping))
+  }
+  
+  if(bin_method == "equal_size"){
+    logodds_table <- dat %>%
+      drop_na() %>%
+      arrange(group, x) %>%
+      group_by(group) %>%
+      mutate(obs = y,
+             bin = rep(1:num_bins,
+                       each=ceiling(n()/num_bins))[1:n()]) %>%
+      group_by(bin, group) %>%
+      summarize(mean_x = mean(x),
+                prop = mean(c(obs, 0.5)),
+                num_obs = n()) %>%
+      ungroup() %>%
+      mutate(logodds = log(prop/(1 - prop)))
+  } else {
+    logodds_table <- dat %>%
+      drop_na() %>%
+      group_by(group) %>%
+      mutate(obs = y,
+             bin = cut(x, 
+                       breaks = num_bins,
+                       labels = F)) %>%
+      group_by(bin, group) %>%
+      summarize(mean_x = mean(x),
+                prop = mean(c(obs, 0.5)),
+                num_obs = n()) %>%
+      ungroup() %>%
+      mutate(logodds = log(prop/(1 - prop)))
+  }
+  
+  if(is.null(grouping)){
+    logodds_table %>%
+      ggplot(aes(x = mean_x,
+                 y = logodds)) +
+      geom_point(size=2) +
+      geom_smooth(se=F, method="lm", formula = reg_formula) +
+      theme_bw() +
+      labs(x = x_name,
+           y = "Empirical log odds") +
+      theme(text = element_text(size=25))
+  } else {
+    logodds_table %>%
+      ggplot(aes(x = mean_x,
+                 y = logodds,
+                 color = group,
+                 shape = group)) +
+      geom_point(size=2) +
+      geom_smooth(se=F, method="lm", formula = reg_formula) +
+      theme_bw() +
+      labs(x = x_name,
+           y = "Empirical log odds",
+           color = grouping,
+           shape = grouping) +
+      theme(text = element_text(size=25))
+  }
+  
+}
+```
+```{r}
+logmean_plot <- function(data, num_bins, bin_method,
+                         x, y, grouping = NULL, reg_formula = y ~ x){
+  
+  if(is.null(grouping)){
+    dat <- data.frame(x = data[,x], 
+                      y = data[,y],
+                      group = 1)
+  } else {
+    dat <- data.frame(x = data[,x], 
+                      y = data[,y],
+                      group = data[,grouping])
+  }
+  
+  if(bin_method == "equal_size"){
+    log_table <- dat %>%
+      drop_na() %>%
+      arrange(group, x) %>%
+      group_by(group) %>%
+      mutate(obs = y,
+             bin = rep(1:num_bins,
+                       each=ceiling(n()/num_bins))[1:n()]) %>%
+      group_by(bin, group) %>%
+      summarize(mean_x = mean(x),
+                mean_y = mean(obs),
+                num_obs = n()) %>%
+      ungroup() %>%
+      mutate(log_mean = log(mean_y))
+  } else {
+    log_table <- dat %>%
+      drop_na() %>%
+      group_by(group) %>%
+      mutate(obs = y,
+             bin = cut(x, 
+                       breaks = num_bins,
+                       labels = F)) %>%
+      group_by(bin, group) %>%
+      summarize(mean_x = mean(x),
+                mean_y = mean(obs),
+                num_obs = n()) %>%
+      ungroup() %>%
+      mutate(log_mean = log(mean_y))
+  }
+  
+  if(is.null(grouping)){
+    log_table %>%
+      ggplot(aes(x = mean_x,
+                 y = log_mean)) +
+      geom_point(size=2.5) +
+      geom_smooth(se=F, method="lm", formula = reg_formula) +
+      theme_bw() +
+      labs(x = x,
+           y = "Empirical log mean count") +
+      theme(text = element_text(size=25))
+  } else {
+    log_table %>%
+      ggplot(aes(x = mean_x,
+                 y = log_mean,
+                 color = group,
+                 shape = group)) +
+      geom_point(size=2.5) +
+      geom_smooth(se=F, method="lm", formula = reg_formula) +
+      theme_bw() +
+      labs(x = x,
+           y = "Empirical log mean count",
+           color = grouping,
+           shape = grouping) +
+      theme(text = element_text(size=25))
+  }
+  
+}
+```
+
+
+
+## Abstract
+
+
+## Section 1: Introduction
+
+
+
+## Section 2: Data
+
+
+
+
+```{r}
+serengeti <- serengeti %>%
+  drop_na()
+glimpse(serengeti)
+```
+
+After trying to drop the missing data, it still exists 966 rows and 15 columns which indicate there is no missing data. 
+
+Based on the summary of the data, each row it represents the information for a site with specific date. Each row also contains the the count and appearance of certain species and some other environmental factors. There are total 966 rows and 15 columns. The data set contains information about the site id, recorded date, gazalle's count and appearance, topi count, zebra count, and other environmental factors like whether having wildfire or having enough vegetation.
+
+```{r}
+ggplot(data = serengeti, aes(x = gazelleThomsons.count)) + geom_histogram(fill = "blue") + labs(title = "Figure 2.1", x = "Number of Gazelle", y = "Count")
+```
+Based on Figure 2.1, we can observe that the number of gazelle Thomsons in these sites ar 0 in most sites. There are also hundreds of gazelle Thomsons in some specific areas.
+
+```{r}
+ggplot(data = serengeti, aes(x = topi.count)) + geom_histogram(fill = "blue") + labs(title = "Figure 2.2", x = "Number of Topi", y = "Count")
+```
+Based on Figure 2.2, it shows that in most recorded sites, the number of topi is 0 and there are few of them in some specific sites.
+
+
+```{r}
+ggplot(data = serengeti, aes(x = zebra.count)) + geom_histogram(fill = "blue") + labs(title = "Figure 2.3", x = "Number of Zebra", y = "Count")
+```
+
+Based on Figure 2.3, we can also conclude that the number of zebra in most sites is 0.
+
+
+
+```{r}
+logodds_plot(data = serengeti, 60, "equal_size","ndvi", "gazelleThomsons.present", reg_formula = y ~ x) + labs(title = "Figure 2.4", x = "NDVI")
+```
+
+
+```{r}
+logodds_plot(data = serengeti, 60, "equal_size","ndvi", "topi.present", reg_formula = y ~ x) + labs(title = "Figure 2.5", x = "NDVI")
+```
+
+```{r}
+logodds_plot(data = serengeti, 60, "equal_size","ndvi", "zebra.present", reg_formula = y ~ poly(x,2)) + labs(title = "Figure 2.6", x = "NDVI")
+```
+
+
+```{r}
+logodds_plot(data = serengeti, 60, "equal_size","LriskDry", "gazelleThomsons.present", reg_formula = y ~ x) + labs(title = "Figure 2.7", x = "Risky to Lion")
+```
+```{r}
+logodds_plot(data = serengeti, 60, "equal_size",x = "amRivDist",  y = "gazelleThomsons.present", reg_formula = y ~ x)
+```
+
+```{r}
+
+logodds_plot(data = serengeti, 60, "equal_size", x = "fire", y =  "zebra.present", reg_formula = y ~ x)
+```
+```{r}
+logmean_plot(data = serengeti, 60, "equal_size", x = "ndvi", y = "zebra.count", reg_formula = y ~ poly(x,2))
+```
+
+```{r}
+logmean_plot(data = serengeti, 60, "equal_size", x = "LriskDry", y = "zebra.count", reg_formula = y ~ x)
+```
+
+```{r}
+logmean_plot(data = serengeti, 60, "equal_size", x = "amRivDist", y = "zebra.count", reg_formula = y ~ x)
+```
+
+
+
+
+## Section 3: Modeling
+
+In the modeling section, since based on the Figure 2.1, 2.2, and 2.3 showed, three ZIP models for each species are required since there are excessive number of 0 in each species counts.
+
+
+### Section 3.1: Importance of enviornment variables
+For gazelle thomsons model, the population model for logistic regression part will be:
+$$Z_i \sim Bernoulli(\alpha_i)$$
+$$\log \left ( \frac{\alpha_i}{1-\alpha_i} \right ) = \gamma_0 + \gamma_1ndvi_i + \gamma_2fire_i + \gamma_3amRivDist_i + \gamma_4TM100_i + \gamma_5LriskDry_i + \gamma_6T50_i$$
+
+The Poisson part will be:
+$$Y_i \sim Poisson(\lambda_i)$$
+
+$$\log \left( \lambda_i \right) = \beta_0 + \beta_1ndvi_i + \beta_2fire_i + \beta_3amRivDist_i + \beta_4TM100_i + \beta_5LriskDry_i + \beta_6T50_i$$
+
+
+
+### Section 3.2: Comparing species
+
+
+
+
+## Section 4: Discussion
