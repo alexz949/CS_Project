@@ -201,32 +201,33 @@ Based on Figure 2.3, we can also conclude that the number of zebra in most sites
 
 
 ```{r}
-logodds_plot(data = serengeti, 60, "equal_size","ndvi", "gazelleThomsons.present", reg_formula = y ~ x) + labs(title = "Figure 2.4", x = "NDVI")
+logmean_plot(data = serengeti, 60, "equal_size","ndvi", "gazelleThomsons.count", reg_formula = y ~ x) + labs(title = "Figure 2.4", x = "NDVI")
 ```
+
+As showed from Figure 2.4, the relationship between the number of gazelle and the number and ndvi is linear since the points are just bouncing around the line. So no transformation needed.
+
+```{r}
+logmean_plot(data = serengeti, 60, "equal_size","ndvi", "topi.count", reg_formula = y ~ x) + labs(title = "Figure 2.5", x = "NDVI")
+```
+As showed from Figure 2.5, the relationship between the number of topi and the vegetation condition is also linear since points are bouncing around the linear which means no transformation needed.
 
 
 ```{r}
-logodds_plot(data = serengeti, 60, "equal_size","ndvi", "topi.present", reg_formula = y ~ x) + labs(title = "Figure 2.5", x = "NDVI")
+logmean_plot(data = serengeti, 60, "equal_size","ndvi", "zebra.count", reg_formula = y ~ poly(x,2)) + labs(title = "Figure 2.6", x = "NDVI")
 ```
+Based on Figure 2.6, the relationship between the number of zebra and the vegetation condition is nonlinear. So the polynomial transformation with a power of two is needed.
+
+
 
 ```{r}
-logodds_plot(data = serengeti, 60, "equal_size","ndvi", "zebra.present", reg_formula = y ~ poly(x,2)) + labs(title = "Figure 2.6", x = "NDVI")
+logmean_plot(data = serengeti, 60, "equal_size","LriskDry", "gazelleThomsons.present", reg_formula = y ~ x) + labs(title = "Figure 2.7", x = "Risky to Lion")
 ```
 
-
-```{r}
-logodds_plot(data = serengeti, 60, "equal_size","LriskDry", "gazelleThomsons.present", reg_formula = y ~ x) + labs(title = "Figure 2.7", x = "Risky to Lion")
-```
+Based on Figure 2.7,
 ```{r}
 logmean_plot(data = serengeti, 60, "equal_size",x = "amRivDist",  y = "gazelleThomsons.present", reg_formula = y ~ x)
 ```
-```{r}
-serengeti <- serengeti %>%
-  mutate(fire = as.factor(fire))
-  
 
-class(serengeti$fire)
-```
 
 
 
