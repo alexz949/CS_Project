@@ -209,6 +209,7 @@ As showed from Figure 2.4, the relationship between the number of gazelle and th
 ```{r}
 logmean_plot(data = serengeti, 60, "equal_size","ndvi", "topi.count", reg_formula = y ~ x) + labs(title = "Figure 2.5", x = "NDVI")
 ```
+
 As showed from Figure 2.5, the relationship between the number of topi and the vegetation condition is also linear since points are bouncing around the linear which means no transformation needed.
 
 
@@ -220,29 +221,62 @@ Based on Figure 2.6, the relationship between the number of zebra and the vegeta
 
 
 ```{r}
-logmean_plot(data = serengeti, 60, "equal_size","LriskDry", "gazelleThomsons.present", reg_formula = y ~ x) + labs(title = "Figure 2.7", x = "Risky to Lion")
+logmean_plot(data = serengeti, 60, "equal_size","ndvi", "gazelleThomsons.count", reg_formula = y ~ x) + labs(title = "Figure 2.7", x = "NDVI")
 ```
 
-Based on Figure 2.7,
-```{r}
-logmean_plot(data = serengeti, 60, "equal_size",x = "amRivDist",  y = "gazelleThomsons.present", reg_formula = y ~ x)
-```
-
-
-
-
+Based on Figure 2.7, the relationship between vegetation condition and the number of gazelle can be defined as linear since there is no explicit shape. No transformation is required.
 
 ```{r}
-
-logmean_plot(data = serengeti, 60, "equal_size", x = "fire", y =  "zebra.present", reg_formula = y ~ x)
-```
-```{r}
-logmean_plot(data = serengeti, 60, "equal_size", x = "ndvi", y = "zebra.count", reg_formula = y ~ poly(x,2))
+logmean_plot(data = serengeti, 60, "equal_size",x = "amRivDist",  y = "topi.count", reg_formula = y ~ x) + labs(title = "Figure 2.8", x = "River Distance")
 ```
 
+Based on Figure 2.8, the relationship between number of topi and the distance to river with given site is linear since points are up and down. So no transformation needed.
+
+
+
 ```{r}
-logmean_plot(data = serengeti, 60, "equal_size", x = "LriskDry", y = "zebra.count", reg_formula = y ~ x)
+logmean_plot(data = serengeti, 60, "equal_size",x = "amRivDist",  y = "zebra.count", reg_formula = y ~ x) + labs(title = "Figure 2.9", x = "River Distance")
 ```
+
+As Figure 2.9 shows, we can observe that no transformation is needed for the relationship between the number of zebra and the river distance since there is no clear shape.
+
+
+
+
+```{r}
+logmean_plot(data = serengeti, 60, "equal_size", x = "amRivDist", y = "gazelleThomsons.count", reg_formula = y ~ x) +  labs(title = "Figure 2.10", x = "River Distance")
+```
+
+Based on Figure 2.10, no transformation needed for the relationship between number of gazelle and the river distance.
+
+
+```{r}
+logmean_plot(data = serengeti, 60, "equal_size", x = "TM100", y = "topi.count", reg_formula = y ~ x)
+```
+
+```{r}
+logmean_plot(data = serengeti, 60, "equal_size", x = "TM100", y = "zebra.count", reg_formula = y ~ x)
+```
+
+```{r}
+logmean_plot(data = serengeti, 60, "equal_size", x = "TM100", y = "gazelleThomsons.count", reg_formula = y ~ x)
+```
+
+```{r}
+logmean_plot(data = serengeti, 60, "equal_size", x = "T50", y = "topi.count", reg_formula = y ~ x)
+```
+
+
+
+```{r}
+logmean_plot(data = serengeti, 60, "equal_size", x = "T50", y = "zebra.count", reg_formula = y ~ x)
+```
+
+```{r}
+logmean_plot(data = serengeti, 60, "equal_size", x = "T50", y = "gazelleThomsons.count", reg_formula = y ~ x)
+```
+
+
 
 ```{r}
 logmean_plot(data = serengeti, 60, "equal_size", x = "amRivDist", y = "zebra.count", reg_formula = y ~ log(x))
