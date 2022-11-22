@@ -2,7 +2,9 @@
 title: "Project 2"
 author: "Alex Zhang"
 date: "2022-11-11"
-output: html_document
+output:
+  pdf_document: default
+  pdf: default
 ---
 
 ```{r setup, include=FALSE}
@@ -155,6 +157,7 @@ logmean_plot <- function(data, num_bins, bin_method,
   }
   
 }
+
 ```
 
 
@@ -200,89 +203,115 @@ Based on Figure 2.3, we can also conclude that the number of zebra in most sites
 
 
 
-```{r}
-logmean_plot(data = serengeti, 60, "equal_size","ndvi", "gazelleThomsons.count", reg_formula = y ~ x) + labs(title = "Figure 2.4", x = "NDVI")
-```
-
-As showed from Figure 2.4, the relationship between the number of gazelle and the number and ndvi is linear since the points are just bouncing around the line. So no transformation needed.
 
 ```{r}
-logmean_plot(data = serengeti, 60, "equal_size","ndvi", "topi.count", reg_formula = y ~ x) + labs(title = "Figure 2.5", x = "NDVI")
+logmean_plot(data = serengeti, 60, "equal_size","ndvi", "topi.count", reg_formula = y ~ x) + labs(title = "Figure 2.4", x = "NDVI")
 ```
 
-As showed from Figure 2.5, the relationship between the number of topi and the vegetation condition is also linear since points are bouncing around the linear which means no transformation needed.
+As showed from Figure 2.4, the relationship between the number of topi and the vegetation condition is also linear since points are bouncing around the linear which means no transformation needed.
 
 
 ```{r}
-logmean_plot(data = serengeti, 60, "equal_size","ndvi", "zebra.count", reg_formula = y ~ poly(x,2)) + labs(title = "Figure 2.6", x = "NDVI")
+logmean_plot(data = serengeti, 60, "equal_size","ndvi", "zebra.count", reg_formula = y ~ poly(x,2)) + labs(title = "Figure 2.5", x = "NDVI")
 ```
-Based on Figure 2.6, the relationship between the number of zebra and the vegetation condition is nonlinear. So the polynomial transformation with a power of two is needed.
+Based on Figure 2.5, the relationship between the number of zebra and the vegetation condition is nonlinear. So the polynomial transformation with a power of two is needed.
 
 
 
 ```{r}
-logmean_plot(data = serengeti, 60, "equal_size","ndvi", "gazelleThomsons.count", reg_formula = y ~ x) + labs(title = "Figure 2.7", x = "NDVI")
+logmean_plot(data = serengeti, 60, "equal_size","ndvi", "gazelleThomsons.count", reg_formula = y ~ x) + labs(title = "Figure 2.6", x = "NDVI")
 ```
 
-Based on Figure 2.7, the relationship between vegetation condition and the number of gazelle can be defined as linear since there is no explicit shape. No transformation is required.
+Based on Figure 2.6, the relationship between vegetation condition and the number of gazelle can be defined as linear since there is no explicit shape. No transformation is required.
 
 ```{r}
-logmean_plot(data = serengeti, 60, "equal_size",x = "amRivDist",  y = "topi.count", reg_formula = y ~ x) + labs(title = "Figure 2.8", x = "River Distance")
+logmean_plot(data = serengeti, 60, "equal_size",x = "amRivDist",  y = "topi.count", reg_formula = y ~ (x)) + labs(title = "Figure 2.7", x = "River Distance")
 ```
 
-Based on Figure 2.8, the relationship between number of topi and the distance to river with given site is linear since points are up and down. So no transformation needed.
+Based on Figure 2.7, ideally no transformation is needed for the relation between river distance and the number of topi. However, since the numbers for river distance are really large, outweighted other variablers, I choose to do the log transformation on it.
 
 
 
 ```{r}
-logmean_plot(data = serengeti, 60, "equal_size",x = "amRivDist",  y = "zebra.count", reg_formula = y ~ x) + labs(title = "Figure 2.9", x = "River Distance")
+logmean_plot(data = serengeti, 60, "equal_size",x = "amRivDist",  y = "zebra.count", reg_formula = y ~ x) + labs(title = "Figure 2.8", x = "River Distance")
 ```
 
-As Figure 2.9 shows, we can observe that no transformation is needed for the relationship between the number of zebra and the river distance since there is no clear shape.
+As Figure 2.8 shows, it is also reasonable to have a log transformation with the same reason for the relation between river distance and the number of topi.
 
 
 
 
 ```{r}
-logmean_plot(data = serengeti, 60, "equal_size", x = "amRivDist", y = "gazelleThomsons.count", reg_formula = y ~ x) +  labs(title = "Figure 2.10", x = "River Distance")
+logmean_plot(data = serengeti, 60, "equal_size", x = "amRivDist", y = "gazelleThomsons.count", reg_formula = y ~ (x)) +  labs(title = "Figure 2.9", x = "River Distance")
 ```
 
-Based on Figure 2.10, no transformation needed for the relationship between number of gazelle and the river distance.
+Based on Figure 2.9, having a log transformation is reasonable for the relation between the number of gazelle and the river distance.
+
+```{r}
+logmean_plot(data = serengeti, 60, "equal_size", x = "TM100", y = "topi.count", reg_formula = y ~ x) + labs(title = "Figure 2.10", x = "Number of Termite Mound")
+```
+
+Based on Figure 2.10, no transformation is needed since it is hard to describe the shape.
 
 
 ```{r}
-logmean_plot(data = serengeti, 60, "equal_size", x = "TM100", y = "topi.count", reg_formula = y ~ x)
+logmean_plot(data = serengeti, 60, "equal_size", x = "TM100", y = "zebra.count", reg_formula = y ~ x) + labs(title = "Figure 2.11", x = "Number of Termite Mound")
 ```
 
-```{r}
-logmean_plot(data = serengeti, 60, "equal_size", x = "TM100", y = "zebra.count", reg_formula = y ~ x)
-```
-
-```{r}
-logmean_plot(data = serengeti, 60, "equal_size", x = "TM100", y = "gazelleThomsons.count", reg_formula = y ~ x)
-```
-
-```{r}
-logmean_plot(data = serengeti, 60, "equal_size", x = "T50", y = "topi.count", reg_formula = y ~ x)
-```
-
+Based on Figure 2.11, there is also no transformation needed for the relationship between the number of zebra and the number of termite mounds since most of the points is about around the line.
 
 
 ```{r}
-logmean_plot(data = serengeti, 60, "equal_size", x = "T50", y = "zebra.count", reg_formula = y ~ x)
+logmean_plot(data = serengeti, 60, "equal_size", x = "TM100", y = "gazelleThomsons.count", reg_formula = y ~ x) + labs(title = "Figure 2.12", x = "Number of Termite Mound")
 ```
 
-```{r}
-logmean_plot(data = serengeti, 60, "equal_size", x = "T50", y = "gazelleThomsons.count", reg_formula = y ~ x)
-```
-
+Based on the Figure 2.12, the relation between number of termite and the number of gazelle does not need to do any transformation.
 
 
 ```{r}
-logmean_plot(data = serengeti, 60, "equal_size", x = "amRivDist", y = "zebra.count", reg_formula = y ~ log(x))
+logmean_plot(data = serengeti, 60, "equal_size", x = "T50", y = "topi.count", reg_formula = y ~ x) + labs(title = "Figure 2.13", x = "Number of Trees")
 ```
 
+Based on the Figure 2.13, there is no transformation needed for the number of trees and the number of topi.
 
+```{r}
+logmean_plot(data = serengeti, 60, "equal_size", x = "T50", y = "zebra.count", reg_formula = y ~ x)  + labs(title = "Figure 2.14", x = "Number of Trees")
+```
+
+Based on Figure 2.14,  no transformation is required for the number of trees and number of zebra. 
+
+```{r}
+logmean_plot(data = serengeti, 60, "equal_size", x = "T50", y = "gazelleThomsons.count", reg_formula = y ~ x)   + labs(title = "Figure 2.15", x = "Number of Trees")
+```
+
+As Figure 2.15 shows, only doing linear transformation for the relationship between number of gazelle and number treesis fine.
+
+
+```{r}
+logmean_plot(data = serengeti, 60, "equal_size", x = "LriskDry", y = "topi.count", reg_formula = y ~ x)  + labs(title = "Figure 2.16", x = "Risky to Lion")
+```
+
+As shown in Figure 2.16, it is reasonable to not have any transformation between the risk to lion and the number of topi.
+
+```{r}
+logmean_plot(data = serengeti, 60, "equal_size", x = "LriskDry", y = "zebra.count", reg_formula = y ~ (x))  + labs(title = "Figure 2.17", x = "Risky to Lion")
+```
+
+Based on Figure 2.17, no transformation is needed for the relationship between the number of zebra and the risk to lion in certain site.
+
+```{r}
+logmean_plot(data = serengeti, 60, "equal_size", x = "LriskDry", y = "gazelleThomsons.count", reg_formula = y ~ (x)) +   labs(title = "Figure 2.18", x = "Risky to Lion")
+```
+
+From the Figure 2.18, it shows that just having linear transformation for the relation between the risk to lion and number of gazelle.
+
+```{r}
+serengeti <- serengeti %>%
+  mutate(fire = as.factor(fire))
+ggplot(data = serengeti, aes(x = fire)) + geom_bar(fill = "blue") + labs(title = "Figure 2.19", x = "Whether has fire")
+```
+
+Based on Figure 2.19, the $fire$ variable is very discrete and there is only one row showing that there is a wild fire. So this variable will not be chosen to include in the models since there is rarely relation between the number of species and whether has a wild fire.
 
 
 ## Section 3: Modeling
@@ -291,39 +320,74 @@ In the modeling section, since based on the Figure 2.1, 2.2, and 2.3 showed, thr
 
 
 ### Section 3.1: Importance of enviornment variables
-For gazelle thomsons model, the population model for logistic regression part will be:
+For three different species, the population model will be the same. The population model for logistic regression part will be:
 $$Z_i \sim Bernoulli(\alpha_i)$$
-$$\log \left ( \frac{\alpha_i}{1-\alpha_i} \right ) = \gamma_0 + \gamma_1ndvi_i + \gamma_2fire_i + \gamma_3amRivDist_i + \gamma_4TM100_i + \gamma_5LriskDry_i + \gamma_6T50_i$$
+$$\log \left ( \frac{\alpha_i}{1-\alpha_i} \right ) = \gamma_0 + \gamma_1ndvi_i + \gamma_2log(amRivDist_i) + \gamma_3TM100_i + \gamma_4LriskDry_i + \gamma_5T50_i$$
 
 The Poisson part will be:
 $$Y_i \sim Poisson(\lambda_i)$$
 
-$$\log \left( \lambda_i \right) = \beta_0 + \beta_1ndvi_i + \beta_2fire_i + \beta_3amRivDist_i + \beta_4TM100_i + \beta_5LriskDry_i + \beta_6T50_i$$
+$$\log \left( \lambda_i \right) = \beta_0 + \beta_1ndvi_i + \beta_2log(amRivDist_i) + \beta_3TM100_i + \beta_4LriskDry_i + \beta_5T50_i$$
+
+For specie topi, the summary for fitted regression model will be:
 ```{r}
-zip_m1 <- zeroinfl(topi.count ~ ndvi + fire + log(amRivDist) + TM100 + LriskDry + T50 | ndvi + fire + log(amRivDist) + TM100 + LriskDry + T50 , data = serengeti)
+zip_m1 <- zeroinfl(topi.count ~ ndvi + log(amRivDist) + TM100 + LriskDry + T50 | ndvi  + log(amRivDist) + TM100 + LriskDry + T50 , data = serengeti)
 summary(zip_m1)
 ```
 
+Based on the summary, the fitted regression line for topi will be:
+$$\log \left ( \frac{\alpha_i}{1-\alpha_i} \right ) = 1.889 - 1.252ndvi_i + 0.241log(amRivDist_i) -0.0227 TM100_i -154.3riskDry_i - 0.0011T50_i$$
+$$\log \left( \lambda_i \right) = 1.779 -0.241ndvi_i -0.152log(amRivDist_i) -0.204TM100_i +  62.511LriskDry_i +0.0006T50_i$$
+The summary for the fitted regression line for zebra will be:
 ```{r}
-zip_m2 <- zeroinfl(gazelleThomsons.count ~ ndvi + fire + log(amRivDist) + TM100 + LriskDry + T50 |  ndvi + fire + log(amRivDist) + TM100 + LriskDry + T50, data = serengeti)
+zip_m2 <- zeroinfl(zebra.count ~ ndvi + log(amRivDist) + TM100 + LriskDry + T50 | ndvi + log(amRivDist) + TM100 + LriskDry + T50, data = serengeti)
 summary(zip_m2)
 ```
 
-```{r}
+For specie zebra, the fitted regression line will be:
+$$\log \left ( \frac{\alpha_i}{1-\alpha_i} \right ) = -0.2919 + 0.467ndvi_i + 0.0946log(amRivDist_i)+0.216TM100_i + 65.8486riskDry_i - 0.0011T50_i$$
+$$\log \left( \lambda_i \right) = 3.157 - 0.5754ndvi_i -0.0215log(amRivDist_i) -0.1495TM100_i - 23.7LriskDry_i +0.0006T50_i$$
 
-zip_m3 <- zeroinfl(gazelleThomsons.count ~ 1 | ndvi + fire + log(amRivDist) + TM100 + LriskDry + T50, data = serengeti)
+The summary fitted regresion model for specie gazelle will be:
+```{r}
+zip_m3 <- zeroinfl(gazelleThomsons.count ~ ndvi + log(amRivDist) + TM100 + LriskDry + T50  | ndvi + log(amRivDist) + TM100 + LriskDry + T50, data = serengeti)
 summary(zip_m3)
-
-```
-```{r}
-zip_m4 <- zeroinfl(zebra.count ~ ndvi  + log(amRivDist) + TM100 + LriskDry + T50 | ndvi + fire  + log(amRivDist) + TM100 + LriskDry + T50, data = serengeti)
-summary(zip_m4)
 ```
 
+
+The fitted regression line for gazelle will be:
+$$\log \left ( \frac{\alpha_i}{1-\alpha_i} \right ) = 0.5805 + 5.235ndvi_i - 0.1815log(amRivDist_i) + 0.6865TM100_i + 43.7LriskDry_i + 0.00003T50_i$$
+$$\log \left( \lambda_i \right) = -0.0422 -2.816ndvi_i + 0.5595log(amRivDist_i) -0.3943TM100_i - 102.3LriskDry_i - 0.0026T50_i$$
+
+With the given research question, I will first test whether environmental variables have relationship with the number of topi in data set.
+
+### Topi
+
+#### Test 1
+The first test is testing whether there is a relation between the vegetation condition (ndvi) and topi count.
+The hypothesis test will be
+$$H_0: \beta_1 = 0$$
+$$H_a: \beta_1 \neq 0$$
+The log likelihood for the full model will be:
 ```{r}
-zip_m4 <- zeroinfl(zebra.count ~ ndvi + fire  + log(amRivDist) + TM100 + LriskDry + T50 | ndvi + fire  + log(amRivDist) + TM100 + LriskDry + T50, data = serengeti)
-summary(zip_m4)
+zip_m3$loglik
 ```
+
+The log likelihood for the reduced model will be:
+```{r}
+zip_m4 <- zeroinfl(gazelleThomsons.count ~  log(amRivDist) + TM100 + LriskDry + T50  | ndvi + log(amRivDist) + TM100 + LriskDry + T50, data = serengeti)
+zip_m4$loglik
+```
+The test statistic $G$ will be $2(-2963.71-(-3048.128)) = 168.836$
+
+Using $\chi^2$ distribution, the p-value will be
+```{r}
+pchisq(168.836, df = 1, lower.tail = FALSE)
+```
+Since the p-value is very close to 0, we can conclude that we there is a strong relationship between the topi count and the vegetation condition (ndvi).
+
+
+####
 
 
 
@@ -337,3 +401,50 @@ summary(zip_m4)
 
 
 ## Section 4: Discussion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
