@@ -338,6 +338,13 @@ summary(zip_m1)
 Based on the summary, the fitted regression line for topi will be:
 $$\log \left ( \frac{\alpha_i}{1-\alpha_i} \right ) = 1.889 - 1.252ndvi_i + 0.241log(amRivDist_i) -0.0227 TM100_i -154.3riskDry_i - 0.0011T50_i$$
 $$\log \left( \lambda_i \right) = 1.779 -0.241ndvi_i -0.152log(amRivDist_i) -0.204TM100_i +  62.511LriskDry_i +0.0006T50_i$$
+
+
+Based on the fitted line, we predict that with one unit increase in ndvi, the log mean number of topi will decrease by 0.241. With one unit increase in log river distance, we predict that the log mean for topi count will decrease by 0.152. With one unit increase in termite mound, we predict that the log mean topi will decrease by 0.204. With one unit increase risky to lion, we predict that the log mean topi count will increase by 62.511. With on unit increases in T50, we predict that the log topi number mean will increase by 0.0006. All the interpretations are done when other variables holding constant.
+
+
+
+
 The summary for the fitted regression line for zebra will be:
 ```{r}
 zip_m2 <- zeroinfl(zebra.count ~ poly(ndvi,2) + log(amRivDist) + TM100 + LriskDry + T50 | poly(ndvi,2) + log(amRivDist) + TM100 + LriskDry + T50, data = serengeti)
@@ -345,10 +352,15 @@ summary(zip_m2)
 ```
 
 For specie zebra, the fitted regression line will be:
-$$\log \left ( \frac{\alpha_i}{1-\alpha_i} \right ) = -0.2919 + 0.467ndvi_i + 0.0946log(amRivDist_i)+0.216TM100_i + 65.8486riskDry_i - 0.0011T50_i$$
-$$\log \left( \lambda_i \right) = 3.157 - 0.5754ndvi_i -0.0215log(amRivDist_i) -0.1495TM100_i - 23.7LriskDry_i +0.0006T50_i$$
+$$\log \left ( \frac{\alpha_i}{1-\alpha_i} \right ) = 0.127 + 2.4925ndvi_i + 19.34ndvi_i^2 + 0.0663log(amRivDist_i) + 0.26TM100_i + 83.7532LriskDry_i -0.0009T50_i$$
+$$\log \left( \lambda_i \right) =2.426 - 8.638ndvi_i - 21.32ndvi_i^2 -0.0051log(amRivDist_i) -0.1599TM100_i - 37.82LriskDry_i + 0.0004T50_i$$
+From the fitted regression line, we predict that with one unit increase in log(amRivDist), the expected log mean for zebra will decrease by 0.0051. With on unit increase in Tm100, we predict that the log mean for zebra number will decrease by 0.1599. With one unit increase in LriskDry, we predict that the log mean zebra number will decrease by 37.82. With one unit increase in T50, we predict that the log mean for zebra number will increase by 0.0004.
 
-The summary fitted regresion model for specie gazelle will be:
+
+
+
+
+The summary fitted regression model for specie gazelle will be:
 ```{r}
 zip_m3 <- zeroinfl(gazelleThomsons.count ~ ndvi + log(amRivDist) + TM100 + LriskDry + T50  | ndvi + log(amRivDist) + TM100 + LriskDry + T50, data = serengeti)
 summary(zip_m3)
@@ -358,6 +370,12 @@ summary(zip_m3)
 The fitted regression line for gazelle will be:
 $$\log \left ( \frac{\alpha_i}{1-\alpha_i} \right ) = 0.5805 + 5.235ndvi_i - 0.1815log(amRivDist_i) + 0.6865TM100_i + 43.7LriskDry_i + 0.00003T50_i$$
 $$\log \left( \lambda_i \right) = -0.0422 -2.816ndvi_i + 0.5595log(amRivDist_i) -0.3943TM100_i - 102.3LriskDry_i - 0.0026T50_i$$
+
+
+Based on the fitted regression line, with one unit increase in the ndvi, we predict that the log mean for gazelle's count will decrease by 2.816. With one unit increase in log(amRivDist), we predict that the log mean for the number of gazelle will increase by 0.5595. With one unit increase in TM100, we predict that the log mean for gazelle count will decrease by 0.3943. With one unit increase in LriskDry, we predict that the log mean of gazelle number will decrease by 102.3. With one unit increase in number of trees, we predict that the log mean number of gazelle will decrease by 0.0026. With other variables holding constant.
+
+
+
 
 
 With the given research question, I will first test whether environmental variables have relationship with the number of topi in data set.
@@ -656,58 +674,15 @@ Based on the result, the p-value is very close to zero. We can conclude that the
 
 ### Section 3.2: Comparing species
 
-```{r}
 
-```
+
+
+
 
 
 
 
 ## Section 4: Discussion
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
