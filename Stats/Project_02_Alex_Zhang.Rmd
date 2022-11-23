@@ -340,7 +340,7 @@ $$\log \left ( \frac{\alpha_i}{1-\alpha_i} \right ) = 1.889 - 1.252ndvi_i + 0.24
 $$\log \left( \lambda_i \right) = 1.779 -0.241ndvi_i -0.152log(amRivDist_i) -0.204TM100_i +  62.511LriskDry_i +0.0006T50_i$$
 The summary for the fitted regression line for zebra will be:
 ```{r}
-zip_m2 <- zeroinfl(zebra.count ~ ndvi + log(amRivDist) + TM100 + LriskDry + T50 | ndvi + log(amRivDist) + TM100 + LriskDry + T50, data = serengeti)
+zip_m2 <- zeroinfl(zebra.count ~ poly(ndvi,2) + log(amRivDist) + TM100 + LriskDry + T50 | poly(ndvi,2) + log(amRivDist) + TM100 + LriskDry + T50, data = serengeti)
 summary(zip_m2)
 ```
 
@@ -359,15 +359,220 @@ The fitted regression line for gazelle will be:
 $$\log \left ( \frac{\alpha_i}{1-\alpha_i} \right ) = 0.5805 + 5.235ndvi_i - 0.1815log(amRivDist_i) + 0.6865TM100_i + 43.7LriskDry_i + 0.00003T50_i$$
 $$\log \left( \lambda_i \right) = -0.0422 -2.816ndvi_i + 0.5595log(amRivDist_i) -0.3943TM100_i - 102.3LriskDry_i - 0.0026T50_i$$
 
+
 With the given research question, I will first test whether environmental variables have relationship with the number of topi in data set.
+Basically, I decided to do the hypothesis test for variables "ndvi", "TM100", and "T50" together since the measurement on how "green" the location is related to the number of trees in location and also relates to the soil quality about termite mounds. I also will give separate test for the rest to variables for each different species.
+
 
 ### Topi
 
+
+
 #### Test 1
-The first test is testing whether there is a relation between the vegetation condition (ndvi) and topi count.
+The first test is testing whether there is a relation between the vegetation condition (ndvi), number of trees (T50), and the number of termite mound (TM100) and topi count.
 The hypothesis test will be
-$$H_0: \beta_1 = 0$$
-$$H_a: \beta_1 \neq 0$$
+
+
+$H_0: \beta_1 = \beta_3 = \beta_5 = 0$
+
+
+$H_a: \text{At least one of the } \beta \text{ are not zero}$
+
+
+
+The log likelihood for the full model will be:
+```{r}
+zip_m1$loglik
+```
+
+The log likelihood for the reduced model will be:
+```{r}
+zip_m1_re <- zeroinfl(topi.count ~ log(amRivDist) + LriskDry   | ndvi + log(amRivDist) + TM100 + LriskDry + T50, data = serengeti)
+zip_m1_re$loglik
+```
+The test statistic $G$ will be $2(-355.7883-(-356.9112)) = 2.2458 $
+
+Using $\chi^2$ distribution, the p-value will be
+```{r}
+pchisq(2.2458, df = 3, lower.tail = FALSE)
+```
+Since the p-value is very close to 0, we can conclude that we there is a strong relationship between the topi count and the vegetation condition (ndvi), number of trees (T50), and the number of termite mound (TM100).
+
+
+#### Test 2
+The second hypothesis test is testing whether there is a relationship between the number of topi and the log of river distance (log(amRivDist)).
+The hypothesis test will be:
+
+
+$H_0: \beta_2 = 0$
+
+
+$H_a: \beta_2 \neq 0$
+
+The log likelihood for the full model will be:
+```{r}
+zip_m1$loglik
+```
+
+The log likelihood for the reduced model will be:
+```{r}
+zip_m1_re2 <- zeroinfl(topi.count ~ ndvi + TM100 + LriskDry + T50  | ndvi + log(amRivDist) + TM100 + LriskDry + T50, data = serengeti)
+zip_m1_re2$loglik
+```
+
+The test statistic $G$ will be $2(-355.7883-(-357.0991)) = 2.2458 $
+
+Using $\chi^2$ distribution, the p-value will be
+```{r}
+pchisq(2.6216, df = 1, lower.tail = FALSE)
+```
+
+Since p-value is relative small, we can conclude that there is a moderate relationship between the number of topi and the log river distance over each site.
+
+#### Test 3
+
+The third hypothesis test is testing whether there is a relationship between the number of topi and the risky to lions.
+The hypothesis test will be:
+
+$H_0: \beta_4 = 0$
+
+
+$H_a: \beta_4 \neq 0$
+
+The log likelihood for the full model will be:
+```{r}
+zip_m1$loglik
+```
+
+The log likelihood for the reduced model will be:
+```{r}
+zip_m1_re3 <- zeroinfl(topi.count ~ ndvi + log(amRivDist) + TM100  + T50  | ndvi + log(amRivDist) + TM100 + LriskDry + T50, data = serengeti)
+zip_m1_re3$loglik
+```
+
+The test statistic $G$ will be $2(-355.7883-(-356.8398))  2.103 $
+
+Using $\chi^2$ distribution, the p-value will be
+```{r}
+pchisq(2.103, df = 1, lower.tail = FALSE)
+```
+
+Since p-value is relative small, we can conclude that there is a moderate relationship between the number of topi and the risky to lions with these sites.
+
+
+
+### Zebra
+
+#### Test 1
+Same as the tests in topi count, the first hypothesis test on zebra will be testing the relationship between the number of zebra and the vegetation condition (ndvi), number of trees (T50).
+The hypothesis test will be:
+
+$H_0: \beta_1 =\beta_2 = \beta_4 = \beta_6 = 0$
+
+
+$H_a: \text{At least one of the } \beta \text{ are not zero}$
+
+The log likelihood for the full model will be:
+```{r}
+zip_m2$loglik
+```
+
+The log likelihood for the reduced model will be:
+```{r}
+zip_m2_re <- zeroinfl(zebra.count ~ log(amRivDist) +LriskDry  | poly(ndvi,2) + log(amRivDist) + TM100 + LriskDry + T50, data = serengeti)
+zip_m2_re$loglik
+```
+
+The test statistic $G$ will be $2(-5376.208-(-5786.12)) = 819.824 $
+
+Using $\chi^2$ distribution, the p-value will be
+```{r}
+pchisq(819.824, df = 4, lower.tail = FALSE)
+```
+
+Since this p-value is very close to zero, we can conclude that there is a strong relationship between the number of zebra and vegetation condition (ndvi), number of trees (T50), and the number of termite mound (TM100) in this data set.
+
+
+#### Test 2
+
+
+The second hypothesis test on zebra will be testing the relationship between the number of zebra and the log of the river distance (log(amRivDist)).
+The hypothesis test will be:
+
+$H_0: \beta_2 = 0$
+
+
+$H_a: \beta_2 \neq 0$
+
+The log likelihood for the full model will be:
+```{r}
+zip_m2$loglik
+```
+
+The log likelihood for the reduced model will be:
+```{r}
+zip_m2_re2 <- zeroinfl(zebra.count~poly(ndvi,2) + TM100+ T50 +LriskDry  | poly(ndvi,2) + log(amRivDist) + TM100 + LriskDry + T50, data = serengeti)
+zip_m2_re2$loglik
+```
+
+The test statistic $G$ will be $2(-5376.208-(-5376.331)) = 0.246 $
+
+Using $\chi^2$ distribution, the p-value will be
+```{r}
+pchisq(0.246, df = 1, lower.tail = FALSE)
+```
+
+Based on the result, the p-value is relatively large, we can conclude that there is a weak or even no relation between the number of zebra and the log river distance in this data set.
+
+
+
+#### Test 3
+
+
+The third hypothesis test on zebra will be testing the relationship between the number of zebra and the risky to lions (LriskDry)
+The hypothesis test will be:
+
+$H_0: \beta_6 = 0$
+
+
+$H_a: \beta_6 \neq 0$
+
+The log likelihood for the full model will be:
+```{r}
+zip_m2$loglik
+```
+
+The log likelihood for the reduced model will be:
+```{r}
+zip_m2_re3 <- zeroinfl(zebra.count~poly(ndvi,2) + TM100+ T50  + log(amRivDist)  | poly(ndvi,2) + log(amRivDist) + TM100 + LriskDry + T50, data = serengeti)
+zip_m2_re3$loglik
+```
+
+The test statistic $G$ will be $2(-5376.208-( -5386.361)) = 20.306 $
+
+Using $\chi^2$ distribution, the p-value will be
+```{r}
+pchisq(20.306, df = 1, lower.tail = FALSE)
+```
+
+From the result, the p-value is kind of close to zero. We can conclude that there is a strong relationship between the number of zebra in sites and the risky to lions.
+
+
+
+### Gazelle
+
+#### Test 1
+The first test is testing whether there is a relation between the vegetation condition (ndvi), number of trees (T50), and the number of termite mound (TM100) and number of gazelles.
+The hypothesis test will be
+
+
+$H_0: \beta_1 = \beta_3 = \beta_5 = 0$
+
+
+$H_a: \text{At least one of the } \beta \text{ are not zero}$
+
+
+
 The log likelihood for the full model will be:
 ```{r}
 zip_m3$loglik
@@ -375,19 +580,77 @@ zip_m3$loglik
 
 The log likelihood for the reduced model will be:
 ```{r}
-zip_m4 <- zeroinfl(gazelleThomsons.count ~  log(amRivDist) + TM100 + LriskDry + T50  | ndvi + log(amRivDist) + TM100 + LriskDry + T50, data = serengeti)
-zip_m4$loglik
+zip_m3_re <- zeroinfl(gazelleThomsons.count ~ log(amRivDist) + LriskDry   | ndvi + log(amRivDist) + TM100 + LriskDry + T50, data = serengeti)
+zip_m3_re$loglik
 ```
-The test statistic $G$ will be $2(-2963.71-(-3048.128)) = 168.836$
+The test statistic $G$ will be $2(-2963.71 -(-3196.036)) = 464.652 $
 
 Using $\chi^2$ distribution, the p-value will be
 ```{r}
-pchisq(168.836, df = 1, lower.tail = FALSE)
+pchisq(464.652, df = 3, lower.tail = FALSE)
 ```
-Since the p-value is very close to 0, we can conclude that we there is a strong relationship between the topi count and the vegetation condition (ndvi).
+Based on the result, the p-value is very close to zero. We can conclude that there is a strong relationship between the number of gazelle and the vegetation condition, number of trees and the termite mound.
 
 
-####
+#### Test 2
+The second test is testing whether there is a relation between the number of gazelle and the log of river distance (log(amRivDist)).
+The hypothesis test will be:
+
+
+$H_0: \beta_2 = 0$
+
+
+$H_a: \beta_2 \neq 0$
+
+
+
+The log likelihood for the full model will be:
+```{r}
+zip_m3$loglik
+```
+
+The log likelihood for the reduced model will be:
+```{r}
+zip_m3_re2 <- zeroinfl(gazelleThomsons.count ~ ndvi + TM100 + T50 + LriskDry   | ndvi + log(amRivDist) + TM100 + LriskDry + T50, data = serengeti)
+zip_m3_re2$loglik
+```
+The test statistic $G$ will be $2(-2963.71 -(-3290.404)) = 653.388 $
+
+Using $\chi^2$ distribution, the p-value will be
+```{r}
+pchisq(653.388, df = 1, lower.tail = FALSE)
+```
+Based on the result, the p-value is very close to zero. We can conclude that there is a strong relationship between the number of gazelle and the log of river distance.
+
+#### Test 3
+The third test is testing whether there is a relation between the number of gazelle and the risky to lions (LriskDry).
+The hypothesis test will be:
+
+
+$H_0: \beta_5 = 0$
+
+
+$H_a: \beta_5 \neq 0$
+
+
+
+The log likelihood for the full model will be:
+```{r}
+zip_m3$loglik
+```
+
+The log likelihood for the reduced model will be:
+```{r}
+zip_m3_re3 <- zeroinfl(gazelleThomsons.count ~ ndvi + TM100 + T50 +log(amRivDist)   | ndvi + log(amRivDist) + TM100 + LriskDry + T50, data = serengeti)
+zip_m3_re3$loglik
+```
+The test statistic $G$ will be $2(-2963.71 -(-3008.449)) = 89.478 $
+
+Using $\chi^2$ distribution, the p-value will be
+```{r}
+pchisq(89.478, df = 1, lower.tail = FALSE)
+```
+Based on the result, the p-value is very close to zero. We can conclude that there is a strong relationship between the number of gazelle and the risky to lion.
 
 
 
