@@ -165,7 +165,7 @@ logmean_plot <- function(data, num_bins, bin_method,
 
 ## Abstract
 
-Finding how different environmental causes would affect species's appearance and number is critical on creating wild life reservations. In this project, I will try to use different techniques to analyze whether there is a relationship between the environmental variables and the number of species. I will use the data collected through a long tern research program runs by Wake Forest University professors in Serengeti Park. I applied Zero-Inflated-Poisson model (ZIP) to fit variables and the count for different species. I also used hypothesis tests to check whether there is evidence showing that the relationships actually exist. After all these processing, I got the result that for Thomson's gazelle and Zebra, the hypothesis tests indicate that overall there is strong evidence showing that there are relationships between environmental variables and the number of these species. For topi, the hypothesis test illustrate that there is weak or no evidence showing that there is a relation between environmental variables and the number of topi. This is probably that the number of topi is too small to be representative. In the discussion section, I also mentioned that the small size of the number of topi may be one of the limitation for this report.
+Finding how different environmental causes would affect species's appearance and number is critical on creating wild life reservations. In this project, I will try to use different techniques to analyze whether there is a relationship between the environmental variables and the number of species. I will use the data collected through a long term research program runs by Wake Forest University professors in Serengeti Park. I applied Zero-Inflated-Poisson model (ZIP) to fit variables and the count for different species. I also used hypothesis tests to check whether there is evidence showing that the relationships actually exist. After all these processing, I got the result that for Thomson's gazelle and Zebra, the hypothesis tests indicate that overall there is strong evidence showing that there are relationships between environmental variables and the number of these species. For topi, the hypothesis test illustrates that there is weak or no evidence showing that there is a relation between environmental variables and the number of topi. This is probably that the number of topi is too small to be representative. In the discussion section, I also mentioned that the small size of the number of topi may be one of the limitation for this report.
 
 
 ## Section 1: Introduction
@@ -187,7 +187,7 @@ glimpse(serengeti)
 
 After trying to drop the missing data, it still exists 966 rows and 15 columns which indicate there is no missing data. 
 
-Based on the summary of the data, each row it represents the information for a site with specific date. Each row also contains the the count and appearance of certain species and some other environmental factors. There are total 966 rows and 15 columns. The data set contains information about the site id, recorded date, gazelle's count and appearance, topi count, zebra count, and other environmental factors like whether having wildfire or having enough vegetation.
+Based on the summary of the data, each row represents the information for a site with specific date. Each row also contains the the count and appearance of certain species and some other environmental factors. There are total 966 rows and 15 columns. The data set contains information about the site id, recorded date, gazelle's count and appearance, topi count, zebra count, and other environmental factors like whether having wildfire or having enough vegetation.
 
 ```{r fig.cap="Thomsons's Gazelle's count", echo=F, message=F, warning=F,fig.asp=0.5, fig.pos="H"}
 ggplot(data = serengeti, aes(x = gazelleThomsons.count)) + geom_histogram(binwidth = 10, fill = "blue") + labs(title = "Figure 2.1", x = "Number of Gazelle", y = "Count")
@@ -548,7 +548,7 @@ zip_m2_re <- zeroinfl(zebra.count ~ log(amRivDist) +LriskDry  | poly(ndvi,2) + l
 zip_m2_re$loglik
 ```
 
-The test statistic $G$ will be 2(-5376.208-(-5786.12)) = 819.824. The degree of freedom will be 3.
+The test statistic $G$ will be 2(-5376.208-(-5786.12)) = 819.824. The degree of freedom will be 4.
 
 
 ```{r, include=F, echo=F, message=F, warning=F}
@@ -673,7 +673,7 @@ $H_a: \beta_2 \neq 0$
 
 
 
-The log likelihood for the full model will be $-2963.71 $
+The log likelihood for the full model will be $-2963.71$
 ```{r, include=F, echo=F, message=F, warning=F}
 zip_m3$loglik
 ```
@@ -747,17 +747,17 @@ $$\log \left( \lambda_i \right) = -0.0422 -2.816ndvi_i + 0.5595log(amRivDist_i) 
 It can be observed that for ndvi variable, all three species' number have a negative relationship which the zebra has the most negative effect. For log river distance, topi and gazelle's count have a positive relationship, whereas the zebra's number has a negative relation. For variable TM100, all three species' count have a negative relation which gazelle has the most negative relation. For variable risky to lion, the topi's number has a positive relation with this variable. However, the rest species' number will both decrease if the risky to lion increase and the risky to lion seems to have the largest effect on gazelle number. For the number of trees variable, both topi and zebra's number have a positive relation with the number of trees but for gazelle's number, it has a negative relation with it.
 
 
-For the p-value analysis, for species topi, many variables do not show a strong relationship, so there are two possibilities. The first one is that topi's have strong vitality, which with changing environment, the number of topi will not vary anyways. The other reason is that the number of topi is relatively smaller which the data set may not have enough data to get the correct conclusion. in the data set, the second possibility seems correct.
+For the p-value analysis, for species topi, many variables do not show a evidence indicating relationships, so there are two possibilities. The first one is that topi's have strong vitality, which with changing environment, the number of topi will not vary anyways. The other reason is that the number of topi is relatively smaller which the data set may not have enough data to get the correct conclusion. in the data set, the second possibility seems correct.
 
-For species zebra, the p-value for the log river distance seems to be large which showing that the number of zebra may not related to the river distance. For the other variables, p-value indicates a strong relationship.
+For species zebra, the p-value for the log river distance seems to be large which showing that the number of zebra may not related to the river distance. For the other variables, p-value indicates indicates a strong evidence for relationship.
 
-For species gazelle, all variables p-value are very small showing that the number of gazelle seems to have a strong relation between the environmental variables. 
+For species gazelle, all variables p-value are very small showing that the number of gazelle seems to have strong evidence showing that relationships exist.
 
 
 
 ## Section 4: Discussion
 
-Based on the analysis, I think in this data set the environmental variables somehow have strong relationship for species count. However, for specie topi, it seems to have no relationship or weak relationships for different environmental variables. I think it is because the number of topi in this data set may not be enough to draw conclusion since based on Figure 2.2, the number of topi is much less than the number of zebra and the number of gazelle. For most variables, it seems that they have a negative relationship with the number of species, which I think is reasonable. For example, the number of species will obviously decrease if the vegetation condition is not good (ndvi is low). If a site is risky to lion, the number of species may also be small, and this also hold true for the sites which are far away from river. For the data set, there is one environmental variable that I did not use which is fire. Since by Figure 2.19, there is only one row with fire which make the fire variable not to be representative and I did not add it when fitting models. one limitation for the analysis is that the data set is not large enough. Because the data set is not large, I choose to not add fire variable into my model which I think this variable may affect the number of species somehow. Also the size of the data set also makes the result for specie topi not really convincing since I guess topi is an endangered animal which the number of topi is very small. Since there are not enough data for topi, the result may have some occasion like p-value is relatively large compared to the others.
+Based on the analysis, I think in this data set the environmental variables somehow have relationships for species count. However, for specie topi, it seems that no strong evidence support that there is a strong relationship for different environmental variables. Because the p-values for topi are large. I think it is because the number of topi in this data set may not be enough to draw conclusion since based on Figure 2.2, the number of topi is much less than the number of zebra and the number of gazelle. For most variables, it seems that they have a negative relationship with the number of species, which I think is reasonable. For example, the number of species will obviously decrease if the vegetation condition is not good (ndvi is low). If a site is risky to lion, the number of species may also be small, and this also hold true for the sites which are far away from river. For the data set, there is one environmental variable that I did not use which is fire. Since by Figure 2.19, there is only one row with fire which make the fire variable not to be representative and I did not add it when fitting models. One limitation for the analysis is that the data set is not large enough. Because the data set is not large, I choose to not add fire variable into my model which I think this variable may affect the number of species somehow. Also the size of the data set also makes the result for specie topi not really convincing since I guess topi is an endangered animal which the number of topi is very small. Since there are not enough data for topi, the result may have some occasion like p-value is relatively large compared to the others.
 
 
 
