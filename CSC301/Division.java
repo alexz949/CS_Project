@@ -3,9 +3,9 @@ package CSC301;
 public class Division{
     
     public static void main(String[] args) {
-        System.out.println("Hello world");
+        
         int[] test = new int[2];
-        test = divide(0b1010, 0b10);
+        test = divide(11, 2);
         System.out.println("the quotient will be: " + test[0]);
         System.out.println("the remainder will be: " + test[1]);
 
