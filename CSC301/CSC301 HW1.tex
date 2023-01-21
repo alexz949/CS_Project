@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{mathtools}
 \title{CSC301 HW1}
 \author{Alex Zhang}
 \date{Januray 2023}
@@ -22,7 +23,7 @@ $$g(n) = O(1)$$
 
     \subsection{(b)}
     When $r = 1$, $g(n)$ will be $1 + 1 + 1^2 + \dots  + 1^n$
-$$g(n) =  1\cdot n = n$$
+$$g(n) =  1\cdot n + 1 = n + 1$$
 So, there exists $c = 10$, $N = 1$ such that 
 $$g(n) \leq  10 \cdot n$$
 for all $n \geq N$, then 
@@ -56,29 +57,29 @@ The time complexity for $g(n)$ when $r > 1$ will be $O(r^n)$.
         int[] ans = new int[2];
         if(x == 0)
             return ans;
-        ans = divide(x / 2, y);
+        ans = divide((int)Math.floor(x / 2), y);
         ans[0] *= 2;
         ans[1] *= 2;
 
         if(x % 2 == 1)
             ans[1] += 1;
-        if(ans[1] > y || ans[1] == y){
+        if(ans[1] >= y){
             ans[1] -= y;
             ans[0] += 1;
         }
         return ans;
     }
     \end{verbatim}
-    My input for $x$ is $1011$ and $y$ is $10$ in binary.
+    My input for $x$ is $1011$ and $y$ is $10$ in binary.\\\\\\
     For line
     \begin{verbatim}
         if(x == 0)
             return ans;
     \end{verbatim}
-    This happens in the last recusion call when $x = 0, y = 10$, and it will return the array.
+    This happens in the last recusion call when $x = 0, y = 10$, and it will return the array.\\
     For lines
     \begin{verbatim}
-        ans = divide(x / 2, y);
+        ans = divide((int)Math.floor(x / 2), y);
         ans[0] *= 2;
         ans[1] *= 2;
     \end{verbatim}
@@ -88,34 +89,77 @@ The time complexity for $g(n)$ when $r > 1$ will be $O(r^n)$.
         if(x % 2 == 1)
             ans[1] += 1;
     \end{verbatim}
-    will be true when $x = 1, 101,1011$ since they are all odd numbers.
+    will be true when $x = 1, 101, 1011$ since they are all odd numbers.\\
     The last condition
     \begin{verbatim}
-        if(ans[1] > y || ans[1] == y){
+        if(ans[1] >= y){
             ans[1] -= y;
             ans[0] += 1;
         }
     \end{verbatim}
-    will execute when $x = 10, and 1011$ which the remainder will be $10$ and $100$ respectively.
+    will execute when $x = 10$ and $1011$ which the remainder will be $2$ and $3$ respectively.
 
     \subsection{(b)}
-
 
 The base case will be $x = 0$ and $y$ is an abitary number.
 Base case is true since the algorithm will return $q = 0, r = 0$, which satisfies
 $$0 = 0 \cdot y + 0 \mbox{ with } 0 \leq r < y $$
 \\
-For induction case, assume that $x = n$ is true for an abitary $y$, which satisfies
+For induction case, assume that $x = n$ and given an abitary $y$, which satisfies
 $$n = q \cdot y + r \mbox{ with } 0\leq r < y $$
-For $x = n+1$,
-$$n+1 = q \cdot y + r + 1$$ 
-If $r+1$ still smaller than $y$, in this case, the division still holds true.
-If $r+1 = y$, by algorithm, $q^\prime = q + 1$, and $r+1 - y = 0$.
-So 
-$$n+1 = q^\prime \cdot y  + 0 \mbox{ with } 0 \leq r < y$$
-which is also true.
+Then 
+$$\lfloor n/2 \rfloor = q^\prime \cdot y + r^\prime $$
 \\
-Overall, the algorithm is correct proving by induction. $\blacksquare$
+\paragraph{Case 1: $n$ is even}
+
+Then $\lfloor n/2 \rfloor = n/2$.
+
+
+\begin{align}
+    n/2  &= q^\prime \cdot y + r^\prime \nonumber \\
+    n &=  2q^\prime \cdot y + 2r^\prime \nonumber
+\end{align}
+If $2r^\prime < y$, then $2q^\prime = q$, $2r^\prime = r$.
+$$n = q \cdot y + r \mbox{ with } 0 \leq r < y$$ which is true.
+\\
+If $2r^\prime \geq y$, for the algorithm, 
+$$n = (2q^\prime+1)y + (2r^\prime-y)$$
+So $2q^\prime + 1 = q$ and $2r^\prime - y = r$ which is also true since
+$$ 0 \leq r^\prime < y $$$$  0 \leq 2r^\prime < 2y $$$$  0 \leq 2r^\prime - y < y  $$
+We can get 
+$$n = q \cdot y + r \mbox{ with } 0 \leq r < y$$
+
+
+
+
+\paragraph{Case 2: $n$ is odd}
+
+Then $\lfloor n/2 \rfloor = (n-1)/2$.
+\begin{align}
+    (n-1)/2 &= q^\prime \cdot y + r^\prime \nonumber \\
+    n &=  2q^\prime \cdot y + 2r^\prime + 1 \nonumber
+\end{align}
+For $2r^\prime + 1 < y$ and $y\leq 2r^\prime + 1 < 2y$, without loss of generality, the proving is the same in case 1, which is true.
+\\
+For $2r^\prime + 1 = 2y$, it is impossible since  $2r^\prime + 1$ will always be an odd number but $2y$ will always be an even number.
+\\
+Overall, the indcution shows that this algorithm is correct.$\blacksquare$
+
+    \subsection{(c)}
+    Assume that input $x$, $y$ are n-bits numbers, then this algorithm takes $n$ times of recursion calls becuase each time the number of bit decrease by one.
+    For each recursion call, for the worst case, every call will go into 
+    \begin{verbatim}
+        if(ans[1] >= y){
+            ans[1] -= y;
+            ans[0] += 1;
+        }
+    \end{verbatim}
+    condition, which addition is performed. This required linear time complexity.
+    \\
+    Overall, there are $n$ times of recursion calls for n-bits number, and for each call, there is going to be an addition performing linear complexity.
+    So the total time complexity for this algorithm is $O(n^2)$.
+
+    
     
 
     
@@ -131,9 +175,13 @@ Then $x = N \cdot k + x^\prime$, $y = N \cdot l + y^\prime$, and
 \begin{align}
     xy &= (N \cdot k + x^\prime) (N \cdot l + y^\prime) \nonumber \\
 xy &= N^2 k l + Nk y^\prime + Nlx^\prime + x^\prime y^\prime \nonumber \\
-xy &= N(Nkl + k y^\prime + lx^\prime) + x^\prime y^\prime \nonumber
+xy &= N(Nkl + k y^\prime + lx^\prime) + x^\prime y^\prime \nonumber \\
+xy - x^\prime y^\prime &= N(Nkl + k y^\prime + lx^\prime) \nonumber
 \end{align}
-Take the mod $N$ for both sides,
+By definition, let $m \in \mathbb{Z}$ and $m = (Nkl + k y^\prime + lx^\prime)$ since integer is closed under addition.
+
+$$xy - x^\prime y^\prime = N \cdot m$$
+which by definition again,
 
 $$xy \equiv x^\prime y^\prime \mbox{ mod } N $$
 The substitution rule for modular multiplication is true.$\blacksquare$

@@ -3,7 +3,6 @@ package CSC301;
 public class Division{
     
     public static void main(String[] args) {
-        
         int[] test = new int[2];
         test = divide(11, 2);
         System.out.println("the quotient will be: " + test[0]);
@@ -16,7 +15,7 @@ public class Division{
         int[] ans = new int[2];
         if(x == 0)
             return ans;
-        ans = divide(x / 2, y);
+        ans = divide((int)Math.floor(x / 2), y);
         ans[0] *= 2;
         ans[1] *= 2;
 
