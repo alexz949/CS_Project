@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1674784289 "d:/CS/CS_Project/CSC301/CSC301 HW2.tex" "CSC301 HW2.pdf" "CSC301 HW2" 1674784289
+["pdflatex"] 1674785632 "d:/CS/CS_Project/CSC301/CSC301 HW2.tex" "CSC301 HW2.pdf" "CSC301 HW2" 1674785633
   "C:/Program Files/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1233951848 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1233951854 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -48,9 +48,9 @@
   "C:/Program Files/MiKTeX/tex/latex/l3backend/l3backend-pdftex.def" 1656693804 31050 293f2cc98a3575c4228b5157bf850b8f ""
   "C:/Users/Administrator/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1661912095 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/Administrator/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1661912178 10320170 d4120be7022bd7e7f898122a2ad9516b ""
-  "CSC301 HW2.aux" 1674784289 701 a4a3e4903705c44f2995d50dea376d63 "pdflatex"
-  "CSC301 HW2.tex" 1674784288 7010 356e7d4b8e3beb1ece76874e3173cc07 ""
-  "d:/CS/CS_Project/CSC301/CSC301 HW2.tex" 1674784288 7010 356e7d4b8e3beb1ece76874e3173cc07 ""
+  "CSC301 HW2.aux" 1674785633 701 a4a3e4903705c44f2995d50dea376d63 "pdflatex"
+  "CSC301 HW2.tex" 1674785632 6985 fcdd96072fcbc04f4c80f947df578654 ""
+  "d:/CS/CS_Project/CSC301/CSC301 HW2.tex" 1674785632 6985 fcdd96072fcbc04f4c80f947df578654 ""
   (generated)
   "CSC301 HW2.aux"
   "CSC301 HW2.log"
