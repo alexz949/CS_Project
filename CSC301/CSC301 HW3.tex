@@ -1,0 +1,50 @@
+\documentclass{article}
+
+\title{CSC301 HW3}
+\author{Alex Zhang}
+\date{Jan 2023}
+
+
+
+
+\usepackage{amsthm,amssymb}
+\textwidth=16.00cm 
+\textheight=22.00cm 
+\topmargin=0.00cm
+\oddsidemargin=0.00cm 
+\evensidemargin=0.00cm 
+\headheight=0cm 
+\headsep=0.5cm
+\textheight=610pt
+
+
+
+\begin{document}
+\maketitle
+
+
+\section*{Question 1}
+
+    \subsection*{(a)}
+    Since $n \geq n-1 \geq n-2 \geq n-3 \geq \dots $, so that $n \cdot n \geq n \cdot  (n-1)$. We can then apply this inequality
+    with more numbers which  
+    $$n \cdot (n-1) \cdot (n-2) \cdot (n-3) \dots  1 \leq n\cdot n \dots n$$
+    This inequality holds true because each element on the left side is smaller than elements on the right side.
+    Simplifying the inequality,
+    $$n! \leq n^n$$
+    which shows that it is true.$\blacksquare$
+    \subsection*{(b)}
+    To prove the inequality, we can transformed into 
+    $$\log_{n/2}n! \geq \log_{n/2}(n/2)^{n/2}$$
+    which the left side and right side can also be written as,
+    $$\sum_{i=0}^{n-1}\log_{n/2}(n-i) \geq n/2$$
+
+
+\section*{Question 2}
+
+\section*{Question 3}
+
+
+
+
+\end{document}

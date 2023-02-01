@@ -1,0 +1,95 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\textwidth=16.00cm 
+\textheight=22.00cm 
+\topmargin=0.00cm
+\oddsidemargin=0.00cm 
+\evensidemargin=0.00cm 
+\headheight=0cm 
+\headsep=0.5cm
+\textheight=610pt
+
+\usepackage{amsthm,amssymb}
+
+\newcommand{\bmat}[1]{\begin{bmatrix} #1 \end{bmatrix}}
+\newcommand{\mat}[1]{\mathbf{#1}}
+\newcommand{\mb}[1]{\mathbb{#1}}
+
+\let\ds\displaystyle
+
+\title{CSC HW3}
+\author{Alex Zhang}
+\date{January 2023}
+
+\begin{document}
+
+\maketitle
+\section*{Question 1}
+
+\subsection*{(a)}
+By SVD, we can get that $\mat{A} = \mat{U}\mat{\Sigma}\mat{V}^\top$, which
+$$\mat{A}^\top =  (\mat{U}\mat{\Sigma}\mat{V}^\top)^\top = \mat{V}\mat{\Sigma}^\top \mat{U}^\top $$
+Since with SVD, matrix $\mat{\Sigma}$ is a diagonal matrix, which means the transpose of it will still be itself.
+If the singular values for $\mat{A}$ are $\sigma_1, \sigma_2, \dots, \sigma_n$, then the singular values for $\mat{A}^\top$
+will not change since $\mat{\Sigma} = \mat{\Sigma}^\top$.
+\subsection*{(b)}
+Using SVD,
+$$\mat{A}^{-1} = (\mat{U}\mat{\Sigma}\mat{V}^\top)^{-1} = (\mat{\Sigma}\mat{V}^\top)^{-1}\mat{U}^{-1} = (\mat{V}^\top)^{-1}\mat{\Sigma}^{-1}\mat{U}^{-1}$$
+Since $\mat{U}$ and $\mat{V}$ are orthogonal matrices, their transpose equals their inverse. The only change is $\mat{\Sigma}^{-1}$. The diagonal matrix's inverse
+is just taking the reciprocals on the entries on main diagonal. So the singular values for $\mat{A}^{-1}$ will be $1/\sigma_1, 1/\sigma_2, \dots, 1/\sigma_n$
+\subsection*{(c)}
+The matrix $\mat{A}$ with rank $r$ can also be written as,
+$$\mat{A} = \sum^r_{i=1}\sigma_i\mat{u}_i\mat{v}^\top_i$$
+then $$\alpha\mat{A} = \sum^r_{i=1}\alpha\sigma_i\mat{u}_i\mat{v}^\top_i$$
+Because singular values are all scalars, when $\alpha > 0$, the singular values for $\alpha \mat{A}$ will be $\alpha\sigma_1, \alpha \sigma_2, \dots, \alpha \sigma_n$
+
+
+\section*{Questino 2}
+\subsection*{(a)}
+
+By definition, $\|\mat{A}\|_2 = \max \sigma = \sigma_1$ and $\|\mat{A}\|_F = \sqrt{\sigma_1^2+ \sigma_2^2+\dots+ \sigma_r^2}$.
+Since for all $i \leq r$, $\sigma_i^2 \geq 0$, and $\sigma_1 = \sqrt{\sigma_1^2}$. Showing that $\sqrt{\sigma_1^2+ \sigma_2^2+\dots+ \sigma_r^2}
+\geq \sqrt{\sigma_1^2} $ which is the same as $\| \mat{A}\|_2 \leq \|\mat{A}\|_F$.$\blacksquare$
+
+\subsection*{(b)}
+In this case, $\sqrt{n}\|\mat{A}\|_2 = \sqrt{n}\sigma_1 = \sqrt{n\sigma_1^2}$. We know that rank$(\mat{A}) = r$, so $r \leq n$ and $\sigma_1$ is the largest
+singular value. We can get the inequality:
+$$\sqrt{n\sigma_1^2} \geq \sqrt{\sigma_1^2+ \sigma_2^2+\dots+ \sigma_r^2}$$
+which is the same as $\sqrt{n} \| \mat{A} \|_2 \geq \| \mat{A} \|_F$.$\blacksquare$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
