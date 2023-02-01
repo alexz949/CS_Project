@@ -34,12 +34,61 @@
     $$n! \leq n^n$$
     which shows that it is true.$\blacksquare$
     \subsection*{(b)}
-    To prove the inequality, we can transformed into 
-    $$\log_{n/2}n! \geq \log_{n/2}(n/2)^{n/2}$$
-    which the left side and right side can also be written as,
-    $$\sum_{i=0}^{n-1}\log_{n/2}(n-i) \geq n/2$$
+    Takes the $\log_{n/2}$ for $(n/2)^{n/2}$, which equals 
+    $$\log_{n/2}(n/2)^{n/2} = n/2\log_{n/2}(n/2) = n/2$$
+    Takesthe $\log_{n/2}$ for $n$ factorial. This equals
+    $$\log_{n/2}(n!) = \sum_{i=0}^{n-1}\log_{n/2}(n-i)$$
+    Given a log function $\log_ab$, as long as $b \geq a$, $\log_ab \geq 1$. Expanding $\sum_{i=0}^{n-1}\log_{n/2}(n-i)$:
+    $$\sum_{i=0}^{n-1}\log_{n/2}(n-i) = \log_{n/2}(n) + \log_{n/2}(n-1) + \dots + \log_{n/2}1$$
+    We can get that all elements before $\log_{n/2}(n/2-1)$ is larger or equal to 1, and there are total $n/2 + 1$
+    elements before $n/2-1$ in this summation. Therefore, we can obtain
+    the following inequality:
+    $$\sum_{i=0}^{n-1}\log_{n/2}(n-i) = \log_{n/2}(n) + \log_{n/2}(n-1) + \dots + \log_{n/2}1 \geq n/2 + 1$$
+    Which is the same as,
+    $$\log_{n/2}(n!) \geq n/2 + 1 \geq n/2 = \log_{n/2}(n/2)^{n/2} $$
+    Exponentiates both sides,
+    $$n! \geq (n/2)^{n/2}$$
+    Just as the prompt.$\blacksquare$
 
 
+    \subsection*{(c)}
+    From question $(a)$ and $(b)$, we can get the inequality,
+    $$n^n \geq n! \geq (n/2)^{n/2}$$
+    Takes the log for all of them,
+    $$n\log n \geq \log(n!) \geq (n/2)\log(n/2) $$
+
+    \paragraph{Case 1: } Big-Oh\\
+    Let $f(n) = \log(n!)$ and $ c \cdot g(n) = c \cdot n \log n$. By definition, Since
+    $$\log(n!) \leq n\log n$$
+    We can let $c = 1$ and $N = 1$, and plug in the number into inequality,
+    $$f(n) = \log(n!) \leq n\log n = g(n)$$
+    for all $n \geq N$. Therefore,
+    $$\log(n!) = O(n\log n)$$
+
+    \paragraph{Case 2: } Big-Omega\\
+    Since $\log(n!) \geq (n/2)\log(n/2)$, we can do some transformation on the right hand side,
+    $$\log(n!) \geq (n/2)\log n - (n/2)\log 2$$
+    When $n \geq 4$, $n/4 \log n \geq n/2$ and substitudes $n/2 \log 2$ with
+    $n/4 \log n$, we can get:
+    $$\log(n!) \geq (n/2)\log n - n/4\log n = n/4\log n \mbox{ when } n \geq 4$$
+    By definition, let $f(n) = \log(n!)$, and $c \cdot g(n) = c \cdot n/4 \log n $.
+    We can assume that for $c = 4$ and $N = 4$, the inequality 
+    $$\log(n!) \geq n\log n$$
+    holds.\\
+    So for all $n \geq N$, then 
+    $$\log(n!) = \Omega(n\log n)$$
+    Overall, if $\log(n!) = O(n\log n)$, and $\log(n!) = \Omega(n\log n)$, then
+    $$\log(n!) = \Theta(n \log n)$$
+    $\blacksquare$
+
+
+
+
+
+
+
+
+  
 \section*{Question 2}
 
 \section*{Question 3}
