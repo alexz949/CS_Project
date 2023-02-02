@@ -8,6 +8,7 @@
 
 
 \usepackage{amsthm,amssymb}
+\usepackage{amsmath}
 \textwidth=16.00cm 
 \textheight=22.00cm 
 \topmargin=0.00cm
@@ -90,8 +91,91 @@
 
   
 \section*{Question 2}
+Assume that the time complexity of function MULTIPLY for n-bits number
+is $T(n)$. In each recursion calls, as line $4 $ and $ 5$ showed, the 
+input is seperated into 3 parts,and following 5 times of recursions
+(showed in line $6$ to $10$). For the rest part, since number addtion and subtraction
+all cost linear time and we assume that the division by 3 also has $O(n)$. We can say that 
+for each recursion call, the time complexity is $O(n)$ and we can draw the following formula,
+$$T(n) = 5T(n/3) + O(n)$$
+
+
+
 
 \section*{Question 3}
+\subsection*{(a) $T(n) = T(n/2) + O(\log n)$}
+We can use back-substitution to solve the recursion.
+    \begin{align}
+        T(n) & = T(n/2) + O(\log n) \nonumber \\
+        T(n/2) & = T(n/4) +  O(\log n) \nonumber \\
+        T(n/4) &= T(n/8) + O(\log n) \nonumber \\
+        \vdots \nonumber \\
+        T(1) &= O(1) \nonumber
+    \end{align}
+In back-substitution, there are total $L$ level which $n/2^L = 1 \Rightarrow L = \log_2 n$.
+Then, 
+    \begin{align}
+        T(n) &= c^\prime \cdot \log n (\log n - 1) + c \cdot 1 \nonumber \\
+        T(n) &= c^\prime (\log n)^2 - c^\prime \log n + c \nonumber 
+    \end{align}
+    Because $c^\prime  (\log n)^2$ is the domonate term in this equation and $c$ is a constant
+    , we can get the time complexity for $T(n) = O((\log n)^2)$
+
+\subsection*{(a) $T(n) = 7\cdot T(n/2) + O(n^2)$}
+In this case, since $a = 7$, $b = 2$, and $d = 2$, and $T(1) = O(1)$ we can use master theorem to solve the recurrence.
+$$\log_b a = \log_2 7 \approx 2.807 > 2 = d $$
+We will go in case 3 of master theorem then,
+$$T(n) = O(n^{\log_b a}) = O(n^{2.807})$$
+
+\subsection*{(c) $T(n) = T(n-1) + O(n)$}
+Back-substitution can be used for solving,
+    \begin{align}
+        T(n) & = T(n-1) + O(n) \nonumber \\
+        T(n-1) & = T(n-2) + O(n) \nonumber \\
+        T(n-2) & = T(n-3) + O(n) \nonumber \\
+        \vdots \nonumber \\
+        T(1) &= O(1) \nonumber
+    \end{align}
+Except for the base case there are total  $n-L = 1 \Rightarrow L = n-1$ number of calls.
+Applying $L$ into $T(n)$ which 
+    \begin{align}
+        T(n) &= c^\prime n (n-1) + c\cdot 1 \nonumber \\
+        T(n) &= c^\prime n^2 - c^\prime  n + c \nonumber 
+    \end{align}
+Since $c^\prime n^2$ is the dominating term and $c$ is a constant, we can get the time complexity $T(n) = O(n^2)$.
+\subsection*{(d) $T(n) = 2\cdot T(n/2) + O(n)$}
+Since $a = 2$, $b = 2$, and $d = 1$ with base case $T(1) = O(1)$, we can use master theorem solving the recurrence.
+$$\log_b a = \log_2 2 = 1 = d$$
+It goes into second case, where $T(n) = O(n^d\log n)$ and plugging in numbers.
+$$T(n) = O(n\log n)$$
+
+\subsection*{(e) $T(n) = 2\cdot T(n-1) + O(1)$ }
+We can still use the substitution method.
+    \begin{align}
+        T(n) &= 2\cdot T(n-1) + O(1) \nonumber \\
+        T(n-1) &= 2\cdot T(n-2) + O(1) \nonumber \\
+        T(n-2) &=  2\cdot T(n-3) + O(1) \nonumber \\
+        \vdots \nonumber \\
+        T(1) &= O(1) \nonumber
+    \end{align}
+In this case the total number of level before reaching leave $L$ is $n-L = 1 \Rightarrow 
+L = n-1$.  Plug in number $L$ into $T(n)$,
+    \begin{align}
+        T(n) &= 2^{L}T(1) + c \cdot 1 \nonumber \\
+        T(n) &= 2^{n-1} \cdot c^\prime  + c \nonumber \\
+        T(n) &= \frac{c^\prime}{2} 2^{n} + c \nonumber
+    \end{align}
+Since $\frac{c^\prime}{2} 2^{n}$ is the dominating term and $c$ is a constant, the time complexity for $T(n)$ will be 
+$$T(n) = O(2^n)$$
+
+
+
+
+
+
+
+
+
 
 
 
