@@ -397,11 +397,17 @@ From the fitted regression line, we predict that with one unit increase in log(a
 
 
 
+<<<<<<< Updated upstream
 
 
 
 ```{r,include=F, echo=F, message=F, warning=F}
 zip_m3 <- zeroinfl(gazelleThomsons.count ~ ndvi + log(amRivDist) + TM100 + LriskDry + T50  | ndvi + log(amRivDist) + TM100 + LriskDry + T50, data = serengeti)
+=======
+The summary fitted regresion model for specie gazelle will be:
+```{r}
+zip_m3 <- zeroinfl(gazelleThomsons.count ~ ndvi + (amRivDist) + TM100 + LriskDry + T50  | ndvi + (amRivDist) + TM100 + LriskDry + T50, data = serengeti)
+>>>>>>> Stashed changes
 summary(zip_m3)
 ```
 
