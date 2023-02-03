@@ -30,14 +30,14 @@
     Since $n \geq n-1 \geq n-2 \geq n-3 \geq \dots $, so that $n \cdot n \geq n \cdot  (n-1)$. We can then apply this inequality
     with more numbers which  
     $$n \cdot (n-1) \cdot (n-2) \cdot (n-3) \dots  1 \leq n\cdot n \dots n$$
-    This inequality holds true because each element on the left side is smaller than elements on the right side.
+    This inequality holds true because each element on the left side is smaller or equal to elements on the right side.
     Simplifying the inequality,
     $$n! \leq n^n$$
     which shows that it is true.$\blacksquare$
     \subsection*{(b)}
     Takes the $\log_{n/2}$ for $(n/2)^{n/2}$, which equals 
     $$\log_{n/2}(n/2)^{n/2} = n/2\log_{n/2}(n/2) = n/2$$
-    Takesthe $\log_{n/2}$ for $n$ factorial. This equals
+    Takes the $\log_{n/2}$ for $n$ factorial. This equals
     $$\log_{n/2}(n!) = \sum_{i=0}^{n-1}\log_{n/2}(n-i)$$
     Given a log function $\log_ab$, as long as $b \geq a$, $\log_ab \geq 1$. Expanding $\sum_{i=0}^{n-1}\log_{n/2}(n-i)$:
     $$\sum_{i=0}^{n-1}\log_{n/2}(n-i) = \log_{n/2}(n) + \log_{n/2}(n-1) + \dots + \log_{n/2}1$$
@@ -92,12 +92,22 @@
   
 \section*{Question 2}
 Assume that the time complexity of function MULTIPLY for n-bits number
-is $T(n)$. In each recursion calls, as line $4 $ and $ 5$ showed, the 
-input is seperated into 3 parts,and following 5 times of recursions
-(showed in line $6$ to $10$). For the rest part, since number addtion and subtraction
-all cost linear time and we assume that the division by 3 also has $O(n)$. We can say that 
+is $T(n)$. In each recursion calls, the 
+input is seperated into 3 parts(line 4 and 5), and following 5 times of recursions
+(showed in line $6$ to $10$). For partitioning, the time complexity is $O(n)$ since we assume the division by 3 is linear
+and the multiplication of 2 is just adding zeros behind. For the rest part, since number addtion and subtraction
+all cost linear time and division by 3 is also $O(n)$. We can say that 
 for each recursion call, the time complexity is $O(n)$ and we can draw the following formula,
 $$T(n) = 5T(n/3) + O(n)$$
+Also the base case $T(1)$ when $n = 1$ also has time complexity $O(1)$ becuase multiplying two 1-bit number costs
+in constant time. Based on the information above, we are able to use master
+theorem to get the time complexity for MULTIPLY since $a = 5$, $b = 3$, and $d = 1$.\\
+Using master theorem, we get
+$$\log_b a = \log_3 5 \approx 1.46 > 1 = d$$
+So we will apply third case for master theorem which 
+$$T(n) = O(n^{\log_b a}) = O(n^{\log_3 5}) = O(n^{1.46})$$
+The time complexity for MULTIPLY is $O(n^{1.46})$.
+
 
 
 
@@ -112,16 +122,18 @@ We can use back-substitution to solve the recursion.
         \vdots \nonumber \\
         T(1) &= O(1) \nonumber
     \end{align}
+Where for a number $k$,
+$$T(n) = T(n/2^k) + k\cdot c \log n$$
 In back-substitution, there are total $L$ level which $n/2^L = 1 \Rightarrow L = \log_2 n$.
 Then, 
     \begin{align}
-        T(n) &= c^\prime \cdot \log n (\log n - 1) + c \cdot 1 \nonumber \\
-        T(n) &= c^\prime (\log n)^2 - c^\prime \log n + c \nonumber 
+        T(n) &= T(1) + \log n \cdot c^\prime \log n \nonumber \\
+        T(n) &= c^\prime (\log n)^2 +  c \nonumber 
     \end{align}
-    Because $c^\prime  (\log n)^2$ is the domonate term in this equation and $c$ is a constant
+    Because $c^\prime  (\log n)^2$ is the dominating term in this equation and $c$ is a constant
     , we can get the time complexity for $T(n) = O((\log n)^2)$
 
-\subsection*{(a) $T(n) = 7\cdot T(n/2) + O(n^2)$}
+\subsection*{(b) $T(n) = 7\cdot T(n/2) + O(n^2)$}
 In this case, since $a = 7$, $b = 2$, and $d = 2$, and $T(1) = O(1)$ we can use master theorem to solve the recurrence.
 $$\log_b a = \log_2 7 \approx 2.807 > 2 = d $$
 We will go in case 3 of master theorem then,
@@ -136,11 +148,13 @@ Back-substitution can be used for solving,
         \vdots \nonumber \\
         T(1) &= O(1) \nonumber
     \end{align}
-Except for the base case there are total  $n-L = 1 \Rightarrow L = n-1$ number of calls.
-Applying $L$ into $T(n)$ which 
+For a number $k$, $T(n)$ can be expressed as 
+$$T(n) = T(n-k) + c^\prime \cdot kn$$
+For leave level $L$, $L$ satisfies $n-L = 1 \Rightarrow L = n-1$ and plug in $k = L$,
     \begin{align}
-        T(n) &= c^\prime n (n-1) + c\cdot 1 \nonumber \\
-        T(n) &= c^\prime n^2 - c^\prime  n + c \nonumber 
+        T(n) &= T(1) + c^\prime  \cdot Ln \nonumber \\
+        T(n) &= c \cdot 1 + c^\prime \cdot (n-1)n \nonumber \\
+        T(n) &= c + c^\prime n^2 - c^\prime n \nonumber 
     \end{align}
 Since $c^\prime n^2$ is the dominating term and $c$ is a constant, we can get the time complexity $T(n) = O(n^2)$.
 \subsection*{(d) $T(n) = 2\cdot T(n/2) + O(n)$}
@@ -158,14 +172,18 @@ We can still use the substitution method.
         \vdots \nonumber \\
         T(1) &= O(1) \nonumber
     \end{align}
-In this case the total number of level before reaching leave $L$ is $n-L = 1 \Rightarrow 
-L = n-1$.  Plug in number $L$ into $T(n)$,
+Given a number $k$, uses $n-k$ to represent $T(n)$ which,
+$$T(n) = 2^k \cdot T(n-k) + c \cdot \sum_{i=0}^{k-1}2^i$$
+In this case at leave level $L$,
+$$T(n) = 2^L \cdot T(n-L) + c\cdot \sum_{i = 0}^{L-1}2^i$$
+which $n-L = 1$, $L = n-1$,
     \begin{align}
-        T(n) &= 2^{L}T(1) + c \cdot 1 \nonumber \\
-        T(n) &= 2^{n-1} \cdot c^\prime  + c \nonumber \\
-        T(n) &= \frac{c^\prime}{2} 2^{n} + c \nonumber
+        T(n) &= 2^{n-1}T(1) + c\cdot \sum_{i=0}^{n-2}2^i \nonumber \\
+        T(n) &= 2^{n-1} \cdot c^\prime  + c\cdot  \frac{2^{n-1} - 1}{1}\nonumber \\
+        T(n) &= 2^{n-1} \cdot (c^\prime + c)  + c \nonumber \\
+        T(n) &= \frac{c^\prime+c}{2} 2^{n} + c \nonumber
     \end{align}
-Since $\frac{c^\prime}{2} 2^{n}$ is the dominating term and $c$ is a constant, the time complexity for $T(n)$ will be 
+In this case since $c^\prime$ and $c$ are both constant, the time complexity for $T(n)$ will be 
 $$T(n) = O(2^n)$$
 
 
