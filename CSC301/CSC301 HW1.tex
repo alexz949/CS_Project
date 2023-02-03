@@ -1,0 +1,191 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\title{CSC301 HW1}
+\author{Alex Zhang}
+\date{Januray 2023}
+
+\begin{document}
+\maketitle
+\section{Question 1}
+    \subsection{(a)}
+    Based on the formula, $g(n) = \sum_{k=0}^{n} r^k = \frac{1-r^{n+1}}{1-r}$, for $r < 1$.
+Then
+    $$g(n) = \frac{1-r^{n+1}}{1-r} \leq \frac{1}{1-r} $$
+since $r^{n+1} \geq 0$ when  $r \geq 0$.
+We can then assume that $\exists c$ which $c = \frac{1}{1-r}$ becuase $r$ is a constant
+and $\exists N$ where $N = 1$.
+So,
+$$g(n) \leq c \cdot 1$$
+for all $n \geq N$, then 
+$$g(n) = O(1)$$
+
+    \subsection{(b)}
+    When $r = 1$, $g(n)$ will be $1 + 1 + 1^2 + \dots  + 1^n$
+$$g(n) =  1\cdot n + 1 = n + 1$$
+So, there exists $c = 10$, $N = 1$ such that 
+$$g(n) \leq  10 \cdot n$$
+for all $n \geq N$, then 
+$$g(n) = O(10n)$$
+The time complexity for $g(n)$ when $r=1$ will be $O(n)$.
+    \subsection{(c)}
+    When $r > 1$, the formula for finite geometric series sum will be $\frac{r^{n+1}-1}{r-1}$.
+Then, 
+$$g(n) = \frac{r^{n+1}-1}{r-1} \leq \frac{r^{n+1}}{r-1}$$
+We can assume that there exists a $c = \frac{1}{r-1}$, becuase $r$ is a constant so $1/r-1$ will also be a constant and exists $N = 1$.
+This satisfies that 
+$$g(n) \leq c \cdot r^{n+1}$$
+for all $n \geq N$, then 
+$$g(n) = O(r^{n+1})$$
+
+The time complexity for $g(n)$ when $r > 1$ will be $O(r^n)$.
+
+
+
+\section{Question 2}
+    \subsection{(a)}
+    \begin{verbatim}
+    public static void main(String[] args) {
+        int[] test = new int[2];
+        test = divide(0b1011, 0b10);
+        System.out.println("the quotient will be: " + test[0]);
+        System.out.println("the remainder will be: " + test[1]);
+    }
+
+    static int[] divide(int x, int y){
+        int[] ans = new int[2];
+        if(x == 0)
+            return ans;
+        ans = divide((int)Math.floor(x / 2), y);
+        ans[0] *= 2;
+        ans[1] *= 2;
+
+        if(x % 2 == 1)
+            ans[1] += 1;
+        if(ans[1] >= y){
+            ans[1] -= y;
+            ans[0] += 1;
+        }
+        return ans;
+    }
+    \end{verbatim}
+    My input for $x$ is $1011$ and $y$ is $10$ in binary.\\\\\\
+    For line
+    \begin{verbatim}
+        if(x == 0)
+            return ans;
+    \end{verbatim}
+    This happens in the last recusion call when $x = 0, y = 10$, and it will return the array.\\
+    For lines
+    \begin{verbatim}
+        ans = divide((int)Math.floor(x / 2), y);
+        ans[0] *= 2;
+        ans[1] *= 2;
+    \end{verbatim}
+    The first line is doing the recusion and the rest will execute in every recursion.
+    This condition
+    \begin{verbatim}
+        if(x % 2 == 1)
+            ans[1] += 1;
+    \end{verbatim}
+    will be true when $x = 1, 101, 1011$ since they are all odd numbers.\\
+    The last condition
+    \begin{verbatim}
+        if(ans[1] >= y){
+            ans[1] -= y;
+            ans[0] += 1;
+        }
+    \end{verbatim}
+    will execute when $x = 10$ and $1011$ which the remainder will be $2$ and $3$ respectively.
+
+    \subsection{(b)}
+
+The base case will be $x = 0$ and $y$ is an abitary number.
+Base case is true since the algorithm will return $q = 0, r = 0$, which satisfies
+$$0 = 0 \cdot y + 0 \mbox{ with } 0 \leq r < y $$
+\\
+For induction case, assume that $x = n$ and given an abitary $y$, which satisfies
+$$n = q \cdot y + r \mbox{ with } 0\leq r < y $$
+Then 
+$$\lfloor n/2 \rfloor = q^\prime \cdot y + r^\prime $$
+\\
+\paragraph{Case 1: $n$ is even}
+
+Then $\lfloor n/2 \rfloor = n/2$.
+
+
+\begin{align}
+    n/2  &= q^\prime \cdot y + r^\prime \nonumber \\
+    n &=  2q^\prime \cdot y + 2r^\prime \nonumber
+\end{align}
+If $2r^\prime < y$, then $2q^\prime = q$, $2r^\prime = r$.
+$$n = q \cdot y + r \mbox{ with } 0 \leq r < y$$ which is true.
+\\
+If $2r^\prime \geq y$, for the algorithm, 
+$$n = (2q^\prime+1)y + (2r^\prime-y)$$
+So $2q^\prime + 1 = q$ and $2r^\prime - y = r$ which is also true since
+$$ 0 \leq r^\prime < y $$$$  0 \leq 2r^\prime < 2y $$$$  0 \leq 2r^\prime - y < y  $$
+We can get 
+$$n = q \cdot y + r \mbox{ with } 0 \leq r < y$$
+
+
+
+
+\paragraph{Case 2: $n$ is odd}
+
+Then $\lfloor n/2 \rfloor = (n-1)/2$.
+\begin{align}
+    (n-1)/2 &= q^\prime \cdot y + r^\prime \nonumber \\
+    n &=  2q^\prime \cdot y + 2r^\prime + 1 \nonumber
+\end{align}
+For $2r^\prime + 1 < y$ and $y\leq 2r^\prime + 1 < 2y$, without loss of generality, the proving is the same in case 1, which is true.
+\\
+For $2r^\prime + 1 = 2y$, it is impossible since  $2r^\prime + 1$ will always be an odd number but $2y$ will always be an even number.
+\\
+Overall, the indcution shows that this algorithm is correct.$\blacksquare$
+
+    \subsection{(c)}
+    Assume that input $x$, $y$ are n-bits numbers, then this algorithm takes $n$ times of recursion calls becuase each time the number of bit decrease by one.
+    For each recursion call, for the worst case, every call will go into 
+    \begin{verbatim}
+        if(ans[1] >= y){
+            ans[1] -= y;
+            ans[0] += 1;
+        }
+    \end{verbatim}
+    condition, which addition is performed. This required linear time complexity.
+    \\
+    Overall, there are $n$ times of recursion calls for n-bits number, and for each call, there is going to be an addition performing linear complexity.
+    So the total time complexity for this algorithm is $O(n^2)$.
+
+    
+    
+
+    
+
+\section{Question 3}
+By definition, $x \equiv y \mbox{ mod } N $ if and only if $N$ divides $x-y$.
+In question since $x \equiv x^\prime \mbox{ mod } N$, and $y \equiv y^\prime \mbox{ mod } N $, equivalently,
+$$x - x^\prime = N \cdot k$$
+$$y - y^\prime = N \cdot l$$
+for $k$, $l$ $\in \mathbb{Z}$
+\\
+Then $x = N \cdot k + x^\prime$, $y = N \cdot l + y^\prime$, and 
+\begin{align}
+    xy &= (N \cdot k + x^\prime) (N \cdot l + y^\prime) \nonumber \\
+xy &= N^2 k l + Nk y^\prime + Nlx^\prime + x^\prime y^\prime \nonumber \\
+xy &= N(Nkl + k y^\prime + lx^\prime) + x^\prime y^\prime \nonumber \\
+xy - x^\prime y^\prime &= N(Nkl + k y^\prime + lx^\prime) \nonumber
+\end{align}
+By definition, let $m \in \mathbb{Z}$ and $m = (Nkl + k y^\prime + lx^\prime)$ since integer is closed under addition.
+
+$$xy - x^\prime y^\prime = N \cdot m$$
+which by definition again,
+
+$$xy \equiv x^\prime y^\prime \mbox{ mod } N $$
+The substitution rule for modular multiplication is true.$\blacksquare$
+
+
+    
+\end{document}
