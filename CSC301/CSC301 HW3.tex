@@ -96,7 +96,7 @@ is $T(n)$. In each recursion calls, the
 input is seperated into 3 parts(line 4 and 5), and following 5 times of recursions
 (showed in line $6$ to $10$). For partitioning, the time complexity is $O(n)$ since we assume the division by 3 is linear
 and the multiplication of 2 is just adding zeros behind. For the rest part, since number addtion and subtraction
-all cost linear time and division by 3 is also $O(n)$. We can say that 
+all cost linear time and division by 3 is also $O(n)$ as well as for the returning value. We can say that 
 for each recursion call, the time complexity is $O(n)$ and we can draw the following formula,
 $$T(n) = 5T(n/3) + O(n)$$
 Also the base case $T(1)$ when $n = 1$ also has time complexity $O(1)$ becuase multiplying two 1-bit number costs
