@@ -96,7 +96,7 @@ is $T(n)$. In each recursion calls, the
 input is seperated into 3 parts(line 4 and 5), and following 5 times of recursions
 (showed in line $6$ to $10$). For partitioning, the time complexity is $O(n)$ since we assume the division by 3 is linear
 and the multiplication of 2 is just adding zeros behind. For the rest part, since number addtion and subtraction
-all cost linear time and division by 3 is also $O(n)$. We can say that 
+all cost linear time and division by 3 is also $O(n)$ as well as for the returning value. We can say that 
 for each recursion call, the time complexity is $O(n)$ and we can draw the following formula,
 $$T(n) = 5T(n/3) + O(n)$$
 Also the base case $T(1)$ when $n = 1$ also has time complexity $O(1)$ becuase multiplying two 1-bit number costs
@@ -117,20 +117,22 @@ The time complexity for MULTIPLY is $O(n^{1.46})$.
 We can use back-substitution to solve the recursion.
     \begin{align}
         T(n) & = T(n/2) + O(\log n) \nonumber \\
-        T(n/2) & = T(n/4) +  O(\log n) \nonumber \\
-        T(n/4) &= T(n/8) + O(\log n) \nonumber \\
+        T(n/2) & = T(n/4) +  O(\log n/2) \nonumber \\
+        T(n/4) &= T(n/8) + O(\log n/4) \nonumber \\
         \vdots \nonumber \\
         T(1) &= O(1) \nonumber
     \end{align}
 Where for a number $k$,
-$$T(n) = T(n/2^k) + k\cdot c \log n$$
+$$T(n) = T(n/2^k) + \sum_{i=0}^{k-1}\cdot c \cdot  \log n/2^i$$
+$$T(n) = T(n/2^k) + k \cdot   c \log n + c_1$$
+Where $c_1$ is the sum of constant after using log division property.\\
 In back-substitution, there are total $L$ level which $n/2^L = 1 \Rightarrow L = \log_2 n$.
 Then, 
     \begin{align}
-        T(n) &= T(1) + \log n \cdot c^\prime \log n \nonumber \\
-        T(n) &= c^\prime (\log n)^2 +  c \nonumber 
+        T(n) &= T(1) + \log n \cdot c^\prime \log n + c_1 \nonumber \\
+        T(n) &= c^\prime (\log n)^2 +  c + c_1 \nonumber 
     \end{align}
-    Because $c^\prime  (\log n)^2$ is the dominating term in this equation and $c$ is a constant
+    Because $c^\prime  (\log n)^2$ is the dominating term in this equation and $c$, $c_1$ is a constant
     , we can get the time complexity for $T(n) = O((\log n)^2)$
 
 \subsection*{(b) $T(n) = 7\cdot T(n/2) + O(n^2)$}
@@ -143,20 +145,20 @@ $$T(n) = O(n^{\log_b a}) = O(n^{2.807})$$
 Back-substitution can be used for solving,
     \begin{align}
         T(n) & = T(n-1) + O(n) \nonumber \\
-        T(n-1) & = T(n-2) + O(n) \nonumber \\
-        T(n-2) & = T(n-3) + O(n) \nonumber \\
+        T(n-1) & = T(n-2) + O(n-1) \nonumber \\
+        T(n-2) & = T(n-3) + O(n-2) \nonumber \\
         \vdots \nonumber \\
         T(1) &= O(1) \nonumber
     \end{align}
 For a number $k$, $T(n)$ can be expressed as 
-$$T(n) = T(n-k) + c^\prime \cdot kn$$
+$$T(n) = T(n-k) + c^\prime \cdot \sum_{i=0}^{k-1}(n-i)$$
 For leave level $L$, $L$ satisfies $n-L = 1 \Rightarrow L = n-1$ and plug in $k = L$,
     \begin{align}
-        T(n) &= T(1) + c^\prime  \cdot Ln \nonumber \\
-        T(n) &= c \cdot 1 + c^\prime \cdot (n-1)n \nonumber \\
-        T(n) &= c + c^\prime n^2 - c^\prime n \nonumber 
+        T(n) &= T(1) + c^\prime  \cdot \sum_{i=0}^{n-2}(n-i) \nonumber \\
+        T(n) &= c \cdot 1 + c^\prime \cdot (n+2)(n-1)/2 \nonumber \\
+        T(n) &= c + c^\prime n^2 / 2 + c^\prime n/2 - c^\prime \nonumber 
     \end{align}
-Since $c^\prime n^2$ is the dominating term and $c$ is a constant, we can get the time complexity $T(n) = O(n^2)$.
+Since $c^\prime n^2 / 2$ is the dominating term and $c$ , 1 is a constant, and let $c^\prime  = 2$, we can get the time complexity $T(n) = O(n^2)$.
 \subsection*{(d) $T(n) = 2\cdot T(n/2) + O(n)$}
 Since $a = 2$, $b = 2$, and $d = 1$ with base case $T(1) = O(1)$, we can use master theorem solving the recurrence.
 $$\log_b a = \log_2 2 = 1 = d$$
