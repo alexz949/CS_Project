@@ -1,0 +1,59 @@
+\documentclass{article}
+\title{CSC301 HW4}
+\author{Alex Zhang}
+\date{Feb 2023}
+
+
+\textwidth=16.00cm 
+\textheight=22.00cm 
+\topmargin=0.00cm
+\oddsidemargin=0.00cm 
+\evensidemargin=0.00cm 
+\headheight=0cm 
+\headsep=0.5cm
+\textheight=610pt
+
+\usepackage{amsthm,amssymb}
+
+\newcommand{\bmat}[1]{\begin{bmatrix} #1 \end{bmatrix}}
+\newcommand{\mat}[1]{\mathbf{#1}}
+\newcommand{\mb}[1]{\mathbb{#1}}
+
+\let\ds\displaystyle
+
+
+
+
+\begin{document}
+\maketitle
+
+
+\section*{Question 1}
+Based on the question, since $n$ is a power of 2, $n$ will always be even. The following is the pesudocode for the algorithm,
+\begin{verbatim}
+    function v = MEDIAN(A,B,n)
+        if n == 1 then return (A[0]+B[0])/2
+        
+        m1 = (A[n/2] + A[n/2-1])/2
+        m2 = (B[n/2] + B[n/2-1])/2
+        if m1 == m2 
+            then return m1
+        if m1 < m2
+            return MEDIAN(A[n/2,:], B, n/2)
+        else
+            return MEDIAN(A, B[n/2,:], n/2)
+        end if
+    end function
+        
+\end{verbatim}
+
+
+\section*{Question 2}
+
+
+
+
+
+\section*{Question 3}
+
+\end{document}
