@@ -1,6 +1,6 @@
-PWD c:\Users\Administrator\Desktop\CS_Project\CSC352
-INPUT C:\Users\Administrator\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\Administrator\Desktop\CS_Project\CSC352\CSC352_HW4.tex
+PWD c:\Users\AlexZ\Desktop\计算机\CS_Project\CSC352
+INPUT C:\Users\AlexZ\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
+INPUT c:\Users\AlexZ\Desktop\计算机\CS_Project\CSC352\CSC352_HW4.tex
 OUTPUT CSC352_HW4.log
 INPUT C:\Program Files\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Program Files\MiKTeX\tex\latex\base\article.cls
@@ -51,17 +51,17 @@ INPUT C:\Program Files\MiKTeX\tex\latex\tools\delarray.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\tools\delarray.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\tools\delarray.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\tools\array.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\amscls\amsthm.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\amscls\amsthm.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\amscls\amsthm.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\amscls\amsthm.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\amscls\amsthm.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\amscls\amsthm.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\amscls\amsthm.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\amscls\amsthm.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\amscls\amsthm.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\amscls\amsthm.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\amscls\amsthm.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
@@ -236,73 +236,73 @@ INPUT C:\Program Files\MiKTeX\tex\latex\epstopdf-pkg\epstopdf-base.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\epstopdf-pkg\epstopdf-base.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\epstopdf-pkg\epstopdf-base.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\epstopdf-pkg\epstopdf-base.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\infwarerr\infwarerr.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\infwarerr\infwarerr.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\infwarerr\infwarerr.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\infwarerr\infwarerr.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\infwarerr\infwarerr.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\infwarerr\infwarerr.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\infwarerr\infwarerr.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\infwarerr\infwarerr.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\infwarerr\infwarerr.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\infwarerr\infwarerr.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\infwarerr\infwarerr.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\grfext\grfext.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\grfext\grfext.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\grfext\grfext.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\grfext\grfext.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\grfext\grfext.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\grfext\grfext.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\grfext\grfext.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\grfext\grfext.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\grfext\grfext.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\grfext\grfext.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\grfext\grfext.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\infwarerr\infwarerr.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\kvdefinekeys\kvdefinekeys.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\kvdefinekeys\kvdefinekeys.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\kvdefinekeys\kvdefinekeys.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\kvdefinekeys\kvdefinekeys.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\kvdefinekeys\kvdefinekeys.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\kvdefinekeys\kvdefinekeys.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\kvdefinekeys\kvdefinekeys.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\kvdefinekeys\kvdefinekeys.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\kvdefinekeys\kvdefinekeys.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\kvdefinekeys\kvdefinekeys.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\kvdefinekeys\kvdefinekeys.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\kvoptions\kvoptions.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\kvoptions\kvoptions.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\kvoptions\kvoptions.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\kvoptions\kvoptions.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\kvoptions\kvoptions.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\kvoptions\kvoptions.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\kvoptions\kvoptions.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\kvoptions\kvoptions.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\kvoptions\kvoptions.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\kvoptions\kvoptions.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\kvoptions\kvoptions.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\ltxcmds\ltxcmds.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\ltxcmds\ltxcmds.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\ltxcmds\ltxcmds.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\ltxcmds\ltxcmds.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\ltxcmds\ltxcmds.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\ltxcmds\ltxcmds.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\ltxcmds\ltxcmds.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\ltxcmds\ltxcmds.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\ltxcmds\ltxcmds.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\ltxcmds\ltxcmds.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\ltxcmds\ltxcmds.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\kvsetkeys\kvsetkeys.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\kvsetkeys\kvsetkeys.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\kvsetkeys\kvsetkeys.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\kvsetkeys\kvsetkeys.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\kvsetkeys\kvsetkeys.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\kvsetkeys\kvsetkeys.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\kvsetkeys\kvsetkeys.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\kvsetkeys\kvsetkeys.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\kvsetkeys\kvsetkeys.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\kvsetkeys\kvsetkeys.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\kvsetkeys\kvsetkeys.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\generic\infwarerr\infwarerr.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\generic\infwarerr\infwarerr.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\generic\infwarerr\infwarerr.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\generic\infwarerr\infwarerr.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\generic\infwarerr\infwarerr.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\generic\infwarerr\infwarerr.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\generic\infwarerr\infwarerr.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\generic\infwarerr\infwarerr.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\generic\infwarerr\infwarerr.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\generic\infwarerr\infwarerr.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\generic\infwarerr\infwarerr.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\grfext\grfext.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\grfext\grfext.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\grfext\grfext.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\grfext\grfext.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\grfext\grfext.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\grfext\grfext.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\grfext\grfext.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\grfext\grfext.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\grfext\grfext.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\grfext\grfext.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\grfext\grfext.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\generic\infwarerr\infwarerr.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\generic\kvdefinekeys\kvdefinekeys.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\generic\kvdefinekeys\kvdefinekeys.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\generic\kvdefinekeys\kvdefinekeys.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\generic\kvdefinekeys\kvdefinekeys.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\generic\kvdefinekeys\kvdefinekeys.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\generic\kvdefinekeys\kvdefinekeys.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\generic\kvdefinekeys\kvdefinekeys.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\generic\kvdefinekeys\kvdefinekeys.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\generic\kvdefinekeys\kvdefinekeys.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\generic\kvdefinekeys\kvdefinekeys.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\generic\kvdefinekeys\kvdefinekeys.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\kvoptions\kvoptions.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\kvoptions\kvoptions.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\kvoptions\kvoptions.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\kvoptions\kvoptions.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\kvoptions\kvoptions.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\kvoptions\kvoptions.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\kvoptions\kvoptions.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\kvoptions\kvoptions.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\kvoptions\kvoptions.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\kvoptions\kvoptions.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\kvoptions\kvoptions.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\generic\ltxcmds\ltxcmds.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\generic\ltxcmds\ltxcmds.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\generic\ltxcmds\ltxcmds.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\generic\ltxcmds\ltxcmds.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\generic\ltxcmds\ltxcmds.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\generic\ltxcmds\ltxcmds.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\generic\ltxcmds\ltxcmds.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\generic\ltxcmds\ltxcmds.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\generic\ltxcmds\ltxcmds.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\generic\ltxcmds\ltxcmds.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\generic\ltxcmds\ltxcmds.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\kvsetkeys\kvsetkeys.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\kvsetkeys\kvsetkeys.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\kvsetkeys\kvsetkeys.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\kvsetkeys\kvsetkeys.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\kvsetkeys\kvsetkeys.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\kvsetkeys\kvsetkeys.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\kvsetkeys\kvsetkeys.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\kvsetkeys\kvsetkeys.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\kvsetkeys\kvsetkeys.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\kvsetkeys\kvsetkeys.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\kvsetkeys\kvsetkeys.sty
 INPUT C:\Program Files\MiKTeX\tex\generic\pdftexcmds\pdftexcmds.sty
 INPUT C:\Program Files\MiKTeX\tex\generic\pdftexcmds\pdftexcmds.sty
 INPUT C:\Program Files\MiKTeX\tex\generic\pdftexcmds\pdftexcmds.sty
@@ -314,7 +314,7 @@ INPUT C:\Program Files\MiKTeX\tex\generic\pdftexcmds\pdftexcmds.sty
 INPUT C:\Program Files\MiKTeX\tex\generic\pdftexcmds\pdftexcmds.sty
 INPUT C:\Program Files\MiKTeX\tex\generic\pdftexcmds\pdftexcmds.sty
 INPUT C:\Program Files\MiKTeX\tex\generic\pdftexcmds\pdftexcmds.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\infwarerr\infwarerr.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\generic\infwarerr\infwarerr.sty
 INPUT C:\Program Files\MiKTeX\tex\generic\iftex\iftex.sty
 INPUT C:\Program Files\MiKTeX\tex\generic\iftex\iftex.sty
 INPUT C:\Program Files\MiKTeX\tex\generic\iftex\iftex.sty
@@ -326,7 +326,7 @@ INPUT C:\Program Files\MiKTeX\tex\generic\iftex\iftex.sty
 INPUT C:\Program Files\MiKTeX\tex\generic\iftex\iftex.sty
 INPUT C:\Program Files\MiKTeX\tex\generic\iftex\iftex.sty
 INPUT C:\Program Files\MiKTeX\tex\generic\iftex\iftex.sty
-INPUT C:\Program Files\MiKTeX\tex\generic\ltxcmds\ltxcmds.sty
+INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\generic\ltxcmds\ltxcmds.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
 INPUT C:\Program Files\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
 INPUT C:\Program Files\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
@@ -382,7 +382,7 @@ INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmbx10.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmbx7.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmbx5.tfm
 OUTPUT CSC352_HW4.pdf
-INPUT C:\Users\Administrator\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
+INPUT C:\Users\AlexZ\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
 INPUT CSC352_HW4.aux
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb

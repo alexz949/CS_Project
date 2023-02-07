@@ -73,7 +73,7 @@ The reduced $\mat{QR}$ decomposition will be $$A = \bmat{1/\sqrt{2} & 0 & 1/\sqr
 
     \end{bmatrix}$$
     There are $n$ times of multiplication and $n-1$ addition in each row. The total number of flops
-    in each row is $n(n-1)$. Since there are total $m$ rows, the total number of flops will be $$(n^2m - nm)$$
+    in each row is $(2n-1)$. Since there are total $m$ rows, the total number of flops will be $$2mn - m$$
     
     \subsection*{(b)}
     For a matrix $\mat{X}$ and a matrix $\mat{Y}$, assume their multiplication will be matrix $\mat{A}$.
@@ -92,8 +92,8 @@ The reduced $\mat{QR}$ decomposition will be $$A = \bmat{1/\sqrt{2} & 0 & 1/\sqr
     Because of the matrix multiplication rule, 
     $$\mat{a}_{ij} = x_{i1}y_{1j} + x_{21}y_{2j} + \dots + x_{in}y_{nj}$$
     And since $\mat{A} \in \mathbb{R}^{m \times p}$, for matrix $\mat{A}$, there are total $mp$ entries.
-    for each entries, the number of flops will be $n$ multiplication and $n-1$ addition, which is $n(n-1)$.\\
-    So the total number of flops for matrix times matrix will be $$n^2mp - nmp$$
+    for each entries, the number of flops will be $n$ multiplication and $n-1$ addition, which is $2n-1$.\\
+    So the total number of flops for matrix times matrix will be $$2nmp - mp$$
     \subsection*{(c)}
     Given a matrix $\mat{X} \in \mathbb{R}^{m \times n}$, the product of its transpose and itself $\mat{X}^\top \mat{X}$
     be a matrix $\mat{C}$, and each entry of $\mat{C}$ also follows that
@@ -102,6 +102,7 @@ The reduced $\mat{QR}$ decomposition will be $$A = \bmat{1/\sqrt{2} & 0 & 1/\sqr
     the upper right side and the main diagonal. There are total $(mn/2 + m/2)$ entries. For each entries, the number of
     flops will be $2m-1$, so the total number of flops will be 
     $$m^2n + m^2 -mn/2 -m/2$$
+    \section*{Question 3}
     
 
 \end{document}
