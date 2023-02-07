@@ -32,10 +32,10 @@
 Based on the question, since $n$ is a power of 2, $n$ will always be even. The following is the pesudocode for the algorithm,
 \begin{verbatim}
     function v = MEDIAN(A,B,n)
-        if n == 1 then return (A[0]+B[0])/2
+        if n == 1 then return max(A[0],B[0])
         
-        m1 = (A[n/2] + A[n/2-1])/2
-        m2 = (B[n/2] + B[n/2-1])/2
+        m1 = (A[n/2])/2
+        m2 = (B[n/2])/2
         if m1 == m2 
             then return m1
         if m1 < m2
@@ -46,7 +46,14 @@ Based on the question, since $n$ is a power of 2, $n$ will always be even. The f
     end function
         
 \end{verbatim}
-
+    \subsection*{Proof of Correctness}
+    In the base case where n = 1, the union array's larger median will either be the first
+    element in $A$ or the first element in $B$, which the algorithm will return the bigger
+    value between these two. So the base case is true.
+    \\
+    For inductive cases, we assume that the algorithm will work when the length is $n-1$,
+    and we need to show that $n$ length will also work.
+    
 
 \section*{Question 2}
 
