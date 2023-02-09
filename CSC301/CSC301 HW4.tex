@@ -91,17 +91,31 @@ Based on the question, since $n$ is a power of 2, $n$ will always be even. The f
         r &= \log n \nonumber
     \end{align}
     There are $\log n$ recursions and each recursions cost constant time. We conclude that the running time for this algorithm will be $O(\log n)$.
-
-
-
     
-
 \section*{Question 2}
 
 
 
 
 
+
+
 \section*{Question 3}
+From the lecture, the time complexity for Strassen's algorithm is $O(n^{\log_2 7}) = O(n^{2.81})$. The classical matrix multiplication of partition into $3 \times 3$
+grid blocks needs 27 recursive calls. We assume that in each recursion, the cost is $O(n^2)$. We can draw the equation 
+$$T(n) = 27 \cdot T(n/3) + O(n^2)$$
+Through master theorem, we know that the time complexity will be $O(n^{\log_3 27})$. If we want to create a algorithm which is better than Strassen, we have 
+to make sure 
+\begin{align}
+    O(n^{\log_3 x}) &< O(n^{2.81}) \nonumber \\
+    \log_3 x &< 2.81 \nonumber \\
+    x &< 3^{2.81} \nonumber\\
+    x &< 21.91 \nonumber
+\end{align}
+Where $x$ is the number of recursive calls. After rounding up, we have to find an algorithm for matrix multiplication with $3\times 3$ parition that only has
+$21$ or less recurvie calls in each level. So the largest recursive calls is $21$.
+
+
+
 
 \end{document}
