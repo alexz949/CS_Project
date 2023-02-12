@@ -15,6 +15,8 @@
 
 \usepackage{amsthm,amssymb}
 \usepackage{amsmath}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
 
 \newcommand{\bmat}[1]{\begin{bmatrix} #1 \end{bmatrix}}
 \newcommand{\mat}[1]{\mathbf{#1}}
@@ -93,18 +95,41 @@ Based on the question, since $n$ is a power of 2, $n$ will always be even. The f
     There are $\log n$ recursions and each recursions cost constant time. We conclude that the running time for this algorithm will be $O(\log n)$.
     
 \section*{Question 2}
-
-
-
-
-
+For this question, we first define that randomly choose a pivot, if the pivot is just in the middle 50 \% of the data, we will call it a good pivot. In each recursion, 
+the pivot is chosen to be at worst spliting array into $1/4n$ and $3/4n$ where the array length is $n$. The following is the sample recursion tree:
+\includegraphics[scale=0.25]{tree2.jpg}\\
+In this case, this is not a balanced tree. We assume that in the worst part, the level of tree could
+go to $L$ level, which satisfies the equation which 
+\begin{align}
+    (\frac{3}{4})^L n &= 1 \nonumber \\
+    n &= \frac{4}{3}^L \nonumber \\
+    n &= \frac{4}{3}^{\log_{\frac{4}{3}}n} \nonumber \\
+    L &= \log_{\frac{4}{3}}n \nonumber
+\end{align}
+So there are total $L+1 = \log_{\frac{4}{3}}n +1$ level. Even though in some branches, base case heppens early, we can still assume that work done in each level
+is $cn$. So the total work done has a upper bound
+$$\sum_{i=0}^{(\log_\frac{4}{3}n) + 1}  c\cdot n$$
+Furthermore, since we are assuming each time pivot will be a good pivot (in the middle 50 \% of data), the expected value of getting into this situation
+in each partitioning is $\frac{1}{1/2} = 2$, which means in each recursion, we have to do choose pivot twice to expected pivot lands in this range. So the actual total work is,
+$$\sum_{i=0}^{(\log_\frac{4}{3}n) + 1}  c \cdot 2\cdot n$$
+which is 
+$$ 2\cdot c\cdot n \log_{\frac{4}{3}}n + 2\cdot  c\cdot n$$
+Changing the base,
+$$2 \cdot c\cdot n \frac{\log_2n}{\log_2\frac{4}{3}} + 2\cdot c\cdot n$$
+Since $\log_2\frac{4}{3}$, $2$, and $c$ is a constant, and $2\cdot c\cdot n \frac{\log_2n}{\log_2\frac{4}{3}}$ is the dominating term, we can get the big-Oh for this recursion,
+$$O(2 \cdot c\cdot n \frac{\log_2n}{\log_2\frac{4}{3}} + 2\cdot  c\cdot n) = O(n\log_2n)$$
+Overall, if we choose a pivot and based on the pivot do the expected runs, we will get the time complexity of $O(n\log_2 n)$. We also showed that the lower bound for quicksort 
+is $\Omega(n\log_2 n)$. So the expected running time of quick sort is $\Theta(n\log_2 n)$. $\blacksquare$
 
 
 \section*{Question 3}
 From the lecture, the time complexity for Strassen's algorithm is $O(n^{\log_2 7}) = O(n^{2.81})$. The classical matrix multiplication of partition into $3 \times 3$
-grid blocks needs 27 recursive calls. We assume that in each recursion, the cost is $O(n^2)$. We can draw the equation 
-$$T(n) = 27 \cdot T(n/3) + O(n^2)$$
-Through master theorem, we know that the time complexity will be $O(n^{\log_3 27})$. If we want to create a algorithm which is better than Strassen, we have 
+grid blocks needs 27 recursive calls and following 18 addtion. We assume that in each recursion, the rest work costs $O(n^2)$ because the input size is $n^2$. We can draw the equation,
+\begin{align}
+    T(n) &= 27 \cdot T(n/3) + O(18n^2) \nonumber \\
+    T(n) &= 27 \cdot T(n/3) + O(n^2) \nonumber
+\end{align}
+Since $a = 27$, $b = 3$, and $d = 2$, the base case $T(1) = O(1)$, we can use the master theorem. Through master theorem, since $\log_a b > d$, we know that the time complexity will be $O(n^{\log_3 27})$. If we want to create a algorithm which is better than Strassen, we have 
 to make sure 
 \begin{align}
     O(n^{\log_3 x}) &< O(n^{2.81}) \nonumber \\
@@ -113,7 +138,7 @@ to make sure
     x &< 21.91 \nonumber
 \end{align}
 Where $x$ is the number of recursive calls. After rounding up, we have to find an algorithm for matrix multiplication with $3\times 3$ parition that only has
-$21$ or less recurvie calls in each level. So the largest recursive calls is $21$.
+$21$ or less recurvie calls in each level to beat Stressen's algorithm. So the largest recursive calls is $21$.
 
 
 
