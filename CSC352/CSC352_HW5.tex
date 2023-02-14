@@ -1,0 +1,57 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[UTF8]{ctex}
+\title{CSC352 HW5}
+\author{Alex Zhang}
+\date{Feb 2023}
+
+
+
+\textwidth=16.00cm 
+\textheight=22.00cm 
+\topmargin=0.00cm
+\oddsidemargin=0.00cm 
+\evensidemargin=0.00cm 
+\headheight=0cm 
+\headsep=0.5cm
+\textheight=610pt
+
+\usepackage{latexsym,array,delarray,amsthm,amssymb,epsfig}
+\usepackage{amsmath}
+
+\newcommand{\bmat}[1]{\begin{bmatrix} #1 \end{bmatrix}}
+\newcommand{\mat}[1]{\mathbf{#1}}
+
+\let\ds\displaystyle
+
+
+
+\begin{document}
+\maketitle
+
+\section*{Question 1}
+
+\subsection*{(a)}
+Since $\mat{x} \in \mathbb{R}^m$, let $\mat{q_1} = \frac{\mat{x_1}}{\|\mat{x_1}\|_2}$. Because $\mat{x}$ is a vector, it only has one column, the
+matrix $\mat{Q}$ is just $\mat{q_1}$. For $\mat{R}$, since there is only one columne, $\mat{R} = \mat{r}_{11} = \|\mat{x_1} \|_2$. The QR
+decomposition will be 
+$$\mat{x} = \frac{\mat{x_1}}{\|\mat{x_1}\|_2} \cdot  \|\mat{x_1} \|_2$$
+
+\subsection*{(b)}
+orthgonal. If it is orthgonal, Q is normalizing each (general proof needed). and the R is having the norm on main diagonal.
+
+
+\subsection*{(c)}
+upper traingular. This will make Q to be a identity matrix and R is just the original matrix (proof needed).
+
+\subsection*{Question 2}
+
+
+
+
+
+
+
+
+
+\end{document}
