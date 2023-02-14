@@ -1,6 +1,6 @@
-PWD c:\Users\AlexZ\Desktop\计算机\CS_Project\CSC301
-INPUT C:\Users\AlexZ\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\AlexZ\Desktop\计算机\CS_Project\CSC301\CSC301 HW4.tex
+PWD c:\Users\Administrator\Desktop\CS_Project\CSC301
+INPUT C:\Users\Administrator\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
+INPUT c:\Users\Administrator\Desktop\CS_Project\CSC301\CSC301 HW4.tex
 OUTPUT CSC301 HW4.log
 INPUT C:\Program Files\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Program Files\MiKTeX\tex\latex\base\article.cls
@@ -17,17 +17,17 @@ INPUT C:\Program Files\MiKTeX\tex\latex\base\size10.clo
 INPUT C:\Program Files\MiKTeX\tex\latex\base\size10.clo
 INPUT C:\Program Files\MiKTeX\tex\latex\base\size10.clo
 INPUT C:\Program Files\MiKTeX\tex\latex\base\size10.clo
-INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\amscls\amsthm.sty
-INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\amscls\amsthm.sty
-INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\amscls\amsthm.sty
-INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\amscls\amsthm.sty
-INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\amscls\amsthm.sty
-INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\amscls\amsthm.sty
-INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\amscls\amsthm.sty
-INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\amscls\amsthm.sty
-INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\amscls\amsthm.sty
-INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\amscls\amsthm.sty
-INPUT C:\Users\AlexZ\AppData\Roaming\MiKTeX\tex\latex\amscls\amsthm.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
@@ -165,7 +165,7 @@ INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmtt10.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmbx10.tfm
 OUTPUT CSC301 HW4.pdf
-INPUT C:\Users\AlexZ\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
+INPUT C:\Users\Administrator\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
 INPUT CSC301 HW4.aux
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb

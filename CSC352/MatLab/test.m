@@ -1,14 +1,11 @@
-A = gallery(3);
-x = A(1,2);
-num1 = 0;
-num2 = 0;
-for a = 1:size(A,1)
-    fprintf("testing for number: " +  A(a,1));
-    num1 = num1 + 1;
-    disp(num1);
-    num2 = num2 + 3;
-    
-
-    
-    
+A = zeros(800,800);
+B = zeros(800,800);
+for i = 1:800
+    for j = 1:800
+        A(i,j) = i*j;
+        B(i,j) = i*j;
+    end
 end
+tic 
+C = A*B;
+toc
