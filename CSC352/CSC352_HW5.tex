@@ -38,6 +38,25 @@ decomposition will be
 $$\mat{x} = \frac{\mat{x_1}}{\|\mat{x_1}\|_2} \cdot  \|\mat{x_1} \|_2$$
 
 \subsection*{(b)}
+Given and orthogonal matrix $\mat{J} \in \mathbb{R}^{m \times n}$. Let $\mat{q}_1 = \frac{\mat{j}_1}{\|\mat{j}_1\|_2}$, and $\mat{q}_2$ is,
+$$\mat{q}_2= \frac{\mat{j}_2-(\mat{q}_1^\top\mat{j}_2)\mat{q}_1}{\|\mat{j}_2-(\mat{q}_1^\top\mat{j}_2)\mat{q}_1\|_2}$$
+Since $\mat{J}$ is an orthogonal matrix, $\mat{q}_1 \cdot \mat{j}_2 = 0$, indicating
+$$\mat{q}_2 = \frac{\mat{j}_2}{\|\mat{j}_2\|_2}$$
+This case can be generalized into any column $\mat{q}_i$ for matrix $\mat{Q}$. For matrix $\mat{R}$, $\mat{r}_{ij} = \mat{q}_i^\top \mat{j}_j$.
+In this case, since $\mat{Q}$ is orthonormal matrix to $\mat{J}$, $\mat{r}_{ij} = 0$ $ \forall i \mbox{, } j \leq m \mbox{, } n$. And for diagonal entries
+$$\mat{r}_{jj} = \|\mat{j}_j -\sum^{i-1}_{i=1}\mat{r}_{ij}\mat{q}_i\|_2$$
+Where $\sum^{i-1}_{i=1}\mat{r}_{ij}\mat{q}_i\|_2 = 0$ because $\mat{r}_{ij} = 0$. Therefore, $\mat{r}_{jj} = \|\mat{j}_j\|_2$.
+
+Overall, after doing QR decomposition on an orthogonal matrix, we get $\mat{Q}$ is an orthonormal matrix and each column is the normal vector from $\mat{J}$.
+$\mat{R}$ is a diagonal matrix with each entry represents the 2-norm of the corresponding column vector in $\mat{J}$.
+
+
+
+
+
+
+
+
 orthgonal. If it is orthgonal, Q is normalizing each (general proof needed). and the R is having the norm on main diagonal.
 
 
