@@ -1,0 +1,52 @@
+\documentclass{article}
+\title{CSC301 HW4}
+\author{Alex Zhang}
+\date{Feb 2023}
+
+
+
+\textwidth=16.00cm 
+\textheight=22.00cm 
+\topmargin=0.00cm
+\oddsidemargin=0.00cm 
+\evensidemargin=0.00cm 
+\headheight=0cm 
+\headsep=0.5cm
+\textheight=610pt
+
+\usepackage{amsthm,amssymb}
+
+\newcommand{\bmat}[1]{\begin{bmatrix} #1 \end{bmatrix}}
+\newcommand{\mat}[1]{\mathbf{#1}}
+\newcommand{\mb}[1]{\mathbb{#1}}
+
+\let\ds\displaystyle
+
+
+\begin{document}
+\maketitle
+\section*{Question 1}
+\paragraph{Proof:} $\mat{B} = \mat{A}\mat{A} = \mat{A}^2$
+
+If there exists a path of length two between vertex $u$ and $w$, then $\exists $ $i$ which 
+in adjacency matrix $\mat{A}$, both $\mat{a}_{ui}$ and $\mat{a}_{iw}$ exists.
+In order to ensure both $\mat{a}_{ui}$ and $\mat{a}_{iw}$ exists, their product $\mat{a}_{ui} \cdot \mat{a}_{iw}$
+has to be 1.
+
+Since $\mat{B}$ is counting the number of two-paths in the given graph. With given vertex $u$, and vertex $w$, $\mat{B}_{uw}$
+is just the sum of all exist two-paths. In mathematical expression $$\mat{B}_{uw} = \sum^{n}_{i=0}\mat{a}_{ui}\cdot \mat{a}_{iw}$$
+Also by the definition of matrix multiplication, 
+$$\mat{A}\mat{A}_{uw} = \sum^{n}_{i=0}\mat{a}_{ui}\cdot \mat{a}_{iw}$$
+for all vertex $u$ and $w$. This implies that,
+$\mat{B} = \mat{A}\mat{A} = \mat{A}^2$.$\blacksquare$
+
+\section*{Question 2}
+
+
+
+
+
+
+
+
+\end{document}
