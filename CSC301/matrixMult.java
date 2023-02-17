@@ -21,7 +21,6 @@ public class matrixMult{
                         {9,10,11,12},
                         {5,6,7,8},
                         {1,2,3,4}};
-        
         //unit test 
         print(multiplication(test,test));
         print(multiplication(test2,test2));
@@ -30,7 +29,7 @@ public class matrixMult{
         //printing result random matrix
         int[][] ans = multiplication(m1, m2);
         print(ans);
-
+        
     }
     
     private static int[][] multiplication(int[][] A, int[][]B){
@@ -41,7 +40,7 @@ public class matrixMult{
             ans[0][0] = A[0][0] * B[0][0];
             return ans;
         }
-        //partition
+        //partition each matrix into 2 by 2 grid
         int[][] A11 = partition(A,0,0);
         int[][] A12 = partition(A,0,n/2);
         int[][] A21 = partition(A,n/2,0);
@@ -51,7 +50,7 @@ public class matrixMult{
         int[][] B21 = partition(B,n/2,0);
         int[][] B22 = partition(B,n/2,n/2);   
         
-        //recursions
+        //recursively solving each sub matrix
         int[][] M1 = multiplication(addition(A11, A22),addition(B11, B22));
         int[][] M2 = multiplication(addition(A21, A22), B11);
         int[][] M3 = multiplication(A11, subtraction(B12, B22));
@@ -59,7 +58,7 @@ public class matrixMult{
         int[][] M5 = multiplication(addition(A11, A12), B22);
         int[][] M6 = multiplication(subtraction(A21, A11), addition(B11, B12));
         int[][] M7 = multiplication(subtraction(A12, A22), addition(B21, B22));
-        //combination
+        //combining each 2 by 2 grid matrix back
         int[][] C11 = addition(subtraction(addition(M1, M4),M5),M7);
         int[][] C12 = addition(M3, M5);
         int[][] C21 = addition(M2, M4);
@@ -114,7 +113,7 @@ public class matrixMult{
     }
 
 
-    private static int[][] partition(int[][] A, int num1, int num2){ //partitioning
+    private static int[][] partition(int[][] A, int num1, int num2){ //partitioning each matrix to 2 by 2 grid
         int[][] m = new int[A.length/2][A.length/2];
         int c1 = num1;
         int c2 = num2;
@@ -130,7 +129,7 @@ public class matrixMult{
         return m;
     }
 
-    private static int[][] addition(int[][] A, int[][] B){ //adding entries
+    private static int[][] addition(int[][] A, int[][] B){ //adding each entry
         int[][] m = new int[A.length][A.length];
         for (int i = 0; i < m.length; i++) {
             for (int j = 0; j < m.length; j++) {
@@ -140,7 +139,7 @@ public class matrixMult{
         return m;
 
     }
-    private static int[][] subtraction(int[][] A, int[][] B){ //subtracting entries
+    private static int[][] subtraction(int[][] A, int[][] B){ //subtracting each entry
         int[][] m = new int[A.length][A.length];
         for (int i = 0; i < m.length; i++) {
             for (int j = 0; j < m.length; j++) {
