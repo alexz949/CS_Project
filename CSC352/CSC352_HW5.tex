@@ -35,7 +35,7 @@
 Since $\mat{x} \in \mathbb{R}^m$, let $\mat{q_1} = \frac{\mat{x_1}}{\|\mat{x_1}\|_2}$. Because $\mat{x}$ is a vector, it only has one column, the
 matrix $\mat{Q}$ is just $\mat{q_1}$. For $\mat{R}$, since there is only one columne, $\mat{R} = \mat{r}_{11} = \|\mat{x_1} \|_2$. The QR
 decomposition will be 
-$$\mat{x} = \frac{\mat{x_1}}{\|\mat{x_1}\|_2} \cdot  \|\mat{x_1} \|_2$$
+$$\mat{x} = \mat{Q}\mat{R} = \frac{\mat{x_1}}{\|\mat{x_1}\|_2} \cdot  \|\mat{x_1} \|_2$$
 
 \subsection*{(b)}
 Given and orthogonal matrix $\mat{J} \in \mathbb{R}^{m \times n}$. Let $\mat{q}_1 = \frac{\mat{j}_1}{\|\mat{j}_1\|_2}$, and $\mat{q}_2$ is,
@@ -56,14 +56,59 @@ $\mat{R}$ is a diagonal matrix with each entry represents the 2-norm of the corr
 
 
 
-
-orthgonal. If it is orthgonal, Q is normalizing each (general proof needed). and the R is having the norm on main diagonal.
-
-
 \subsection*{(c)}
-upper traingular. This will make Q to be a identity matrix and R is just the original matrix (proof needed).
+Given an upper triangular matrix $\mat{T} \in \mathbb{R}^{m \times n}$
+Let $\mat{q_1} = \frac{\mat{t_1}}{\|\mat{t_1}\|_2}$, which is just $\mat{e_1}$ in this case. For $\mat{q_2}$, it should be
+\begin{align}
+    \mat{q}_2 &= \frac{\mat{t}_2-(\mat{q}_1^\top\mat{t}_2)\mat{q}_1}{\|\mat{t}_2-(\mat{q}_1^\top\mat{t}_2)\mat{q}_1\|_2} \nonumber \\
+    \mat{q}_2 &= \frac{\bmat{0 \\ \mat{t_22} \\ \vdots \\ 0}}{\|\bmat{0 \\ \mat{t_22} \\ \vdots \\ 0}\|_2} \nonumber 
+\end{align}
+which is just $\mat{e_2}$. We can then general all column $\mat{q_i}$ in matrix $\mat{Q}$ as $\mat{e_i}$. Therefore, $\mat{Q}$ is just an
+identity matrix with dimention $m \times m$.
+
+Based on the informaiton that $\mat{Q}$ is an identity matrix, we can then just get $\mat{R}$ which $\mat{R}$ is just 
+the original matrix since a matrix times an identity matrix will still be itself.
+$$\mat{T} = \mat{Q}\mat{R} = \mat{I}\mat{T}$$
+
+
 
 \subsection*{Question 2}
+Let $\mat{u_1} = \mat{a_1}+\|\mat{a_1}\|_2\mat{e_1} = \bmat{4\\2\\-2\\1} + 5\bmat{1\\0\\0\\0} = \bmat{9\\2\\-2\\1}$.\\
+new $\mat{a_1} = \bmat{4\\2\\-2\\1} -2 \dfrac{45}{90} \bmat{9\\2\\-2\\1} = \bmat{-5\\0\\0\\0} $\\
+new $\mat{a_2} = \bmat{-3\\-14\\14\\-7}- 2 \dfrac{-90}{90}\bmat{9\\2\\-2\\1} =\bmat{15\\-10\\10\\-5}$, which is
+$\bmat{-10\\10\\-5}$\\
+new  $\mat{a_3} = \bmat{4\\-3\\0\\15}- 2 \dfrac{45}{90}\bmat{9\\2\\-2\\1} =\bmat{-5\\-5\\2\\14}$, which is $\bmat{-5\\2\\14}$.
+
+Similar, $\mat{u_2} = \mat{a_2} - \|\mat{a_2}\|_2\mat{e_1} = \bmat{-10\\10\\-5} - 15\bmat{1\\0\\0} = \bmat{-25\\10\\-5}$\\
+new $\mat{a_2} = \bmat{-10\\10\\-5} - 2\dfrac{375}{750}\cdot \bmat{-25\\10\\-5} = \bmat{15\\0\\0}$.\\
+new $\mat{a_3} = \bmat{-5\\2\\14} - 2\dfrac{75}{750}\cdot \bmat{-25\\10\\-5} = \bmat{0\\0\\15}$, which is $\bmat{0\\15}$.
+
+$\mat{u_3} = \mat{a_3} + \|\mat{a_3}\|_2\mat{e_1} =\bmat{0\\15} + 15\bmat{1\\0} = \bmat{15\\15}$\\
+new $\mat{a_3} = \bmat{0\\15} - 2\dfrac{225}{450}\cdot \bmat{15\\15} = \bmat{-15\\0}$, therefore, we can get $\mat{R}$
+$$\begin{bmatrix}
+    -5 & 15 & -5 \\
+    0 & 15 & 0 \\
+    0 & 0 & -15\\
+    0 & 0 & 0
+\end{bmatrix}$$
+
+
+\subsection*{Question 3}
+Given $\mat{A}^\dagger = (\mat{A}^\top \mat{A})^{-1}\mat{A}^\top$,
+
+\subsection*{(a)}
+The left side can be transformed into:
+\begin{align}
+    \mat{A}\mat{A}^\dagger\mat{A} &= \mat{A}  (\mat{A}^\top \mat{A})^{-1}\mat{A}^\top \mat{A}\nonumber \\
+    &= \mat{A}\mat{A}^{-1}(\mat{A}^\top)^{-1}\mat{A}^\top \mat{A} \nonumber
+\end{align}
+Since $\mat{A}\mat{A}^{-1} = \mat{I}$ and $(\mat{A}^\top)^{-1}\mat{A}^\top = \mat{I}$,
+$$\mat{A}\mat{A}^\dagger\mat{A} = \mat{I}\mat{I}\mat{A} = \mat{A}$$
+$\blacksquare$
+
+\subsection*{(b)}
+
+
 
 
 

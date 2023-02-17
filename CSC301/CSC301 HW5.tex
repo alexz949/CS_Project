@@ -60,7 +60,7 @@ I have added more descriptions of my code through comments in JAVA file.
     \item For $a$, the best recommander should be $f$ since the number of two-paths is 3.
     \item For $b$, the best recommander should be $c$ since it has the most two-paths 2.
     \item For $c$, the best recommander should be $h$ since it has 2 two-paths which is the most
-    \item For $d$, the best recommander should be $h$. $b$ and $e$ also have the same number of two-paths, but they have already connected to $d$ which we should recommand $h$.
+    \item For $d$, the best recommander should be $b$. $e$ and $h$ also have the same number of two-paths, by alphbetical order, we choose $b$.
     \item For $e$, the best recommander should be $d$ since it has the most number of two-paths of 2.
     \item For $f$, the best recommander should be $b$. Because $b$, $e$, and $f$ all have same two-paths, by alphabetical order, we should choose $b$.
     \item For $g$, the best recommander should be $e$ since $e$ and $f$ have the same two-paths and by alphabetical order we choose $e$.
@@ -74,7 +74,7 @@ $$\mat{A} = \begin{bmatrix}
     a & 0 & 1 & 1 & 1 & 0 & 0 & 0 & 0 \\
     b & 1 & 0 & 0 & 1 & 0 & 1 & 0 & 0 \\
     c & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 0 \\
-    d & 0 & 0 & 1 & 0 & 1 & 1 & 0 & 0 \\
+    d & 1 & 0 & 1 & 0 & 1 & 1 & 0 & 0 \\
     e & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 1 \\
     f & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 \\
     g & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 1 \\
@@ -84,13 +84,13 @@ $$
 \subsection*{(c)}
 After doing the computation in Task(2), I got the following matrix $\mat{B}$,
 $$\begin{bmatrix}
-1& 0 &1& 1& 2& 3& 0& 0\\
-0& 1& 2& 1& 2& 1& 0& 1\\
+2& 0 &1& 1& 2& 3& 0& 0\\
+1& 1& 2& 1& 2& 1& 0& 1\\
 0& 1& 0& 0& 1& 0& 1& 2\\
-0& 1& 0& 0& 2& 1& 1& 2\\
+0& 2& 1& 1& 2& 1& 1& 2\\
 1& 0& 1& 2& 0& 1& 0& 1\\
 0& 1& 0& 0& 0& 0& 1& 1\\
-0& 0& 1& 0& 2& 2& 0& 0\\
+1& 0& 1& 0& 2& 2& 0& 0\\
 0& 0& 0& 0& 0& 0& 0& 0
 \end{bmatrix}$$
 \subsection*{(d)}
@@ -100,7 +100,7 @@ at the entries to determine best recommander.
     \item For $a$, recommander should be $f$.
     \item For $b$, recommander should be $c$.
     \item For $c$, recommander should be $h$.
-    \item For $d$, recommander should be $h$.
+    \item For $d$, recommander should be $b$.
     \item For $e$, recommander should be $d$.
     \item For $f$, recommander should be $b$.
     \item For $g$, recommander should be $e$.
