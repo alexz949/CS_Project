@@ -107,7 +107,25 @@ $$\mat{A}\mat{A}^\dagger\mat{A} = \mat{I}\mat{I}\mat{A} = \mat{A}$$
 $\blacksquare$
 
 \subsection*{(b)}
+The left side, 
+\begin{align}
+    \mat{A}^\dagger \mat{A}\mat{A}^\dagger &= \mat{A}^\dagger \mat{A} (\mat{A}^\top \mat{A})^{-1}\mat{A}^\top \nonumber \\
+    &= \mat{A}^\dagger \mat{A}\mat{A}^{-1} (\mat{A}^\top)^{-1}\mat{A}^\top \nonumber 
+\end{align}
+Since $\mat{A}\mat{A}^{-1} = \mat{I}$ and $(\mat{A}^\top)^{-1}\mat{A}^\top = \mat{I}$.
+$$\mat{A}^\dagger \mat{A}\mat{A}^\dagger = \mat{A}^\dagger$$
+$\blacksquare$
 
+\subsection*{(c)}
+Left side is,
+\begin{align}
+    (\mat{A}\mat{A}^\dagger)^\top &= ((\mat{A}^\top \mat{A})^{-1}\mat{A}^\top)^\top \mat{A}^\top \nonumber \\
+    &= \mat{A} ((\mat{A}^\top \mat{A})^{-1})^\top \mat{A}^\top \nonumber \\
+    &= \mat{A} ((\mat{A}^\top \mat{A})^\top)^{-1} \mat{A}^\top \nonumber \\
+    &= \mat{A} (\mat{A}^\top \mat{A})^{-1}\mat{A}^\top \nonumber \\
+    &= \mat{A}\mat{A}^\dagger \nonumber
+\end{align}
+$\blacksquare$
 
 
 
