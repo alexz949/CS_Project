@@ -2,12 +2,14 @@ package CSC301;
 
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class adjacencyList{
-    public static void main(String[] args) {
+    
 
-        
-    }
+
+    LinkedList<Node>[] adjacencyList;
+
 
 
     private static ArrayList<ArrayList<Integer>> countTwoPath(ArrayList<ArrayList<Integer>> array){
@@ -23,12 +25,6 @@ public class adjacencyList{
             }
         }
 
-
-
-
-
-
-
         return ans;
 
     }
@@ -37,7 +33,33 @@ public class adjacencyList{
         array.get(start).add(end);
     }
 
+
+
+
+    public static void main(String[] args) {
+        
+
+        
+    }
+
    
 
+
+}
+
+
+
+
+class Node{
+    int start;
+    int end;
+    int weight;
+
+    public Node(int start, int end, int weight){
+        this.start = start;
+        this.end = end;
+        this.weight = weight;
+
+    }
 
 }
