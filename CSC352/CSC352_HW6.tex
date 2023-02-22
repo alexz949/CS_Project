@@ -1,0 +1,51 @@
+\documentclass{article}
+\title{CSC352 HW6}
+\author{Alex Zhang}
+\date{Feb 2023}
+
+\textwidth=16.00cm 
+\textheight=22.00cm 
+\topmargin=0.00cm
+\oddsidemargin=0.00cm 
+\evensidemargin=0.00cm 
+\headheight=0cm 
+\headsep=0.5cm
+\textheight=610pt
+
+\usepackage{latexsym,array,delarray,amsthm,amssymb,epsfig}
+\usepackage{amsmath}
+
+\newcommand{\bmat}[1]{\begin{bmatrix} #1 \end{bmatrix}}
+\newcommand{\mat}[1]{\mathbf{#1}}
+
+\let\ds\displaystyle
+
+\begin{document}
+\maketitle
+
+\section*{Question 1}
+Given that $\tilde{x} = x(1+\varepsilon_x)$, and $\tilde{y} = y(1+\varepsilon_y)$, we can simplify the inequality,
+\begin{align}
+    \left| \frac{xy-\tilde{x}\tilde{y}}{xy}\right| &\leq (2+\varepsilon)\varepsilon \nonumber \\
+    \left| \frac{xy-(xy+xy\varepsilon_x+xy\varepsilon_y+xy\varepsilon_x\varepsilon_y)}{xy}\right| &\leq (2+\varepsilon)\varepsilon \nonumber \\
+    \left| \frac{-xy\varepsilon_x-xy\varepsilon_y-xy\varepsilon_x\varepsilon_y}{xy}\right| &\leq (2+\varepsilon)\varepsilon \nonumber \\
+    \left| -\varepsilon_x-\varepsilon_y-\varepsilon_x\varepsilon_y\right| &\leq (2+\varepsilon)\varepsilon \nonumber \\
+    \left| \varepsilon_x+\varepsilon_y+\varepsilon_x\varepsilon_y\right| &\leq \varepsilon + \varepsilon + \varepsilon^2 \nonumber
+\end{align}
+\paragraph*{Csae 1:} $\varepsilon = \left|\frac{x-\tilde{x}}{x}\right|$\\
+Since $\tilde{x} = x(1+\varepsilon_x)$, $\varepsilon_x = \left|\frac{\tilde{x}-x}{x}\right| =  \left|\frac{x-\tilde{x}}{x}\right| $. Indicate
+$\varepsilon = \varepsilon_x$. Because $\varepsilon_x \geq \varepsilon_y$, $\varepsilon_x^2 \geq \varepsilon_x \varepsilon_y$, we can get that,
+$$\varepsilon_x + \varepsilon_x + \varepsilon_x^2 \geq \left| \varepsilon_x+\varepsilon_y+\varepsilon_x\varepsilon_y\right| $$
+which is the same as the simplified inequality.
+
+\paragraph*{Case 2:} $\varepsilon = \left|\frac{y-\tilde{y}}{y}\right|$\\
+Without loss of generality, we can apply the same proof on $\varepsilon_y$ using $\varepsilon_x$'s and it will have the same result. $\blacksquare$
+
+
+
+\section*{Question 2}
+
+
+\section*{Question 3}
+
+\end{document}
