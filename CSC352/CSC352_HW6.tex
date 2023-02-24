@@ -43,9 +43,63 @@ Without loss of generality, we can apply the same proof on $\varepsilon_y$ using
 
 
 
-\section*{Question 2}
-
 
 \section*{Question 3}
+
+\subsection*{(a)}
+The solution for $\mat{x}$ is $\bmat{-4199\\8601\\-4699}$.
+
+\subsection*{(b)}
+The solution for $\mat{x}$ is $\bmat{-4438\\9090\\-4966}$.
+
+
+\subsection*{(c)}
+I think it is ill-conditioned because I changed one entry by subtracting
+one, but my results vary from an absolute value about 400.
+
+
+\subsection*{(d)}
+The value of condition number is about $65886$, which is large. I think my assumption about
+the ill-conditioned holds true because the condition number 
+
+
+
+
+\section*{Question 4}
+
+\subsection*{(a)}
+The first component is fraction $f$, the second one is exponent $e$, and the thrid one 
+is the sign of this number. In double precision, every number can be represented as,
+$$\pm (1+f) \cdot 2^{e}$$
+
+
+\subsection*{(b)}
+
+Following is the floating point represeation of decimal number $-12$,
+
+$$(-1)^1(1+0.5)\cdot 2^{3}$$
+
+
+\subsection*{(c)}
+The biggest possible floating point number shoule be,
+$$(-1)^0(1+(1-2^{-52})) \cdot 2^{1023} = (2-2^{-52})\cdot 2^{1023}$$
+The smallest possible positive floating point number will be,
+$$(-1)^0 (1)\cdot 2^{-1022} = 2^{-1022}$$
+
+
+\subsection*{(d)}
+By definition, machine epsilon is the distance from 1 to the next larger floating point number.
+In term of floating point representation,
+$$eps = |(1+\min f) \cdot 2^0 - 1 |= \min f$$
+The value will be $\min  f = 2^(-52) \approx 2.22e-16$
+
+
+
+
+
+
+
+
+
 
 \end{document}
