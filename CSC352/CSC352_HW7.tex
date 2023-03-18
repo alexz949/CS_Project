@@ -1,0 +1,34 @@
+\documentclass{article}
+\title{CSC352 HW7}
+\author{Alex Zhang}
+\date{March 2023}
+\textwidth=16.00cm 
+\textheight=22.00cm 
+\topmargin=0.00cm
+\oddsidemargin=0.00cm 
+\evensidemargin=0.00cm 
+\headheight=0cm 
+\headsep=0.5cm
+\textheight=610pt
+
+\usepackage{latexsym,array,delarray,amsthm,amssymb,epsfig}
+\usepackage{amsmath}
+
+\newcommand{\bmat}[1]{\begin{bmatrix} #1 \end{bmatrix}}
+\newcommand{\mat}[1]{\mathbf{#1}}
+
+\let\ds\displaystyle
+
+\begin{document}
+\maketitle
+
+\section*{Question 1}
+    \begin{enumerate}
+        \item The relative error for $\mat{Q}$ is $2$.
+        \item The relative error for $\mat{R}$ is $1.036$.
+        \item The relative error for $\mat{Q*R}$ is $1.1194e-15$.
+    \end{enumerate}
+    I'm surprised with the first two relative errors. For $\mat{Q}$'s relative error, it should be $0$ ideally,
+    but I got $2$, which shows there is a difference between true $\mat{Q}$, and calculated $\mat{Q}$. For $\mat{R}$, 
+    I think it still should be $0$ for $\| 0\|_p = 0$. 
+\end{document}
