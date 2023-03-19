@@ -1,7 +1,7 @@
 %initialize
 A = [0.7*ones(20,1),ones(20,1)];
 for a = 10:20
-    A(a,1) = A(a,1)+ 10^(-10);
+    A(a,1) = A(a,1)+ 0.2;
 end
 
 %compute QR

@@ -13,6 +13,11 @@
 
 \usepackage{latexsym,array,delarray,amsthm,amssymb,epsfig}
 \usepackage{amsmath}
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily,
+  mathescape
+}
 
 \newcommand{\bmat}[1]{\begin{bmatrix} #1 \end{bmatrix}}
 \newcommand{\mat}[1]{\mathbf{#1}}
@@ -28,6 +33,7 @@
         \item The relative error for $\mat{R}$ is $1.036$.
         \item The relative error for $\mat{Q*R}$ is $1.1194e-15$.
     \end{enumerate}
+
     I'm surprised with the first two relative errors. For $\mat{Q}$'s relative error, it should be $0$ ideally,
     but I got $2$, which shows there is a difference between true $\mat{Q}$, and calculated $\mat{Q}$. For $\mat{R}$, 
     I think it still should be $0$ for $\| 0\|_p = 0$. Base on the two relative errors, I think for HouseHolder QR, $\mat{Q}$ and $\mat{R}$ are not accurate.
@@ -39,7 +45,26 @@
         \item For QR factorization with HouseHolder, the distance is $8.6905e-16$.
         \item For QR factorization with modified Gram-Schmidt, the distance is $1$.
     \end{enumerate}
+
     The distance using HouseHolder is very small and therefore reasonable. However, the result for using mgs is quiet big.
     One reason is when doing Gram-Schmidt process, calculating matrix $\mat{Q}$ involves multiplication and normalization.
     This process will make $\mat{Q}$ not be strictly orthonormal matrix, and the result will be affected then. 
+
+    Changing the value $\eta$, orthongonality value of $\mat{Q}$ computed by mgs will still be 1.
+    The distance of $\mat{Q}$ through HouseHolder will sometimes only vary $10^{-16}$.
+
+\section*{Question 3}
+    
+Given that $\mat{L}$ and $\mat{B}$ are $\in \mathbb{R}^{n \times n}$, we write
+a pseudocode function called LB:
+\begin{lstlisting}
+    function X = LB(L,B)
+        for i = 1: length(B)
+            for j = 1: length(B)
+                x(i,j) = (B(i,j)-$\sum^{j-1}_{k=1}$L(j,k)*x(i,k))/L(j,j)
+            end
+        end
+    end fucntion
+\end{lstlisting}
+It eccentially adds a outer loop that helps store calculated $\mat{x}$ vector in each column. 
 \end{document}
