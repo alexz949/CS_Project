@@ -18,7 +18,6 @@ legend('Raw data','QR fit');
 title('Curves for Raw Data and Fitted Line using QR Decomposition');
 xlabel('t value');
 ylabel('y value');
-fontsize(gca,10,"pixels");
 grid
 
 

@@ -1,16 +1,19 @@
 function [Q,R] = mgs(A)
-    [n,m] = size(A);
-    Q = zeros(n,m); %initialize matrices
-    R = zeros(m,m);
-    for j = 1:m
-        x = A(:,1);
+
+    [m,n] = size(A); % number of columns of A
+    
+    R = zeros(n); % initialize Q,R matrices
+    Q = zeros(m,n);
+
+    for j = 1:n
+        w = A(:,j); % initialize vector
+
         for i = 1:j-1
-            R(i,j) = Q(:,i)'* x;
-            x = x - R(i,j) * Q(:,i);
+            R(i,j) = Q(:,i)'*w;  % this part is different from CGS
+
+            w = w - R(i,j)*Q(:,i); 
         end
-        R(j,j) = norm(x)';
-        Q(:,j) = x / R(j,j);
+        R(j,j) = norm(w);
+        Q(:,j) = w/R(j,j);  % normalize 
     end
-    %show error
-    disp(norm(A-Q*R));
 end

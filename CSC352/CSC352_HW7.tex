@@ -30,5 +30,16 @@
     \end{enumerate}
     I'm surprised with the first two relative errors. For $\mat{Q}$'s relative error, it should be $0$ ideally,
     but I got $2$, which shows there is a difference between true $\mat{Q}$, and calculated $\mat{Q}$. For $\mat{R}$, 
-    I think it still should be $0$ for $\| 0\|_p = 0$. 
+    I think it still should be $0$ for $\| 0\|_p = 0$. Base on the two relative errors, I think for HouseHolder QR, $\mat{Q}$ and $\mat{R}$ are not accurate.
+    However, the relative error for $\mat{Q*R}$ is really small so their product is accurate. Based on this
+    small relative error, we can also conclude that QR factorization using HouseHolder is stable.
+
+\section*{Question 2}
+    \begin{enumerate}
+        \item For QR factorization with HouseHolder, the distance is $8.6905e-16$.
+        \item For QR factorization with modified Gram-Schmidt, the distance is $1$.
+    \end{enumerate}
+    The distance using HouseHolder is very small and therefore reasonable. However, the result for using mgs is quiet big.
+    One reason is when doing Gram-Schmidt process, calculating matrix $\mat{Q}$ involves multiplication and normalization.
+    This process will make $\mat{Q}$ not be strictly orthonormal matrix, and the result will be affected then. 
 \end{document}
