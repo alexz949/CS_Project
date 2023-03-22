@@ -1,3 +1,4 @@
+/* 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -14,7 +15,7 @@ public class GraphMatrix implements Graph{
 
     @Override
     public void init(int n) {
-        // TODO Auto-generated method stub
+        
         //initialize matrix and visited
         array_2D = new int[n][n];
         check = new boolean[n];
@@ -27,14 +28,14 @@ public class GraphMatrix implements Graph{
 
     @Override
     public int nodeCount() {
-        // TODO Auto-generated method stub
+        
         //return the node number
         return nodeNum;
     }
 
     @Override
     public int edgeCount() {
-        // TODO Auto-generated method stub
+        
         //return the total edge number
         return edgeNum;
         
@@ -42,7 +43,7 @@ public class GraphMatrix implements Graph{
 
     @Override
     public void addEdge(int v, int w, int wgt) {
-        // TODO Auto-generated method stub
+    
 
         //adding an edge with [v][w]
         array_2D[v][w] = wgt;
@@ -54,14 +55,13 @@ public class GraphMatrix implements Graph{
 
     @Override
     public int getWeight(int v, int w) {
-        // TODO Auto-generated method stub
+    
         //return the weight number
         return array_2D[v][w];
     }
 
     @Override
     public void setWeight(int v, int w, int wgt) {
-        // TODO Auto-generated method stub
         //set the weight number
         array_2D[v][w] = wgt;
         return;
@@ -70,7 +70,6 @@ public class GraphMatrix implements Graph{
 
     @Override
     public void removeEdge(int v, int w) {
-        // TODO Auto-generated method stub
         //set the [v][w] entry to be 0
         array_2D[v][w] = 0;
         edgeNum--;
@@ -80,7 +79,6 @@ public class GraphMatrix implements Graph{
 
     @Override
     public boolean hasEdge(int v, int w) {
-        // TODO Auto-generated method stub
         //check the whether has an edge
         if(array_2D[v][w] == 0)
             return false;
@@ -91,7 +89,7 @@ public class GraphMatrix implements Graph{
 
     @Override
     public ArrayList<Integer> neighbors(int v) {
-        // TODO Auto-generated method stub
+    
         //looping through the matrix to check whether there is an edge
         ArrayList<Integer> array = new ArrayList<>();
         for (int i = 0; i < array_2D.length; i++) {
@@ -105,7 +103,6 @@ public class GraphMatrix implements Graph{
 
     @Override
     public void resetVisited() {
-        // TODO Auto-generated method stub
         //set all element to be false
         Arrays.fill(check, false);
         return;
@@ -113,7 +110,7 @@ public class GraphMatrix implements Graph{
 
     @Override
     public ArrayList<Integer> BFS(int v) {
-        // TODO Auto-generated method stub
+    
         //initialization
         ArrayList<Integer> array = new ArrayList<>();
         LinkedList<Integer> queue = new LinkedList<>();
@@ -143,7 +140,7 @@ public class GraphMatrix implements Graph{
 
     @Override
     public boolean hasPath(int v, int w) {
-        // TODO Auto-generated method stub
+    
         //Use bfs to store all possible connecting vertexes
         ArrayList<Integer> array = BFS(v);
         if(array.contains(w)){// if vertex w exists, return true
@@ -159,7 +156,7 @@ public class GraphMatrix implements Graph{
 
     @Override
     public ArrayList<Integer> topologicalSort() {
-        // TODO Auto-generated method stub
+    
         //initialization
         ArrayList<Integer> topo = new ArrayList<>();
         LinkedList<Integer> queue = new LinkedList<>();
@@ -204,3 +201,4 @@ public class GraphMatrix implements Graph{
     }
 
 }
+*/

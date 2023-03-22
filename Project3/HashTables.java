@@ -3,8 +3,8 @@ import java.util.HashSet;
 public class HashTables{
 
     // Problem 4.
-    public static void findSumPair(int target, int[] array){
-        //TODO.
+    public void findSumPair(int target, int[] array){
+        
         int num1 = 0;
         int num2 = 0;
         int res;
@@ -35,8 +35,8 @@ public class HashTables{
     }
 
     // Problem 5.
-    public static int DistinctValues(int[] array){
-        // TODO.
+    public int DistinctValues(int[] array){
+    
 
         //create a set to record the distinct value
         HashSet<Integer> set = new HashSet<>();

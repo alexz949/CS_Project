@@ -1,4 +1,4 @@
-package CSC301;
+package CSC301.HW6;
 
 import java.util.LinkedList;
 import java.util.ArrayList;

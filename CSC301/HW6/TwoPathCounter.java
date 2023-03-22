@@ -29,7 +29,7 @@ public class TwoPathCounter {
     }
     
 }
-class main{
+class main1{
     public static void main(String[] args) {
         ArrayList<ArrayList<Integer>> adjList = new ArrayList<>();
         adjList.add(new ArrayList<>());

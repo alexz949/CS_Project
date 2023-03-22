@@ -162,6 +162,7 @@ public class matrixMult{
                 m1[i][j] = Integer.parseInt(array.get(i)[j]);
             }
         }
+        sc.close();
         return m1;
     
 
