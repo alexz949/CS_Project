@@ -11,7 +11,6 @@
 \headsep=0.5cm
 \textheight=610pt
 \usepackage{graphicx}
-\usepackage{CJK}
 \input zhwinfonts
 \graphicspath{ {./images/} }
 
@@ -36,20 +35,22 @@ The statement is incorrect by the following counterexample:
 \begin{center}
     \includegraphics[scale = 0.2]{q1.jpg}
 \end{center}
-The unique heaviest edge $13$ is in part of an MST.
+The unique heaviest edge $13$ is in part of an MST (AB, BC, AD).
 \subsection*{(b)}
 The statement is true. For finding the minimum spanning tree, we have to go through all vertices of the graph.
-\paragraph*{Case 1:} No cycle connects two vertices with $e$
+Assume there are two endpoints that have path contains $e$.
+\paragraph*{Case 1:} No cycle between two endpoints
 
-If the two vertices connect with that lightest edge $e$, it will automatically be added into MST for producing the lightest
-tree.
+If there is not cycle among these two endpoints, when we have to go through $e$ because there is 
+only one path that contains $e$ connects these two endpoints. Therefore $e$ is in the MST.
 
 \paragraph*{Case 2:} A cycle connects two vertices of $e$
 
-If there exist a path other than contains $e$ for two vertices, by property of MST, it will remove the
-heaviest edge on another path and add $e$ instead because this will create a lighter tree given that $e$ is lightest and unique.
+If there exist a path other than a path contains $e$ for two vertices, by property of MST, it will remove the
+heaviest edge in the cycle and add $e$ instead for creating MST. Because this will create a lighter tree and break
+cycle given that $e$ is the lightest edge and unique.
 
-This holds true for every MST because they have to go through two vertices connect with $e$.
+This holds true for every MST because they have to go through two vertices have path containing $e$.
 
 \subsection*{(c)}
 The statement is correct.
@@ -59,7 +60,8 @@ to partition $G$. In this case, we will going to find the lightest edge $e^\prim
 We also know that $X \cup e^\prime$ will also be part of that MST.
 
 For each cut, $e^\prime$ is the lightest edge among all possible edges and after the cut, $e^\prime$ is part of an MST.
-We can say that if $e^\prime$ is part of an MST, it needs to be the lightest edge for some cut of $G$.
+We can say that if $e^\prime$ is part of an MST, it needs to be the lightest edge for some cut of $G$. It is also true 
+for edge $e$ as long as it's in some MST.
 
 \subsection*{(d)}
 The statement is incorrect by the following counterexample:
