@@ -10,6 +10,10 @@
 \headheight=0cm 
 \headsep=0.5cm
 \textheight=610pt
+\usepackage{graphicx}
+\usepackage{CJK}
+\input zhwinfonts
+\graphicspath{ {./images/} }
 
 \usepackage{latexsym,array,delarray,amsthm,amssymb,epsfig}
 \usepackage{amsmath}
@@ -29,7 +33,10 @@
 \section*{Question 1}
 \subsection*{(a)}
 The statement is incorrect by the following counterexample:
-The unique heaviest edge $100$ is in part of an MST.
+\begin{center}
+    \includegraphics[scale = 0.2]{q1.jpg}
+\end{center}
+The unique heaviest edge $13$ is in part of an MST.
 \subsection*{(b)}
 The statement is true. For finding the minimum spanning tree, we have to go through all vertices of the graph.
 \paragraph*{Case 1:} No cycle connects two vertices with $e$
@@ -55,6 +62,16 @@ For each cut, $e^\prime$ is the lightest edge among all possible edges and after
 We can say that if $e^\prime$ is part of an MST, it needs to be the lightest edge for some cut of $G$.
 
 \subsection*{(d)}
+The statement is incorrect by the following counterexample:
+\begin{center}
+    \includegraphics[scale = 0.2]{q1d.jpg}
+\end{center}
+At first $|V_1|$ is $A$ and $B$, $|V_2|$ is $C$ and $D$. $E_1$ is 10, and $E_2$ is 14. In this case we find edge $e$ to be 11.
+With recursion, we will eventually go into base case which for $A$ and $B$, $e$ will be 10, and for $C$ and $D$, $e$ will be 14.
+
+Combining all edges in $E_c$, we find a tree has sum of weights $10+11+14=35$. However, in this graph, the MST has the sum of weights 
+with $10+11+13=34$. This divide-and-conquer algorithm will not produce the correct MST.
+
 
 
 \section*{Question 2}
