@@ -30,28 +30,28 @@
 \section*{Question 1}
     \begin{enumerate}
         \item The relative error for $\mat{Q}$ is $2$.
-        \item The relative error for $\mat{R}$ is $1.036$.
-        \item The relative error for $\mat{Q*R}$ is $1.1194e-15$.
+        \item The relative error for $\mat{R}$ is $1.0014$.
+        \item The relative error for $\mat{Q*R}$ is $1.2642e-15$.
     \end{enumerate}
 
-    I'm surprised with the first two relative errors. For $\mat{Q}$'s relative error, it should be $0$ ideally,
+    I'm surprised with the first two relative errors. For $\mat{Q}$'s relative error, it should be smaller than 1,
     but I got $2$, which shows there is a difference between true $\mat{Q}$, and calculated $\mat{Q}$. For $\mat{R}$, 
     I think it still should be $0$ for $\| 0\|_p = 0$. Base on the two relative errors, I think for HouseHolder QR, $\mat{Q}$ and $\mat{R}$ are not accurate.
     However, the relative error for $\mat{Q*R}$ is really small so their product is accurate. Based on this
-    small relative error, we can also conclude that QR factorization using HouseHolder is stable.
+    small relative error. This also says that Householder QR is stable.
 
 \section*{Question 2}
     \begin{enumerate}
-        \item For QR factorization with HouseHolder, the distance is $8.6905e-16$.
-        \item For QR factorization with modified Gram-Schmidt, the distance is $1$.
+        \item For QR factorization with HouseHolder, the distance is $1.2316e-15$.
+        \item For QR factorization with modified Gram-Schmidt, the distance is $0.2283$.
     \end{enumerate}
 
     The distance using HouseHolder is very small and therefore reasonable. However, the result for using mgs is quiet big.
     One reason is when doing Gram-Schmidt process, calculating matrix $\mat{Q}$ involves multiplication and normalization.
     This process will make $\mat{Q}$ not be strictly orthonormal matrix, and the result will be affected then. 
 
-    Changing the value $\eta$, orthongonality value of $\mat{Q}$ computed by mgs will still be 1.
-    The distance of $\mat{Q}$ through HouseHolder will sometimes only vary $10^{-16}$.
+    Changing the value $\eta$, the distance from Gram and identity computed by mgs will decrease as $\eta$ increases.
+    The distance of from Gram and identity through Householder will vary but only between $10^{-15}$ and $10^{-16}$.
 
 \section*{Question 3}
     
@@ -60,7 +60,7 @@ a pseudocode function called LB:
 \begin{lstlisting}
     function X = LB(L,B)
         for i = 1: length(B)
-            for j = 1: length(B)
+            for j = 1: length(B) do
                 x(i,j) = (B(i,j)-$\sum^{j-1}_{k=1}$L(j,k)*x(i,k))/L(j,j)
             end
         end

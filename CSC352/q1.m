@@ -14,8 +14,10 @@ A = Q*R;
 %calculating relative error
 a = norm(Q1-Q)/norm(Q);
 disp(a);
+
 b = norm(R1-R)/norm(R);
 disp(b);
+
 
 sta = norm(Q1*R1- Q*R)/norm(Q*R);
 disp(sta);
