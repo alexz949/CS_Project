@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class knapsack_opt {
     public static void main(String[] args) throws IOException {
         System.out.println("See this if it is HW8");
-        
+        /*
         //unit test
         fileReader readerS = new fileReader("CSC301\\HW7\\small.txt");
         int profitS[] = new int[readerS.getValue().size()];
@@ -43,7 +43,7 @@ public class knapsack_opt {
         }
         System.out.println(knapsack(readerL.W, weightL, profitL,readerL.n));
         
-        
+        */
         
         fileReader test = new fileReader("CSC301\\HW7\\test.txt");
         int profitt[] = new int[test.getValue().size()];
@@ -98,18 +98,18 @@ public class knapsack_opt {
                 }
                 else{
                     bag[write][j] = bag[read][j];
-                    if(i >= n/2)
+                    if(i > (n+1)/2)
                         m[writeM][j] = m[readM][j];
 
                 }
     
             }
-            /*
+            
             System.out.println("Outputting!");
             for (int k = 0; k < m[0].length; k++) {
                 System.out.println(m[0][k] +  " " + m[1][k]);
             }
-            */
+            
             if(i > (n+1)/2){
                 temp = readM;
                 readM = writeM;
@@ -124,8 +124,8 @@ public class knapsack_opt {
         
 
 
-        System.out.println(m[read][W]);
-        return bag[read][W];
+        
+        return m[read][W];
 
     }
     
