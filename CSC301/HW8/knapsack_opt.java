@@ -1,11 +1,12 @@
-package CSC301.HW7;
+package CSC301.HW8;
 
 import java.util.ArrayList;
 import java.io.*;
 import java.util.Scanner;
 
-class knapsackMem {
+public class knapsack_opt {
     public static void main(String[] args) throws IOException {
+        System.out.println("See this if it is HW8");
         
         //unit test
         fileReader readerS = new fileReader("CSC301\\HW7\\small.txt");
@@ -163,4 +164,5 @@ class fileReader{
 
 
 }
+
 
