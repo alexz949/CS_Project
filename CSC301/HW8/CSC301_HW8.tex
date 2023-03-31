@@ -30,8 +30,28 @@
 \begin{document}
 \maketitle
 \section*{Question 1}
+The updated prgram is called "knapsack res" and there are three output files called 
+"smallout.txt", "mediumout.txt", and "largeout.txt" which write the output in the format.
 
 \section*{Question 2}
+\paragraph{Space}
+
+In the file "knapsackCap"'s knapscakCap method, I created two constant dimension arrays "bag"
+and "m". Both of them are actaully $(W+1) \times 2$ matrices. So the overall space complexity will
+be $O(2*2*(W+1)) = O(4W + 4)$. Since $W$ is the leading term and $4$ is a constant, the overall
+space complexity will be
+$$O(W)$$
+
+\paragraph{Time}
+
+In "knapsackCap" method, first there is one loop for initialization, which takes $O(W)$. Further,
+there is a nested loop which the outer loop iterates $n$ times, and inner loop iterates $W$ times.
+The time complexity for this loop is $O(nW)$. Assume that assigning variables and comparision take constant
+time. The overall time complexity will be $O(W + nW)$, which is same as 
+$$O(nW)$$
+
+
+
 
 \section*{Question 3}
 \end{document}

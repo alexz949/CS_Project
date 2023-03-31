@@ -1,9 +1,9 @@
 package CSC301.HW8;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.io.*;
-import java.util.Scanner;
+
 
 
 
@@ -16,29 +16,50 @@ public class knapsackDC {
         fileReader readerS = new fileReader("CSC301\\HW7\\small.txt");
         fileReader readerM = new fileReader("CSC301\\HW7\\medium.txt");
         fileReader readerL = new fileReader("CSC301\\HW7\\large.txt");
-        fileReader test = new fileReader("CSC301\\HW7\\test.txt");
-        
-        int profitt[] = new int[test.getValue().size()];
-        int weightt[] = new int[test.getWeight().size()];
-        for (int i = 0; i < weightt.length; i++) {
-            profitt[i] = test.getValue().get(i);
-            weightt[i] = test.getWeight().get(i);
-        }
-        //System.out.println(knapsack(test.W, weightt, profitt, test.n));
-        System.out.println(Arrays.toString(divide(test.W, weightt, profitt, weightt, profitt)));
-        /* 
-        
-        
-        int profitS[] = new int[readerS.getValue().size()+1];
-        int weightS[] = new int[readerS.getWeight().size()+1];
-        profitS[0] = 0;
-        weightS[0] = 0;
-        for (int i = 1; i < weightS.length-1; i++) {
+    
+         
+        int profitS[] = new int[readerS.getValue().size()];
+        int weightS[] = new int[readerS.getWeight().size()];
+       
+        for (int i = 0; i < weightS.length; i++) {
             profitS[i] = readerS.getValue().get(i);
             weightS[i] = readerS.getWeight().get(i);
         }
         
-        System.out.println(Arrays.toString(divide(readerS.W, weightS, profitS, weightS, profitS)));
+        int[] temp = divide(readerS.W, weightS, profitS);
+        int count = 0;
+        for (int i = 0; i < temp.length; i++) {
+            System.out.print(temp[i] + " ");
+            if(temp[i]!= 0)
+                count++;
+        }
+        int V = 0;
+        
+        int[] re1 = new int[count];
+        int t = 0;
+        for (int i = 0; i < temp.length-2; i++) {
+            if(temp[i]!= 0){
+                re1[t] = temp[i];
+                System.out.print(re1[t]);
+                t++;
+            }
+        }
+        for (int i = 0; i < re1.length; i++) {
+            for (int j = profitS.length-1; j >= 0; j--) {
+                if(re1[i] == weightS[j]){
+                    V += profitS[j];
+                    readerS.store.add(j+1);
+                }
+            }
+        }
+        Collections.reverse(readerS.store);
+        readerS.writeAns(V, "CSC301\\HW8\\DCsmallerout.txt");
+        
+        
+        
+        
+        
+
         
         /* 
         int profitM[] = new int[readerM.getValue().size()];
@@ -47,47 +68,35 @@ public class knapsackDC {
             profitM[i] = readerM.getValue().get(i);
             weightM[i] = readerM.getWeight().get(i);
         }
-        System.out.println(knapsack(readerM.W, weightM, profitM,readerM.n));
-        System.out.println(Arrays.toString(divide(readerM.W, weightM, profitM, weightM, profitM)));
-
-        /* 
-        
-        
-        /* 
-        
 
 
-        /*
+        System.out.println(Arrays.toString(divide(readerM.W, weightM, profitM)));
+        
+        
+       
+        
+        
        
         
         //reading and printing
         
-        
-        
-        int profitM[] = new int[readerM.getValue().size()];
-        int weightM[] = new int[readerM.getWeight().size()];
-        for (int i = 0; i < weightM.length; i++) {
-            profitM[i] = readerM.getValue().get(i);
-            weightM[i] = readerM.getWeight().get(i);
-        }
-        System.out.println(knapsack(readerM.W, weightM, profitM,readerM.n));
-
-
         int profitL[] = new int[readerL.getValue().size()];
         int weightL[] = new int[readerL.getWeight().size()];
         for (int i = 0; i < weightL.length; i++) {
             profitL[i] = readerL.getValue().get(i);
             weightL[i] = readerL.getWeight().get(i);
         }
-        System.out.println(knapsack(readerL.W, weightL, profitL,readerL.n));
+        System.out.println(divide(readerL.W, weightL, profitL));
+        int[] what = divide(readerL.W, weightL, profitL);
+        int sum = 0;
+        for (int i = 0; i < what.length; i++) {
+            if(what[i]!= 0){
+                sum += what[i];
+            }
+        }
+        System.out.println("asuchiwopefh: " + sum);
         */
-        
-        
-        
-        
-        
-        
-        
+    
     }
 
     public static int knapsack(int W, int[] w, int[] val, int n){
@@ -158,32 +167,47 @@ public class knapsackDC {
     }
     
     
-    public static int[] divide(int W, int[] w, int[] val, int[] stdW, int[] stdV){
+    public static int[] divide(int W, int[] w, int[] val){
         int k = knapsack(W, w, val, val.length);
 
-    
-        
-        
+        System.out.println(Arrays.toString(w));
+        System.out.println("K "+ k + " W " + (W));
 
-        if(val.length == 1){
-            if(k == 0 && W-k != 0){
-                System.out.println(k + " " + (W-k));
-
+        int mid = (w.length-1) / 2;
+   
+        if(val.length == 2){
+            
+            int[] ans = new int[2];
+            if(k != 0 || (W-k) != 0){
+                if((W+k) == w[0] || (W+k) == w[1]){
+                    if(w[0] == (W+k))
+                        ans[0] = w[0];
+                    else
+                        ans[0] = w[1];
+                    return ans;
+                }
+                if(w[0] == w[1]){
+                    if(val[0] > val[1])
+                        ans[0] = w[0];
+                    else
+                        ans[0] = w[1];
+                    return ans;
+                }
+                if(w[1] == k)
+                    ans[0] = w[1];
+                else if(w[0] == k)
+                    ans[0] = w[0];
+                
             }
-            else
-                System.out.println("test");
-            
-            
-            return new int[1];
+            return ans;
         }
-        
-        int mid = w.length / 2 ;
-        
-        int[] wl = new int[mid];
+
+
+        int[] wl = new int[mid+1];
         int[] wr = new int[w.length-mid];
-        int[] vl = new int[mid];
+        int[] vl = new int[mid+1];
         int[] vr = new int[w.length-mid];
-        for (int i = 0; i < mid; i++) {
+        for (int i = 0; i < mid+1; i++) {
             wl[i] = w[i];
             vl[i] = val[i];
         }
@@ -194,9 +218,13 @@ public class knapsackDC {
             vr[t] = val[i];
             t++;
         }
+        
+
+        //System.out.println(Arrays.toString(wl));
+        //System.out.println(Arrays.toString(wr));
          
-        int[] num1 = divide(k, wl, vl, stdW, stdV);
-        int[] num2 = divide(W-k, wr, vr, stdW, stdV);
+        int[] num1 = divide(k, wl, vl);
+        int[] num2 = divide(W-k, wr, vr);
         int[] sum = new int[num1.length+num2.length];
         
         for (int i = 0; i < num1.length; i++) {
@@ -208,6 +236,7 @@ public class knapsackDC {
             sum[i] = num2[t];
             t++;
         }
+        
         return sum;
             
 
@@ -217,37 +246,8 @@ public class knapsackDC {
 
     
 
-class fileReader{
-    ArrayList<Integer> weights = new ArrayList<>();
-    ArrayList<Integer> values = new ArrayList<>();
-    int W;
-    int n;
-    public fileReader(String path) throws IOException{
-        File file = new File(path);
-        Scanner sc = new Scanner(file);
-        String info = sc.nextLine();
-        String[] ans = info.split(" ");
-        W = Integer.parseInt(ans[1]);
-        String info2 = sc.nextLine();
-        String[] ans2 = info2.split(" ");
-        n = Integer.parseInt(ans2[1]);
-
-        while(sc.hasNextLine()){
-            String str = sc.nextLine();
-            String[] store = str.split(" ");
-            weights.add(Integer.parseInt(store[1]));
-            values.add(Integer.parseInt(store[3]));
-        }
-        sc.close();
-    }
-    public ArrayList<Integer> getWeight(){
-        return weights;
-    }
-    public ArrayList<Integer> getValue(){
-        return values;
-    }
 
 
-}
+
 
 

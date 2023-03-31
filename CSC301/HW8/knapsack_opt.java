@@ -132,37 +132,3 @@ public class knapsack_opt {
     }
     
 
-class fileReader{
-    ArrayList<Integer> weights = new ArrayList<>();
-    ArrayList<Integer> values = new ArrayList<>();
-    int W;
-    int n;
-    public fileReader(String path) throws IOException{
-        File file = new File(path);
-        Scanner sc = new Scanner(file);
-        String info = sc.nextLine();
-        String[] ans = info.split(" ");
-        W = Integer.parseInt(ans[1]);
-        String info2 = sc.nextLine();
-        String[] ans2 = info2.split(" ");
-        n = Integer.parseInt(ans2[1]);
-
-        while(sc.hasNextLine()){
-            String str = sc.nextLine();
-            String[] store = str.split(" ");
-            weights.add(Integer.parseInt(store[1]));
-            values.add(Integer.parseInt(store[3]));
-        }
-        sc.close();
-    }
-    public ArrayList<Integer> getWeight(){
-        return weights;
-    }
-    public ArrayList<Integer> getValue(){
-        return values;
-    }
-
-
-}
-
-

@@ -10,6 +10,7 @@ public class knapsack_res {
         fileReader readerM = new fileReader("CSC301\\HW8\\medium.txt");
         fileReader readerL = new fileReader("CSC301\\HW8\\large.txt");
 
+        /* 
         //reading and printing
         int profitS[] = new int[readerS.getValue().size()];
         int weightS[] = new int[readerS.getWeight().size()];
@@ -23,7 +24,7 @@ public class knapsack_res {
         readerS.writeAns(tes,"CSC301\\HW8\\smallout.txt");
 
 
-        
+        */
         int profitM[] = new int[readerM.getValue().size()];
         int weightM[] = new int[readerM.getWeight().size()];
         for (int i = 0; i < weightM.length; i++) {
@@ -31,9 +32,10 @@ public class knapsack_res {
             weightM[i] = readerM.getWeight().get(i);
         }
         int tes2 = readerM.knapsack_mem(readerM.W, weightM, profitM,readerM.n);
+        
         readerM.writeAns(tes2,"CSC301\\HW8\\mediumout.txt");
 
-
+        
         int profitL[] = new int[readerL.getValue().size()];
         int weightL[] = new int[readerL.getWeight().size()];
         for (int i = 0; i < weightL.length; i++) {
@@ -41,7 +43,13 @@ public class knapsack_res {
             weightL[i] = readerL.getWeight().get(i);
         }
         int tes3 = readerL.knapsack_mem(readerL.W, weightL, profitL, readerL.n);
+        int sum = 0;
+        for (int i = 0; i < readerL.store.size(); i++) {
+            sum += weightL[readerL.store.get(i)-1];
+        }
+        System.out.println(sum);
         readerL.writeAns(tes3,"CSC301\\HW8\\largeout.txt");
+        
     }
 
    
