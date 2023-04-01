@@ -151,7 +151,6 @@ vector<int> knapsack_dc(vector<int>  v, vector<int>  w, int W, int offset = 0) {
     vector<pair<int, int>> subSol2 = last(vector<int>(begin(v) + mid, end(v)), vector<int>(begin(w) + mid, end(w)), W);
     
 
-    cout << "test2" << endl;
     pair<int, int> best = { -1, -1 };
     for (int i = 0; i <= W; ++i) {
         //maximum the value and the capacity
