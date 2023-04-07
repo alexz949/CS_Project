@@ -1,0 +1,59 @@
+\documentclass{article}
+\title{CSC352 HW8}
+\author{Alex Zhang}
+\date{April 2023}
+\textwidth=16.00cm 
+\textheight=22.00cm 
+\topmargin=0.00cm
+\oddsidemargin=0.00cm 
+\evensidemargin=0.00cm 
+\headheight=0cm 
+\headsep=0.5cm
+\textheight=610pt
+\usepackage{graphicx}
+
+\graphicspath{ {./images/} }
+
+\usepackage{latexsym,array,delarray,amsthm,amssymb,epsfig,amsmath,listings}
+
+\lstset{
+  basicstyle=\ttfamily,
+  mathescape
+}
+
+\newcommand{\bmat}[1]{\begin{bmatrix} #1 \end{bmatrix}}
+\newcommand{\mat}[1]{\mathbf{#1}}
+
+\let\ds\displaystyle
+
+\begin{document}
+\maketitle
+\section*{Question}
+
+\section*{Question 2}
+Since $\mat{A} = \bmat{2 & -1 & 0\\
+                        -1 & 2 & -1\\
+                        0 & -1 & 2}$
+, then $\mat{A - \lambda \cdot I} =\bmat{2-\lambda & -1 & 0\\
+-1 & 2-\lambda & -1\\
+0 & -1 & 2-\lambda}$ and the corresponding characteristis polynomial will be,
+\begin{align}
+    \det(\mat{A - \lambda \cdot I}) &= (2-\lambda)(2-\lambda)(2-\lambda) -(2-\lambda)(-1)(-1) - (-1)(-1)(2-\lambda) + 0  + 0 - 0 \nonumber \\ 
+    &= (2-\lambda)^3 - (2-\lambda) - (2-\lambda) \nonumber \\
+    &= (2-\lambda)^3 - 2 \cdot (2-\lambda) \nonumber \\
+    &= -\lambda^3 + 6\lambda^2 - 10 \lambda + 4 \nonumber
+\end{align}
+Let it be 0,
+\begin{align}
+    -\lambda^3 + 6\lambda^2 - 10 \lambda + 4 &= 0 \nonumber \\
+    -(\lambda-2)(\lambda^2 - 4\lambda +2) &= 0 \nonumber
+\end{align}
+We can get that $\lambda_1 = 2+ \sqrt{2}$, $\lambda_2 = 2$, and $\lambda_3 = 2- \sqrt{2}$. Given that all eigenvalues
+are positive and $\mat{A}$ is symmetric, $\mat{A}$ is a symmetric positive definite matrix.
+
+
+
+
+
+\section*{Question}
+\end{document}

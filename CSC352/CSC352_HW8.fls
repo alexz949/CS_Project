@@ -1,7 +1,7 @@
 PWD c:\Users\Administrator\Desktop\CS_Project\CSC352
 INPUT C:\Users\Administrator\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\Administrator\Desktop\CS_Project\CSC352\CSC352_HW7.tex
-OUTPUT CSC352_HW7.log
+INPUT c:\Users\Administrator\Desktop\CS_Project\CSC352\CSC352_HW8.tex
+OUTPUT CSC352_HW8.log
 INPUT C:\Program Files\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Program Files\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Program Files\MiKTeX\tex\latex\base\article.cls
@@ -17,84 +17,6 @@ INPUT C:\Program Files\MiKTeX\tex\latex\base\size10.clo
 INPUT C:\Program Files\MiKTeX\tex\latex\base\size10.clo
 INPUT C:\Program Files\MiKTeX\tex\latex\base\size10.clo
 INPUT C:\Program Files\MiKTeX\tex\latex\base\size10.clo
-INPUT C:\Program Files\MiKTeX\tex\latex\base\latexsym.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\base\latexsym.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\base\latexsym.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\base\latexsym.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\base\latexsym.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\base\latexsym.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\base\latexsym.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\base\latexsym.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\base\latexsym.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\base\latexsym.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\base\latexsym.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\tools\array.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\tools\array.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\tools\array.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\tools\array.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\tools\array.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\tools\array.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\tools\array.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\tools\array.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\tools\array.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\tools\array.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\tools\array.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\tools\delarray.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\tools\delarray.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\tools\delarray.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\tools\delarray.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\tools\delarray.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\tools\delarray.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\tools\delarray.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\tools\delarray.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\tools\delarray.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\tools\delarray.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\tools\delarray.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\tools\array.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\graphics\epsfig.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\graphics\epsfig.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\graphics\epsfig.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\graphics\epsfig.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\graphics\epsfig.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\graphics\epsfig.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\graphics\epsfig.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\graphics\epsfig.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\graphics\epsfig.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\graphics\epsfig.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\graphics\epsfig.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\graphics\graphicx.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\graphics\graphicx.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\graphics\graphicx.sty
@@ -147,6 +69,85 @@ INPUT C:\Program Files\MiKTeX\tex\latex\graphics-def\pdftex.def
 INPUT C:\Program Files\MiKTeX\tex\latex\graphics-def\pdftex.def
 INPUT C:\Program Files\MiKTeX\tex\latex\graphics-def\pdftex.def
 INPUT C:\Program Files\MiKTeX\tex\latex\graphics-def\pdftex.def
+INPUT C:\Program Files\MiKTeX\tex\latex\base\latexsym.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\base\latexsym.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\base\latexsym.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\base\latexsym.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\base\latexsym.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\base\latexsym.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\base\latexsym.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\base\latexsym.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\base\latexsym.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\base\latexsym.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\base\latexsym.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\tools\array.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\tools\array.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\tools\array.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\tools\array.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\tools\array.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\tools\array.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\tools\array.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\tools\array.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\tools\array.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\tools\array.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\tools\array.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\tools\delarray.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\tools\delarray.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\tools\delarray.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\tools\delarray.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\tools\delarray.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\tools\delarray.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\tools\delarray.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\tools\delarray.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\tools\delarray.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\tools\delarray.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\tools\delarray.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\tools\array.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amscls\amsthm.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\graphics\epsfig.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\graphics\epsfig.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\graphics\epsfig.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\graphics\epsfig.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\graphics\epsfig.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\graphics\epsfig.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\graphics\epsfig.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\graphics\epsfig.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\graphics\epsfig.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\graphics\epsfig.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\graphics\epsfig.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\graphics\graphicx.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\amsmath\amsmath.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\amsmath\amsmath.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\amsmath\amsmath.sty
@@ -237,10 +238,10 @@ INPUT C:\Program Files\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
 INPUT C:\Program Files\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
 INPUT C:\Program Files\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
 INPUT C:\Program Files\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
-INPUT .\CSC352_HW7.aux
-INPUT CSC352_HW7.aux
-INPUT CSC352_HW7.aux
-OUTPUT CSC352_HW7.aux
+INPUT .\CSC352_HW8.aux
+INPUT CSC352_HW8.aux
+INPUT CSC352_HW8.aux
+OUTPUT CSC352_HW8.aux
 INPUT C:\Program Files\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Program Files\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Program Files\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
@@ -310,10 +311,9 @@ INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm5.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmbx10.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmbx7.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmbx5.tfm
-INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmtt10.tfm
-OUTPUT CSC352_HW7.pdf
+OUTPUT CSC352_HW8.pdf
 INPUT C:\Users\Administrator\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
-INPUT CSC352_HW7.aux
+INPUT CSC352_HW8.aux
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx12.pfb
@@ -322,8 +322,6 @@ INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmex10.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmex10.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb
-INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi7.pfb
-INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi7.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmr12.pfb
@@ -334,9 +332,3 @@ INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmr7.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmr7.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
-INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy7.pfb
-INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy7.pfb
-INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmtt10.pfb
-INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmtt10.pfb
-INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\symbols\msbm10.pfb
-INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\symbols\msbm10.pfb
