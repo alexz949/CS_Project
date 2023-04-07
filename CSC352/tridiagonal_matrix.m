@@ -30,7 +30,7 @@
 function x = tridiagonal_matrix(A,d)
     
     % determines n
-    n = length(d);
+    n = size(d,1);
     
     % preallocates x
     x = zeros(n,1);

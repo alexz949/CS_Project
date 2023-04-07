@@ -28,9 +28,10 @@
 
 \begin{document}
 \maketitle
-\section*{Question}
-
 \section*{Question 2}
+I created a file "my\textunderscore chol.m" using recursive function.
+
+\section*{Question 3}
 Since $\mat{A} = \bmat{2 & -1 & 0\\
                         -1 & 2 & -1\\
                         0 & -1 & 2}$
@@ -55,5 +56,26 @@ are positive and $\mat{A}$ is symmetric, $\mat{A}$ is a symmetric positive defin
 
 
 
-\section*{Question}
+\section*{Question 4}
+The pseudocode will be:
+\begin{lstlisting}
+    function x = tri_mat(M,y)
+        n = size(M,1)
+        x = zeros(n,1)
+        for i = 2 to n
+            $l = a_i / b_{i-1}$
+            $b_i = b_i - l \cdot c_{i-1}$
+            $y_i = y_i - l \cdot y_{i-1}$
+        end for
+        $x_n = y_n / b_n$
+        for j = n-1 to 1
+            $x_j = (y_j-c_{j}\cdot x_{j+1})/b_j$
+        end for
+    end fucntion
+\end{lstlisting}
+The algorithm will first perform gaussian elimination, thus creating a new upper triangular matrix.
+After that uses back substituion to solve the linear system. In first loop, each iteration does 5 flops and 
+there are total $n-1$ iterations, so the total flops will be $5n - 5$.
+The second loop contains 3 flops in each iteration and the total flops will be $3n -3$. The time complexity 
+for this algorithm will be $O(8n-8) = O(n)$.
 \end{document}
