@@ -1,0 +1,45 @@
+A1 = [47,15;93,35;53,15;45,10;67,27;42,10];
+[U, S, V] = svd(A1);
+disp(S);
+res = S(1,1) * U(:,1) * V(:,1)';
+disp(res);
+disp(A1);
+
+a = norm(res-A1) / norm(A1);
+disp(a);
+
+
+height = [47,46.70;93,94.03;53,52.08;45,43.39;67,68.29;42,40.70];
+b = bar(height);
+title("Actual Height and Approx Height");
+xlabel("row index");
+
+xtips1 = b(1).XEndPoints;
+ytips1 = b(1).YEndPoints;
+labels1 = string(b(1).YData);
+text(xtips1,ytips1,labels1,'HorizontalAlignment','center',...
+    'VerticalAlignment','bottom');
+xtips2 = b(2).XEndPoints;
+ytips2 = b(2).YEndPoints;
+labels2 = string(b(2).YData);
+text(xtips2,ytips2,labels2,'HorizontalAlignment','center',...
+    'VerticalAlignment','bottom');
+legend(b, {'Actual', 'Approx'});
+
+
+weight = [15 15.;35 ;15,52.08;10,43.39;27,68.29;10 ];
+b = bar(height);
+title("Actual Height and Approx Height");
+xlabel("row index");
+
+xtips1 = b(1).XEndPoints;
+ytips1 = b(1).YEndPoints;
+labels1 = string(b(1).YData);
+text(xtips1,ytips1,labels1,'HorizontalAlignment','center',...
+    'VerticalAlignment','bottom');
+xtips2 = b(2).XEndPoints;
+ytips2 = b(2).YEndPoints;
+labels2 = string(b(2).YData);
+text(xtips2,ytips2,labels2,'HorizontalAlignment','center',...
+    'VerticalAlignment','bottom');
+legend(b, {'Actual', 'Approx'});
