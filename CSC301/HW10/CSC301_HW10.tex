@@ -1,0 +1,118 @@
+\documentclass{article}
+\title{CSC301 HW10}
+\author{Alex Zhang}
+\date{April 2023}
+\textwidth=16.00cm 
+\textheight=22.00cm 
+\topmargin=0.00cm
+\oddsidemargin=0.00cm 
+\evensidemargin=0.00cm 
+\headheight=0cm 
+\headsep=0.5cm
+\textheight=610pt
+\usepackage{graphicx}
+\usepackage{multicol}
+
+\usepackage{relsize}
+
+
+
+
+\graphicspath{ {./images/} }
+
+\usepackage{latexsym,array,delarray,amsthm,amssymb,epsfig}
+\usepackage{amsmath}
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily,
+  mathescape
+}
+
+
+\newcommand{\bmat}[1]{\begin{bmatrix} #1 \end{bmatrix}}
+\newcommand{\mat}[1]{\mathbf{#1}}
+
+\let\ds\displaystyle
+
+\begin{document}
+\maketitle
+\section*{Question 1}
+
+\section*{Question 2}
+Since we proved that SAT $\rightarrow$ 3SAT in class, and both of them are NP-complete.
+If we can prove that 3SAT $\rightarrow$ EXACT 4SAT, then SAT $\rightarrow$ EXACT 4SAT, which indicates that EXACT 4SAT
+is also NP-complete. 
+\subsection*{Define f}
+\paragraph*{Case 1} Clause length 1\\
+
+For the clause of length 1 $a_1$, we need to add three new "auxiliary" variables. For clause with length 1, we define 
+f to be:
+
+
+$$a_1 = (a_1\vee y_1 \vee y_2 \vee y_3) \wedge (a_1\vee \bar{y_1} \vee y_2 \vee y_3) \wedge (a_1\vee y_1 \vee \bar{y_2} \vee y_3) \wedge (a_1\vee y_1 \vee y_2 \vee \bar{y_3})$$
+$$\wedge (a_1\vee \bar{y_1} \vee \bar{y_2} \vee y_3) \wedge (a_1\vee \bar{y_1} \vee y_2 \vee \bar{y_3}) \wedge (a_1\vee y_1 \vee \bar{y_2} \vee \bar{y_3}) \wedge (a_1\vee \bar{y_1} \vee \bar{y_2} \vee \bar{y_3}) $$
+
+\paragraph*{Case 2} Clause length 2\\
+In this case we need to add two more "auxiliary" variables, and we define f as:
+$$(a_1 \vee a_2) = (a_1 \vee a_2 \vee y_1 \vee y_2) \wedge (a_1 \vee a_2 \vee y_1 \vee \bar{y_2}) \wedge (a_1 \vee a_2 \vee \bar{y_1} \vee y_2) \wedge (a_1 \vee a_2 \vee \bar{y_1} \vee \bar{y_2})$$
+
+\paragraph*{Case 3} Clause length 3\\
+We just need one more "auxiliary" variable. The f now will be:
+$$(a_1 \vee a_2 \vee a_3) = (a_1 \vee a_2 \vee a_3 \vee y_1) \wedge (a_1 \vee a_2 \vee a_3 \vee \bar{y_1})$$
+
+
+Above all, f will be in polynomial time since creating new auxiliary variables takes $O(m)$.
+
+\subsection*{Define h}
+h is the true assignment for EXACT 4SAT to solutions to 3SAT. Define h to ignore the truth assignemnt 
+of auxiliary variables, keeping the truth assignment of the origonal variables. h is poly-time,
+since we are just chops off at most 3 bits vector.
+
+
+\subsection*{h(S) satisfies I}
+Suppose not, then there are three cases.
+\paragraph*{Case 1} Clause with length 1 is false \\
+Then the false cluase can be transformed into:
+$$a_k = (y_1 \vee y_2 \vee y_3) \wedge (\bar{y_1} \vee y_2 \vee y_3) \wedge (y_1 \vee \bar{y_2} \vee y_3) \wedge (y_1 \vee y_2 \vee \bar{y_3})$$
+$$\wedge (\bar{y_1} \vee \bar{y_2} \vee y_3) \wedge (\bar{y_1} \vee y_2 \vee \bar{y_3}) \wedge (y_1 \vee \bar{y_2} \vee \bar{y_3}) \wedge (\bar{y_1} \vee \bar{y_2} \vee \bar{y_3}) $$
+In this case, all three "auxiliary" variables need to be true. However, this will make the last clause to be false which leads to a contradiction.
+
+\paragraph*{Case 2} Clause with length 2 is false \\
+Then the false cluase can be transformed into:
+$$(a_k \vee a_{k+1}) = (y_1 \vee y_2) \wedge (y_1 \vee \bar{y_2}) \wedge (\bar{y_1} \vee y_2) \wedge (\bar{y_1} \vee \bar{y_2})$$
+Based on this string, we have to make both $y_1$ and $y_2$ to be true but this will still make the last clause be false. A contradiction happens.
+
+
+\paragraph*{Case 3} Clause with length 3 is false \\
+Then the false clause can be simplified into:
+$$(a_k \vee a_{k+1} \vee a_{k+2}) = (y_1) \wedge (\bar{y_1})$$
+and this implies that $y_1$ needs to be true, but this will lead a contradiction which $\bar{y_1}$ cannot.
+
+
+\subsection*{I satisfies so that f(I)}
+Suppose the origonal string is satisfied, then every clause regradless of length need to be true. 
+\paragraph*{Case 1} Clause with length 1 \\
+Based on the f in previous statement, it is clear that if $a_k$ is true, f will also be true since $a_k$ is in every clasue.
+
+\paragraph*{Case 2} Clause with length 2 \\
+Since $(a_k \vee a_{k+1})$ is true, adding two more auxiliary variables will also be true in each clause. Therefore length 2 will be true.
+
+\paragraph*{Case 3} Clause with length 3 \\
+Since $(a_k \vee a_{k+1} \vee a_{k+2})$ is true, adding an extra auxiliary variable will also be true without considering its boolean value.
+The transformation will be true is the original stirng is true.
+
+We can conclude that 3SAT $\rightarrow$ EXACT 4SAT. Based on the fact that SAT $\rightarrow$ 3SAT, we can use 
+reduction compose to show that 
+$$\text{SAT} \rightarrow \text{EXACT 4SAT}$$
+So EXACT 4SAT is NP-complete. $\blacksquare$
+
+
+
+
+
+
+\section*{Question 3}
+
+
+
+\end{document}
