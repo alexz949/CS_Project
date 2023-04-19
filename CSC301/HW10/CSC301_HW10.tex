@@ -38,9 +38,47 @@
 \maketitle
 \section*{Question 1}
 
+Assume there is an $independent$ $set$ $S$ which in $G$. For any edge $e = (u,v)$. Only one of $u$, $v$ can be in
+$S$. This means at least one of $u$, $v$ will be in $V-S$ which means any $e$ is adjacent to some vertex in  vertex cover $C$.
+This indicates that for given $S$ in $G$. $V-S$ is the vertex cover.
+
+Assume there is a $vertex$ $cover$ $C$ that is $V-S$. Taking all vertices that is not in $V-S$ and there will be no edges between any of two
+vertices that are not in $V-S$. Therefore, the rest vertices become an $independet$ $set$ $S$.
+\subsection*{(a)}
+With given instance of given $G$ and $k$, we define f to change $k$ be $n-k$, where $n$ is the total number
+of vertices.
+
+Suppose we have already had an efficient algorithm to check whether $G$ has a $vertex$ $cover$ with size $\leq n-k$. 
+Based on the relation of $S$ and $V-S$ we showed at the beginning, h is now just doing calculation of $n-(n-k)$.
+Both f and h are in polynomial time because all about is counting the number of vertices in $G$.
+
+Based on the efficient algorithm, if there exists a $vertex$ $cover$ with size $\leq n-k$, this implies that there is an $independent$ $set$ that has size
+$\geq k$, since the size of $independent$ $set$ add size of $vertex$ $cover$ is the number of vertices in $G$.
+
+If there does not exist a $vertex$ $cover$ with size $\leq n-k$, then there is no $independent$ $set$ with size greater than $k$.
+
+This indicates that $vertex$ $cover$ problem can be reduced into $independent$ $set$ problem. $\blacksquare$
+
+\subsection*{(b)}
+This time we define f to change $l$ to $n-l$.
+
+Assume we have an efficient algorithm that check whether $independent$ $set$ has size $\geq n-l$. We can also define h be calculating $n - (n-l)$. both 
+f and h are in polynomial time because counting the number of vertices will not cost so much time.
+
+Based on the algorithm, if it is true, then there exists an $independent$ $set$ with size $\geq n-l$. This means that there exists a $vertex$ $cover$ with size 
+$\leq l$ based on h. If it is false, then there is no $independent$ $set$ with size $\geq n-1$. This also means there is no $vertex$ $cover$ with size 
+$\leq l$ because if $S$ is an $independent$ $set$ , $V-S$ is a $vertex$ $cover$.
+
+This shows that $independent$ $set$ problem can be reduced into $vertex$ $cover$ problem.$\blacksquare$
+
+Overall $independent$ $set$ problem can be reduced to $vertex$ $cover$ problem and vise versa. If we just know one efficient algorithm, we can use it to solve 
+two questions at the same time.
+
+
+
 \section*{Question 2}
 Since we proved that SAT $\rightarrow$ 3SAT in class, and both of them are NP-complete.
-If we can prove that 3SAT $\rightarrow$ EXACT 4SAT, then SAT $\rightarrow$ EXACT 4SAT, which indicates that EXACT 4SAT
+If we can prove that 3SAT $\rightarrow$ EXACT 4SAT, then EXACT 4SAT
 is also NP-complete. 
 \subsection*{Define f}
 \paragraph*{Case 1} Clause length 1\\
@@ -101,10 +139,8 @@ Since $(a_k \vee a_{k+1})$ is true, adding two more auxiliary variables will als
 Since $(a_k \vee a_{k+1} \vee a_{k+2})$ is true, adding an extra auxiliary variable will also be true without considering its boolean value.
 The transformation will be true is the original stirng is true.
 
-We can conclude that 3SAT $\rightarrow$ EXACT 4SAT. Based on the fact that SAT $\rightarrow$ 3SAT, we can use 
-reduction compose to show that 
-$$\text{SAT} \rightarrow \text{EXACT 4SAT}$$
-So EXACT 4SAT is NP-complete. $\blacksquare$
+We can conclude that 3SAT $\rightarrow$ EXACT 4SAT. Based on the fact that 3SAT is NP-complete,
+so EXACT 4SAT is also NP-complete. $\blacksquare$
 
 
 
