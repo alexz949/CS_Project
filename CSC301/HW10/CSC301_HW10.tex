@@ -13,11 +13,6 @@
 \usepackage{graphicx}
 \usepackage{multicol}
 
-\usepackage{relsize}
-
-
-
-
 \graphicspath{ {./images/} }
 
 \usepackage{latexsym,array,delarray,amsthm,amssymb,epsfig}
@@ -28,7 +23,6 @@
   mathescape
 }
 
-
 \newcommand{\bmat}[1]{\begin{bmatrix} #1 \end{bmatrix}}
 \newcommand{\mat}[1]{\mathbf{#1}}
 
@@ -36,20 +30,24 @@
 
 \begin{document}
 \maketitle
+
 \section*{Question 1}
 
 Assume there is an $independent$ $set$ $S$ which in $G$. For any edge $e = (u,v)$. Only one of $u$, $v$ can be in
-$S$. This means at least one of $u$, $v$ will be in $V-S$ which means any $e$ is adjacent to some vertex in  vertex cover $C$.
-This indicates that for given $S$ in $G$. $V-S$ is the vertex cover.
+$S$. This means at least one of $u$, $v$ will be in $V$\textbackslash$S$ which means any $e$ is adjacent to some vertex in  vertex cover $C$.
+This indicates that for given $S$ in $G$. $V$\textbackslash$S$ is the vertex cover $C$.
 
-Assume there is a $vertex$ $cover$ $C$ that is $V-S$. Taking all vertices that is not in $V-S$ and there will be no edges between any of two
-vertices that are not in $V-S$. Therefore, the rest vertices become an $independet$ $set$ $S$.
+Assume there is a $vertex$ $cover$ $C$ that is $V$\textbackslash$S$ for a set of vertices $S$. All vertices in $S$ will not have an edge connect with 
+each other or it will be in $V$\textbackslash$S$. Therefore, this means set $S$ is an $independent$ $set$ by definition.
+
+This indicates that the sum of the number of vertices in $vertex$ $cover$ and $independent$ $set$ will be the total number of vertices.
+
 \subsection*{(a)}
 With given instance of given $G$ and $k$, we define f to change $k$ be $n-k$, where $n$ is the total number
 of vertices.
 
 Suppose we have already had an efficient algorithm to check whether $G$ has a $vertex$ $cover$ with size $\leq n-k$. 
-Based on the relation of $S$ and $V-S$ we showed at the beginning, h is now just doing calculation of $n-(n-k)$.
+Based on the relation of $S$ and $V$\textbackslash$S$ we showed at the beginning, h is now just doing calculation of $n-(n-k)$.
 Both f and h are in polynomial time because all about is counting the number of vertices in $G$.
 
 Based on the efficient algorithm, if there exists a $vertex$ $cover$ with size $\leq n-k$, this implies that there is an $independent$ $set$ that has size
@@ -67,7 +65,7 @@ f and h are in polynomial time because counting the number of vertices will not 
 
 Based on the algorithm, if it is true, then there exists an $independent$ $set$ with size $\geq n-l$. This means that there exists a $vertex$ $cover$ with size 
 $\leq l$ based on h. If it is false, then there is no $independent$ $set$ with size $\geq n-1$. This also means there is no $vertex$ $cover$ with size 
-$\leq l$ because if $S$ is an $independent$ $set$ , $V-S$ is a $vertex$ $cover$.
+$\leq l$ because if $S$ is an $independent$ $set$ ,  $V$\textbackslash$S$ is a $vertex$ $cover$.
 
 This shows that $independent$ $set$ problem can be reduced into $vertex$ $cover$ problem.$\blacksquare$
 
@@ -77,7 +75,7 @@ two questions at the same time.
 
 
 \section*{Question 2}
-Since we proved that SAT $\rightarrow$ 3SAT in class, and both of them are NP-complete.
+Since we proved that SAT $\rightarrow$ 3SAT in class, both of them are NP-complete.
 If we can prove that 3SAT $\rightarrow$ EXACT 4SAT, then EXACT 4SAT
 is also NP-complete. 
 \subsection*{Define f}
@@ -99,7 +97,7 @@ We just need one more "auxiliary" variable. The f now will be:
 $$(a_1 \vee a_2 \vee a_3) = (a_1 \vee a_2 \vee a_3 \vee y_1) \wedge (a_1 \vee a_2 \vee a_3 \vee \bar{y_1})$$
 
 
-Above all, f will be in polynomial time since creating new auxiliary variables takes $O(m)$.
+Above all, f will be in polynomial time since creating new auxiliary variables takes $O(n)$.
 
 \subsection*{Define h}
 h is the true assignment for EXACT 4SAT to solutions to 3SAT. Define h to ignore the truth assignemnt 
@@ -148,6 +146,16 @@ so EXACT 4SAT is also NP-complete. $\blacksquare$
 
 
 \section*{Question 3}
+The follow tree is what I got:
+\begin{center}
+  \includegraphics[scale = 0.1]{trees.jpeg}
+\end{center}
+
+From my tree, the lower bound for each subproblem is labeled besides and I found the result for
+this TSP problem should be 27. 
+
+The process is basically first went trough subproblem AB and get current best which is 28. Then went through AC which I updated current best to 27 and stuck with it to the end.
+and currently I found there are 11 ways to get 27.
 
 
 

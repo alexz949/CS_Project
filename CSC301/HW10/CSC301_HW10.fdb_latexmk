@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1681871360 "c:/Users/Administrator/Desktop/CS_Project/CSC301/HW10/CSC301_HW10.tex" "CSC301_HW10.pdf" "CSC301_HW10" 1681871361
+["pdflatex"] 1682039112 "c:/Users/Administrator/Desktop/CS_Project/CSC301/HW10/CSC301_HW10.tex" "CSC301_HW10.pdf" "CSC301_HW10" 1682039112
   "C:/Program Files/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233955448 1004 54797486969f23fa377b128694d548df ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1233955448 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1233955454 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -50,6 +50,7 @@
   "C:/Program Files/MiKTeX/tex/latex/amsmath/amstext.sty" 1655058193 2444 70065bddd85997dc1fd0bb7ae634e5fa ""
   "C:/Program Files/MiKTeX/tex/latex/base/article.cls" 1657041432 20144 7555b7429d80bef287ebb82117811acc ""
   "C:/Program Files/MiKTeX/tex/latex/base/latexsym.sty" 1657041432 2853 20079b4b35694992ccfaced080c81145 ""
+  "C:/Program Files/MiKTeX/tex/latex/base/omscmr.fd" 1657041432 2469 5cf30656b812a1b3bb0f58f4a07885f2 ""
   "C:/Program Files/MiKTeX/tex/latex/base/size10.clo" 1657041432 8448 e0391042ca0932ede1098ae14ada60ba ""
   "C:/Program Files/MiKTeX/tex/latex/base/ulasy.fd" 1657041432 2233 d6b57110698f3bfccb4912aef8c8acb2 ""
   "C:/Program Files/MiKTeX/tex/latex/epstopdf-pkg/epstopdf-base.sty" 1623003186 13886 d1306dcf79a944f6988e688c1785f9ce ""
@@ -64,15 +65,15 @@
   "C:/Program Files/MiKTeX/tex/latex/listings/listings.cfg" 1623004943 1830 e31effa752c61538383451ae21332364 ""
   "C:/Program Files/MiKTeX/tex/latex/listings/listings.sty" 1623004942 80964 64e57373f36316e4a09b517cbf1aba2e ""
   "C:/Program Files/MiKTeX/tex/latex/listings/lstmisc.sty" 1623004942 77022 ee25ce086f4a79d8cf73bac6f94c02a5 ""
-  "C:/Program Files/MiKTeX/tex/latex/relsize/relsize.sty" 1365244030 15542 c4cc3164fe24f2f2fbb06eb71b1da4c4 ""
   "C:/Program Files/MiKTeX/tex/latex/tools/array.sty" 1636713860 12694 6c23725d50ab9d1e2d3ce482c58ffcf3 ""
   "C:/Program Files/MiKTeX/tex/latex/tools/delarray.sty" 1636713860 2157 4342772444d9401ac0f844e1becc8668 ""
   "C:/Program Files/MiKTeX/tex/latex/tools/multicol.sty" 1636713860 32262 2bb622a0aa56c4a7a5cbdfe9d122c15a ""
   "C:/Users/Administrator/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1661915695 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/Administrator/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1661915778 10320170 d4120be7022bd7e7f898122a2ad9516b ""
-  "CSC301_HW10.aux" 1681871361 32 ab05033ccbb38b00a31b200ccedf8001 "pdflatex"
-  "CSC301_HW10.tex" 1681871360 7259 6c37980fbf076fa5d1e47af60a15ca55 ""
-  "c:/Users/Administrator/Desktop/CS_Project/CSC301/HW10/CSC301_HW10.tex" 1681871360 7259 6c37980fbf076fa5d1e47af60a15ca55 ""
+  "CSC301_HW10.aux" 1682039112 32 c81c40425fbb5e93b90fba65da0b5e61 "pdflatex"
+  "CSC301_HW10.tex" 1682039111 7938 2a51615e3cfd8e0ab81efc0a898e1bf0 ""
+  "c:/Users/Administrator/Desktop/CS_Project/CSC301/HW10/CSC301_HW10.tex" 1682039111 7938 2a51615e3cfd8e0ab81efc0a898e1bf0 ""
+  "trees.jpeg" 1682035961 1802636 843f8d3eb9fb6e4813829534d1155671 ""
   (generated)
   "CSC301_HW10.aux"
   "CSC301_HW10.log"

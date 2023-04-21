@@ -80,17 +80,6 @@ INPUT C:\Program Files\MiKTeX\tex\latex\tools\multicol.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\tools\multicol.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\tools\multicol.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\tools\multicol.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\relsize\relsize.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\relsize\relsize.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\relsize\relsize.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\relsize\relsize.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\relsize\relsize.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\relsize\relsize.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\relsize\relsize.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\relsize\relsize.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\relsize\relsize.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\relsize\relsize.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\relsize\relsize.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\base\latexsym.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\base\latexsym.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\base\latexsym.sty
@@ -330,10 +319,21 @@ INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam5.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm7.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm5.tfm
+INPUT C:\Program Files\MiKTeX\tex\latex\base\omscmr.fd
+INPUT C:\Program Files\MiKTeX\tex\latex\base\omscmr.fd
+INPUT C:\Program Files\MiKTeX\tex\latex\base\omscmr.fd
+INPUT C:\Program Files\MiKTeX\tex\latex\base\omscmr.fd
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
 OUTPUT CSC301_HW10.pdf
 INPUT C:\Users\Administrator\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmbx10.tfm
+INPUT .\trees.jpeg
+INPUT .\trees.jpeg
+INPUT trees.jpeg
+INPUT .\trees.jpeg
+INPUT .\trees.jpeg
+INPUT .\trees.jpeg
+INPUT .\trees.jpeg
 INPUT CSC301_HW10.aux
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb
