@@ -29,6 +29,14 @@
 \begin{document}
 \maketitle
 \section*{Question 1}
+Based on obvervation, I find out matrix $\mat{A}$ is a quasi-upper triangular matrix.
+\begin{center}
+    \includegraphics[scale = 0.2]{quasi.jpg}
+\end{center}
+which I can do real schur decomposition on $\mat{A}$ which $\mat{A} = \mat{I}\mat{A}\mat{I}^\top$.
+$\mat{I}$ is identity matrix with same dimension of $\mat{A}$, and they are orthorgonal matrix. Therefore we can first get 
+two eigenvalues $3$ and $-1$. Then I will calculate the eigenvalues for rest two 2 by 2 matrices.
+
 
 \section*{Question 2}
 The pseudocode for Golub Kahan bidiagonalization will is below:

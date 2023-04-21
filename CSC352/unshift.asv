@@ -36,7 +36,7 @@ x1 = sort(x1);
 
 
 %%%%%%%%%%%%%
-for k = 1:300
+for k = 1:500
     [Q,R] = qr(B);
     B = R* Q;
 end
@@ -71,30 +71,25 @@ x3 = sort(x3);
 
 
 figure
-subplot(1,2,1)
+
 plot(b,e,b,x)
 title("dim = 13, iteration = 10")
-legend("built-in","iterative");
 
-
-
-subplot(1,2,2)
-plot(b,e,b,x1);
-title("dim = 13, iteration = 100");
-legend("built-in","iterative");
 
 figure
-subplot(1,2,1)
+
+plot(b,e,b,x1);
+title("dim = 13, iteration = 100");
+legend("iterative", )
+figure
+
 plot(b,e,b,x2);
+title("dim = 13, iteration = 500");
 
-title("dim = 13, iteration = 300");
-legend("built-in","iterative");
+figure
 
-
-subplot(1,2,2)
 plot(b,e,b,x3);
 title("dim = 13, iteration = 1000");
-legend("built-in","iterative");
 
 
 

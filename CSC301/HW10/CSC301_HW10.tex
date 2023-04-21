@@ -159,4 +159,40 @@ and currently I found there are 11 ways to get 27.
 
 
 
+\begin{lstlisting}
+  function e = QR_unshift(A)
+    $A_0 = hess(A_0)$
+    for k = 1:n (until convergence)
+      $Q_kR_k = qr(A_{k-1})$
+      $A_k = R_kQ_k$
+    end
+    e = diag($A_n$)
+  end function 
+
+\end{lstlisting}
+
+
+
+\begin{lstlisting}
+  
+  
+\end{lstlisting}
+
+\begin{align}
+  \mat{Q_1}\mat{R_1} &= \mat{A_0} \nonumber \\
+  \mat{A_1} &= \mat{R_1}\mat{Q_1} \nonumber \\
+  \mat{A_1} &= \mat{Q_1^{-1}}\mat{Q_1}\mat{R_1}\mat{Q_1} \nonumber \\
+  \mat{A_1} &= \mat{Q_1^{-1}}\mat{A_0}\mat{Q_1} \nonumber \\
+\end{align}
+
+
+\begin{align}
+  \mat{A_k} &= \mat{R_k}\mat{Q_k} \nonumber \\
+  \mat{A_k} &= \mat{Q_k^{-1}}\mat{Q_k}\mat{R_k}\mat{Q_k} \nonumber \\
+  \mat{A_k} &= \mat{Q_k^{-1}}\mat{A_{k-1}}\mat{Q_k} \nonumber \\
+  \mat{A_k} &= \mat{Q_k^{-1}}\mat{R_{k-1}}\mat{Q_{k-1}}\mat{Q_k} \nonumber \\
+  \mat{A_k} &= \mat{Q_k^{-1}}\mat{Q_{k-1}^{-1}}\mat{Q_{k-1}}\mat{R_{k-1}}\mat{Q_{k-1}}\mat{Q_k} \nonumber \\
+  \mat{A_k} &= \mat{Q_k^{-1}}\mat{Q_{k-1}^{-1}}\mat{A_{k-2}}\mat{Q_{k-1}}\mat{Q_k} \nonumber \\
+\end{align}
+
 \end{document}
