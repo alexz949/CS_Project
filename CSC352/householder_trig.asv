@@ -1,0 +1,64 @@
+function [Q,R] =  householder_trig(A)
+%size
+[E,r] = qr(A);
+
+n = size(A,2);
+
+V =
+
+R = zeros(n);
+
+
+for k = 1:n %trig
+    e = E(:,k);
+    x = A(:,k);
+
+    p = norm(x);
+    R(k,k) = norm(x);
+    a =e' * x;
+
+    %check sign
+    if a == 0
+        s = 1;
+    else 
+        s = -a/norm(a);
+    end
+    %imporve orthogonality
+    e = s*e;
+    %E = assignColumns(E, k, e);
+    E(:,k) = e;
+    v = p*e - x;
+    v = v - E(:,1:k-1)*(E(:,1:k-1)' * v);
+    u = norm(v);
+    %zero column
+    if u == 0
+        v = e;
+    else
+        v = v / u;
+    end
+
+    %reflection
+    
+    V(:,k) = v;
+    
+    J = (k+1:n);
+    A(:,J) = A(:,J) - 2*v*(v'*A(:,J));
+    r = e'* A(:,k+1:n);
+    R(k,J) = r;
+    A(:,J) = A(:,J) - e* r;
+end
+
+Q = E;
+
+%Q formation 
+for k = n:-1:1
+    v = V(:,k);
+    J = (k:n);
+    Q(:,k:n) = Q(:,k:n) - 2*v(v'*Q(:,k:n));
+end
+
+end
+
+
+
+

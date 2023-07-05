@@ -1,5 +1,5 @@
 function [Q,R] = mgs(A)
-
+    
     [m,n] = size(A); % number of columns of A
     
     R = zeros(n); % initialize Q,R matrices
@@ -12,6 +12,7 @@ function [Q,R] = mgs(A)
             R(i,j) = Q(:,i)'*w;  % this part is different from CGS
 
             w = w - R(i,j)*Q(:,i); 
+
         end
         R(j,j) = norm(w);
         Q(:,j) = w/R(j,j);  % normalize 
