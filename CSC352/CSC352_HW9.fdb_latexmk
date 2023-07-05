@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1685455049 "c:/Users/Administrator/Desktop/CS_Project/CSC352/CSC352_HW9.tex" "CSC352_HW9.pdf" "CSC352_HW9" 1685455051
+["pdflatex"] 1688592498 "c:/Users/Administrator/Desktop/CS_Project/CSC352/CSC352_HW9.tex" "CSC352_HW9.pdf" "CSC352_HW9" 1688592499
   "C:/Program Files/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233955448 1004 54797486969f23fa377b128694d548df ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1233955448 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1233955454 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -33,6 +33,7 @@
   "C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1247596666 32080 340ef9bf63678554ee606688e7b5339d ""
   "C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb" 1247596667 30251 6afa5cb1d0204815a708a080681d4674 ""
   "C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1247596667 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
+  "C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb" 1247596667 36281 c355509802a035cadc5f15869451dcee ""
   "C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1247596667 35752 024fb6c41858982481f6968b5fc26508 ""
   "C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1247596667 32722 d7379af29a190c3f453aba36302ff5a9 ""
   "C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb" 1247596666 32362 bc3f3eec7ab7d65fe700963d4017d32c ""
@@ -72,10 +73,12 @@
   "C:/Program Files/MiKTeX/tex/latex/tools/delarray.sty" 1636713860 2157 4342772444d9401ac0f844e1becc8668 ""
   "C:/Users/Administrator/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1661915695 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/Administrator/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1661915778 10320170 d4120be7022bd7e7f898122a2ad9516b ""
-  "CSC352_HW9.aux" 1685455051 32 044b7f8fc9779af7531264e0c5c84b6d "pdflatex"
-  "CSC352_HW9.tex" 1685455047 2719 b44e479decfa4c05dbd91ba367fb1538 ""
-  "c:/Users/Administrator/Desktop/CS_Project/CSC352/CSC352_HW9.tex" 1685455047 2719 b44e479decfa4c05dbd91ba367fb1538 ""
+  "CSC352_HW9.aux" 1688592499 32 c81c40425fbb5e93b90fba65da0b5e61 "pdflatex"
+  "CSC352_HW9.tex" 1688592496 3400 664c9cb3f146cce29afc879b534ceb8e ""
+  "c:/Users/Administrator/Desktop/CS_Project/CSC352/CSC352_HW9.tex" 1688592496 3400 664c9cb3f146cce29afc879b534ceb8e ""
+  "height.png" 1688592424 32066 da1df76069b5711cb8e6f52ab4025c60 ""
   "quasi.jpg" 1682109374 141218 53d87d47939a1011fbebe61ac8b4c2a2 ""
+  "weight.png" 1688592424 27285 b938d0579c09f2c9b76fb5295c9a231d ""
   (generated)
   "CSC352_HW9.aux"
   "CSC352_HW9.log"

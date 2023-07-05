@@ -35,7 +35,14 @@ Based on obvervation, I find out matrix $\mat{A}$ is a quasi-upper triangular ma
 \end{center}
 which I can do real schur decomposition on $\mat{A}$ which $\mat{A} = \mat{I}\mat{A}\mat{I}^\top$.
 $\mat{I}$ is identity matrix with same dimension of $\mat{A}$, and they are orthorgonal matrix. Therefore we can first get 
-two eigenvalues $3$ and $-1$. Then I will calculate the eigenvalues for rest two 2 by 2 matrices.
+two eigenvalues $3$ and $-1$. Then I will calculate the eigenvalues for rest two 2 by 2 matrices. For matrix $\bmat{1 & -1 \\2 & 0}$,
+eigenvalues will be 
+$$1/2 \pm \sqrt{0.25 - 2}$$
+$$1/2 \pm \sqrt{7} / 2i$$
+The eigenvalues for matrix $\bmat{4 & 2 \\ -5 & -1}$ will be:
+$$3/2 \pm \sqrt{2.25 - 6}$$
+$$3/2 \pm \sqrt{15}/2i$$
+Overll, the eigenvalues of this matrix will be $3$, $-1$, $\frac{1}{2} \pm \frac{\sqrt{7}i}{2}$, and $\frac{3}{2} \pm \frac{\sqrt{15}i}{2}$.
 
 
 \section*{Question 2}
@@ -62,7 +69,7 @@ The pseudocode for Golub Kahan bidiagonalization will is below:
 \section*{Question 4}
 \subsection*{(a)}
 After doing SVD on $\mat{A}$, the first singular value is $156.4358$ and the second one is $8.7658$. I think 
-becuase the largest singular value is way bigger than the rest. There will be
+becuase the largest singular value is very large compared to the second. There will be
 one principal component that relates to the first singular value.
 \subsection*{(b)}
 
@@ -73,19 +80,30 @@ $$A_1 = \bmat{ 46.7021 &  15.8762\\
 43.3857  & 14.7488\\
 68.2871  & 23.2139\\
 40.6964  & 13.8346}$$
-The relative error is $0.056$. Based on the result, I think this is kind of a good
-approximation.
-
+The relative error is $0.056$. Based on this number, I think the approximation is good or at least not bad.
 \subsection*{(c)}
 I created two bar charts and find out that for height column, the approximated 
 data is closer to true data with greatest difference by $1.7$. For weight column,
 the approximated data is not so accurate compared to height's data. It has maximum difference 
 by $4.75$.
 
+<<<<<<< HEAD
+=======
+\begin{center}
+    \includegraphics[scale = 0.6]{height.png}
+    \includegraphics[scale = 0.6]{weight.png}
+    
+\end{center}
+
+   
+
+    
+>>>>>>> e23d1c98caf44ebc85de0f5614a6bbd911e82ef2
 
 
 
 
+<<<<<<< HEAD
 
 
 
@@ -93,4 +111,6 @@ by $4.75$.
 $$z = v' * A(:,J)$$
 $$z = $$
 
+=======
+>>>>>>> e23d1c98caf44ebc85de0f5614a6bbd911e82ef2
 \end{document}
