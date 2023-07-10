@@ -1,23 +1,24 @@
 A = randn(5,3);
 B = randn(5,3);
 C = randn(5,3);
-E = randn(5,3);
+
 F = {A,B,C};
+
+%QR for each factor matrix
 [Q,Q_hat,R] = kr_qr(F);
 
-
+%Qtb 
 X = {A,B,C};
-[D,testB] = apply_kr_qr(Q,Q_hat,X,eye(5,3));
+D = apply_kr_qr(Q,Q_hat,X,eye(3,3));
 
 
+%exp Qtb
 Ft = khatrirao(A,B,C);
 [Qt,Rt] = qr(Ft,0);
 Qtb = Qt' * Ft;
 
-atrue = (Rt \ Qtb);
 
 R_err = norm(abs(Rt) - abs(R))/ norm(abs(R))
-R
-Rt
-atest = (R \ D);
 
+%I think if everything is true this should give out an identity matrix
+unit_test = (R \ D)

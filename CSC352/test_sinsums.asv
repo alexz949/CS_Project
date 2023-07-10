@@ -1,6 +1,5 @@
 d = 6;
-n = 31;
-
+n = 30;
 
 %rng(1)
 T = sinsums(d,n);

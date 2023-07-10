@@ -67,7 +67,7 @@ for k = 1:n
 
     L(k,k) = L(k,k) + R(k,k);
     
-    sigma = mynorm_sq(L(:,k),M(:,k),H,G)
+    sigma = mynorm_sq(L(:,k),M(:,k),H,G);
     if sigma <= 0
         L(:,k) = zeros(n,1);
         L(k,k) = 1;
