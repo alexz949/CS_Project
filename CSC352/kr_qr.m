@@ -19,7 +19,9 @@ end
 %QR on R
 for i = 1:d-1
     %condP = cond(khatrirao(T{i},T{i+1}))
+    if ~isempty(T{i})
     [Q_hat{i},T{i+1}] = qr(khatrirao(T{i},T{i+1}),0);
+    end
     
     
 end

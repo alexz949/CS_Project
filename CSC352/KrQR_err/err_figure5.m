@@ -1,16 +1,15 @@
 
-% 5-way ktensors 
-%30
+% 3-way ktensors 
+%32
 d = 5;
 n = 51;
 expt = 0;
 nort = 0;
 part = 0;
-
 %rng(1)
 T = sinsums(d,n);
 X = sinsum_full(d,n);
-true_err = norm(full(T) - full(X)) / norm(X)
+true_err31 = norm(full(T) - full(X)) / norm(X)
 % generate random ktensor fac tors
 Ty = cell(d-1,1);
 Xy = cell(d-1,1);
@@ -27,7 +26,7 @@ kappa = cond(K)
 XXX = K \ (khatrirao(Xy) * X.U{d}');
 T.U{d} = XXX';
 
-exp_err = norm(full(T) - full(X)) / norm(X)
+exp_err31 = norm(full(T) - full(X)) / norm(X)
 expt = expt + toc
 
 
@@ -49,7 +48,7 @@ end
 XX = (G \ C * X.U{d}')';
 T.U{d} = XX;
 
-normal_err = norm(full(T) - full(X)) / norm(X)
+normal_err31 = norm(full(T) - full(X)) / norm(X)
 nort = nort + toc
 
 
@@ -64,14 +63,20 @@ D = apply_kr_qr(Qp,Qhatp,Xy,X.U{d});
 XX = (Rp \ D)';
 T.U{d} = XX;
 
-pairwise_err = norm(full(T) - full(X)) / norm(X)
+pairwise_err31 = norm(full(T) - full(X)) / norm(X)
 part = part +  toc
 
 
 
 
-time51 = [part nort expt];
-%60
+
+
+
+
+
+
+time31 = [true_err exp_err normal_err pairwise_err];
+%64
 d = 5;
 n = 54;
 expt = 0;
@@ -82,7 +87,7 @@ part = 0;
 %rng(1)
 T = sinsums(d,n);
 X = sinsum_full(d,n);
-true_err = norm(full(T) - full(X)) / norm(X)
+true_err32 = norm(full(T) - full(X)) / norm(X)
 % generate random ktensor fac tors
 Ty = cell(d-1,1);
 Xy = cell(d-1,1);
@@ -99,7 +104,7 @@ kappa = cond(K)
 XXX = K \ (khatrirao(Xy) * X.U{d}');
 T.U{d} = XXX';
 
-exp_err = norm(full(T) - full(X)) / norm(X)
+exp_err32 = norm(full(T) - full(X)) / norm(X)
 expt = expt + toc
 
 
@@ -121,7 +126,7 @@ end
 XX = (G \ C * X.U{d}')';
 T.U{d} = XX;
 
-normal_err = norm(full(T) - full(X)) / norm(X)
+normal_err32 = norm(full(T) - full(X)) / norm(X)
 nort = nort + toc
 
 
@@ -136,25 +141,24 @@ D = apply_kr_qr(Qp,Qhatp,Xy,X.U{d});
 XX = (Rp \ D)';
 T.U{d} = XX;
 
-pairwise_err = norm(full(T) - full(X)) / norm(X)
+pairwise_err32 = norm(full(T) - full(X)) / norm(X)
 part = part +  toc
 
 
-time52 = [part nort expt];
+time32 = [true_err exp_err normal_err pairwise_err];
 
 
-%90
+%128
 d = 5;
 n = 57;
 expt = 0;
 nort = 0;
 part = 0;
 
-
 %rng(1)
 T = sinsums(d,n);
 X = sinsum_full(d,n);
-true_err = norm(full(T) - full(X)) / norm(X)
+true_err33 = norm(full(T) - full(X)) / norm(X)
 % generate random ktensor fac tors
 Ty = cell(d-1,1);
 Xy = cell(d-1,1);
@@ -171,7 +175,7 @@ kappa = cond(K)
 XXX = K \ (khatrirao(Xy) * X.U{d}');
 T.U{d} = XXX';
 
-exp_err = norm(full(T) - full(X)) / norm(X)
+exp_err33 = norm(full(T) - full(X)) / norm(X)
 expt = expt + toc
 
 
@@ -193,7 +197,7 @@ end
 XX = (G \ C * X.U{d}')';
 T.U{d} = XX;
 
-normal_err = norm(full(T) - full(X)) / norm(X)
+normal_err33 = norm(full(T) - full(X)) / norm(X)
 nort = nort + toc
 
 
@@ -208,14 +212,14 @@ D = apply_kr_qr(Qp,Qhatp,Xy,X.U{d});
 XX = (Rp \ D)';
 T.U{d} = XX;
 
-pairwise_err = norm(full(T) - full(X)) / norm(X)
+pairwise_err33 = norm(full(T) - full(X)) / norm(X)
 part = part +  toc
 
 
-time53 = [part  nort expt ];
+time33 = [true_err exp_err normal_err pairwise_err];
 
 
-%120
+%256
 
 d = 5;
 n = 60;
@@ -227,7 +231,7 @@ part = 0;
 %rng(1)
 T = sinsums(d,n);
 X = sinsum_full(d,n);
-true_err = norm(full(T) - full(X)) / norm(X)
+true_err34 = norm(full(T) - full(X)) / norm(X)
 % generate random ktensor fac tors
 Ty = cell(d-1,1);
 Xy = cell(d-1,1);
@@ -244,7 +248,7 @@ kappa = cond(K)
 XXX = K \ (khatrirao(Xy) * X.U{d}');
 T.U{d} = XXX';
 
-exp_err = norm(full(T) - full(X)) / norm(X)
+exp_err34 = norm(full(T) - full(X)) / norm(X)
 expt = expt + toc
 
 
@@ -266,7 +270,7 @@ end
 XX = (G \ C * X.U{d}')';
 T.U{d} = XX;
 
-normal_err = norm(full(T) - full(X)) / norm(X)
+normal_err34 = norm(full(T) - full(X)) / norm(X)
 nort = nort + toc
 
 
@@ -281,24 +285,33 @@ D = apply_kr_qr(Qp,Qhatp,Xy,X.U{d});
 XX = (Rp \ D)';
 T.U{d} = XX;
 
-pairwise_err = norm(full(T) - full(X)) / norm(X)
+pairwise_err34 = norm(full(T) - full(X)) / norm(X)
 part = part +  toc
 
 
-time54 = [part  nort  expt ];
+timet = [true_err31 true_err32 true_err33 true_err34];
+timee = [exp_err31 exp_err32 exp_err33 exp_err34];
+timen = [normal_err31 normal_err32 normal_err33 normal_err34];
+timep = [pairwise_err31 pairwise_err32 pairwise_err33 pairwise_err34];
+
+
 
 figure,
-x = [1:15];
+x = [51 54 57 60];
+plot(x,timet,x,timee,x,timen,x,timep)
+legend('True err','Explicit QR err', 'Normal EQ err', 'Pairwise Elim err')
 
-bar(x,[time51 0 time52 0 time53 0 time54]);
-title('5-way sine of sums ktensor');
-ylabel('runtime (secs)')
-
+ylabel('relative residual')
 xlabel('dimensions')
-xticks([0:16]);
-xticklabels({'','pairwise Elim','normal EQ','explicit QR','','pairwise Elim','normal EQ','explicit QR','','pairwise Elim','normal EQ','explicit QR','','pairwise Elim','normal EQ','explicit QR'})
-v = -2;
-text(2,v,'51','fontsize',10)
-text(6,v,'54','fontsize',10)
-text(10,v,'57','fontsize',10)
-text(14,v,'60','fontsize',10)
+title('5-way ktensor, K = 4e9')
+
+
+
+
+
+
+
+
+
+
+

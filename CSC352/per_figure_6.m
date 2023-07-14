@@ -1,8 +1,8 @@
 
 % 5-way ktensors 
 %30
-d = 5;
-n = 51;
+d = 6;
+n = 15;
 expt = 0;
 nort = 0;
 part = 0;
@@ -72,8 +72,8 @@ part = part +  toc
 
 time51 = [part nort expt];
 %60
-d = 5;
-n = 54;
+d = 6;
+n = 20;
 expt = 0;
 nort = 0;
 part = 0;
@@ -144,8 +144,8 @@ time52 = [part nort expt];
 
 
 %90
-d = 5;
-n = 57;
+d = 6;
+n = 25;
 expt = 0;
 nort = 0;
 part = 0;
@@ -217,8 +217,8 @@ time53 = [part  nort expt ];
 
 %120
 
-d = 5;
-n = 60;
+d = 6;
+n = 30;
 expt = 0;
 nort = 0;
 part = 0;
@@ -291,14 +291,14 @@ figure,
 x = [1:15];
 
 bar(x,[time51 0 time52 0 time53 0 time54]);
-title('5-way sine of sums ktensor');
+title('6-way sine of sums ktensor');
 ylabel('runtime (secs)')
 
 xlabel('dimensions')
 xticks([0:16]);
 xticklabels({'','pairwise Elim','normal EQ','explicit QR','','pairwise Elim','normal EQ','explicit QR','','pairwise Elim','normal EQ','explicit QR','','pairwise Elim','normal EQ','explicit QR'})
 v = -2;
-text(2,v,'51','fontsize',10)
-text(6,v,'54','fontsize',10)
-text(10,v,'57','fontsize',10)
-text(14,v,'60','fontsize',10)
+text(2,v,'15','fontsize',10)
+text(6,v,'20','fontsize',10)
+text(10,v,'25','fontsize',10)
+text(14,v,'30','fontsize',10)

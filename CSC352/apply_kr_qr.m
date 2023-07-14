@@ -9,7 +9,9 @@ n = size(Q{1},2);
 
 %update RHS with Q'
 for i = 1:d
-    B{i} = Q{i}' * B{i};
+    if ~isempty(Q{i})
+        B{i} = Q{i}' * B{i};
+    end
 end
 
 
@@ -17,10 +19,17 @@ end
 test = cell(d-1,1);
 
 %update pairwise
+
 for i = 1:d-1
-    B{i+1} = khatrirao(B{i}, B{i+1});
-    
+%     i
+%     size(B{i})
+%     size(B{i+1})
+    if ~isempty(B{i})
+    B{i+1} = khatrirao(B{i}, B{i+1}); 
     B{i+1} = Q_hat{i}' * B{i+1};
+    end
+    
+    
     
 
 end
