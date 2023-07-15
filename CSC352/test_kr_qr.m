@@ -1,14 +1,17 @@
-A = randn(7,3);
+A = randn(9,3);
 B = randn(9,3);
-C = randn(13,3);
+C = randn(9,3);
+F = cell(4,1);
+F{1} = A;
+F{2} = B;
+F{3} = C;
 
-F = {A,B,C};
 
 %QR for each factor matrix
 [Q,Q_hat,R] = kr_qr(F);
 
 %Qtb 
-X = {A,B,C};
+X = F;
 D = apply_kr_qr(Q,Q_hat,X,randn(5,3));
 
 

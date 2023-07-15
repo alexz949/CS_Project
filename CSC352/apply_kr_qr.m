@@ -6,16 +6,28 @@ function D = apply_kr_qr(Q,Q_hat,B,C)
 %  D: QtB
 d = length(Q);
 n = size(Q{1},2);
+Qn = cell(d-1,1);
+j = 1;
+for i =  1:d
+    if ~isempty(Q{i})
+        Qn{j} = Q{i};
+        j = j+1;
+    end
+end
+Qn;
+test = cell(d-1,1);
+j = 1;
+for i = 1:d
+    if ~isempty(B{i})
+        test{j} = B{i};
+        j = j+1;
+    end
+end
 
 %update RHS with Q'
-for i = 1:d
-    if ~isempty(Q{i})
-       if ~isempty(B{i})
-           
-            B{i} = Q{i}' * B{i};
-            
-       end
-    end
+for i = 1:d-1
+    test{i} = Qn{i}' * test{i};
+   
 end
 
 Q_t  =cell(d-2,1);
@@ -30,35 +42,24 @@ end
 
 
 
-test = cell(d-1,1);
-j = 1;
-for i  = 1:d
-    if ~isempty(B{i})
-        test{j} = B{i};
-        j = j+1;
-    end
-end
 
-
+Q_t;
 %update pairwise
-
-for i = 1:d-2
+j = 1;
+for i = d-1:-1:2
 %     i
 %     size(B{i})
 %     size(B{i+1})
-    if ~isempty(test{i})
-        test{i+1} = khatrirao(test{i}, test{i+1}); 
     
-        test{i+1} = Q_t{i}' * test{i+1};
-        
-    end
-    
-    
-    
-
+        test{i-1} = khatrirao(test{i}, test{i-1}); 
+%         test
+%         Q_t
+        test{i-1} = Q_t{j}' * test{i-1};
+        j = j + 1;
 end
 
-D = test{d-1};
+D = test{1};
+size(D);
 
 D = D * C';
 
