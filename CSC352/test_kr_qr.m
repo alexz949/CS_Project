@@ -12,13 +12,23 @@ F{3} = C;
 
 %Qtb 
 X = F;
-D = apply_kr_qr(Q,Q_hat,X,randn(5,3));
+[D,qtb_KRP] = apply_kr_qr(Q,Q_hat,X,eye(3,3));
+testQ = cell(4-1,1);
+for i = 1:3
+    testQ{i} = Q{i}' * X{i};
+    
+end
+check = khatrirao(testQ,'r');
+
+normQtb = norm(check - qtb_KRP) / norm(check) 
 
 
 %exp Qtb
-Ft = khatrirao(A,B,C);
+Ft = khatrirao(A,B,C, 'r');
 [Qt,Rt] = qr(Ft,0);
-Qtb = Qt' * Ft;
+Qtb = Qt' * Ft * eye(3,3)';
+
+normZ = norm(Qtb - D)/ norm(Qtb)
 
 
 R_err = norm(abs(Rt) - abs(R))/ norm(abs(R))

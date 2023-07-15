@@ -17,6 +17,7 @@ for i = 1:d
         [Q{i},T{i}] = qr(F{i},0);
     end
 end
+
 tc = cell(d-1,1);
 j = 1;
 for i = 1:d
@@ -25,20 +26,20 @@ for i = 1:d
         j = j+1;
     end
 end
-testR = khatrirao(tc);
-[testq,testR] = qr(testR,0);
+tc
+% testR = khatrirao(tc,'r');
+% [testq,testR] = qr(testR,0);
 
 %QR on R
-for i = 1:d-2
+for i = d-1:-1:2
     %condP = cond(khatrirao(T{i},T{i+1}))
     
-    [Q_hat{i},tc{i+1}] = qr(khatrirao(tc{i},tc{i+1}),0);
-    
-    
-    
+    [Q_hat{i},tc{i-1}] = qr(khatrirao(tc{i},tc{i-1}),0);
 end
 
-R = tc{d-1};
-normR = norm(R - testR) / norm(testR)
+R = tc{1};
+% 
+% normR = norm(R - testR) / norm(testR)
+
 
 end
