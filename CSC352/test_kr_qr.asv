@@ -10,7 +10,7 @@ F{4} = E;
 
 %QR for each factor matrix
 [Q,Q_hat,R,testR] = kr_qr(F);
-Q
+
 
 %do kron Q
 % S =Q{1};
@@ -29,7 +29,6 @@ end
 
 
 testF =S * testR ;
-norm(S' * S)
 j = 0;
 for i = 1:5
     if isempty(F{i})
@@ -38,34 +37,30 @@ for i = 1:5
 end
 
 krpF  = khatrirao(F{[1:j-1,j+1:5]});
-size(krpF);
+size(krpF)
 [expQ,expR] = qr(krpF,0);
 
 
 
-normF = norm(testF - krpF) / norm(krpF);
+normF = norm(testF - krpF) / norm(krpF)
 %Qtb 
-X = cell(4,1);
-X{1} = F{1};
-X{2} = F{2};
-X{3} = F{3};
-X{4} = F{4};
+X = F;
 
-D = apply_kr_qr(Q,Q_hat,X,eye(3,3),5);
+[D,qtb_KRP] = apply_kr_qr(Q,Q_hat,X,eye(3,3));
 
-% testQ = cell(5-1,1);
-% j = 1;
-% for i = 1:5
-%     if ~isempty(X{i})
-%         if ~isempty(Q{i})
-%         testQ{i} = Q{j}' * X{i};
-%         j = j+1;
-%         end
-%     end
-%     
-% end
-% 
-% check = khatrirao(testQ,'r');
+testQ = cell(5-1,1);
+j = 1;
+for i = 1:5
+    if ~isempty(X{i})
+        if ~isempty(Q{i})
+        testQ{i} = Q{j}' * X{i};
+        j = j+1;
+        end
+    end
+    
+end
+
+check = khatrirao(testQ,'r');
 
 
 

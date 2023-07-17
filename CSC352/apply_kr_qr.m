@@ -1,45 +1,38 @@
-function [D,qtb_KRP] = apply_kr_qr(Q,Q_hat,B,C)
-%  Q: cell array of factors QR's Q 
-%  Q_hat: cell array of pairwise Q
-%  B: cell array of factors on RHS
+function D = apply_kr_qr(Q,Q_hat,B,C,n)
+%  Q: cell array of factors QR's Q full size
+%  Q_hat: cell array of pairwise Q skip size
+%  B: cell array of factors on RHS skip size
 %  C: RHS transpose
 %  D: QtB
 
 
+%RHS skip
 
 d = length(Q);
-n = size(Q{1},2);
 Qn = cell(d-1,1);
+
 % shrink factor matices Q
 j = 1;
 for i =  1:d
-    if ~isempty(Q{i})
+    if  i ~= n
         Qn{j} = Q{i};
-        j = j+1;
-    end
-end
-Qn;
-
-
-%shrink RHS
-test = cell(d-1,1);
-j = 1;
-for i = 1:d
-    if ~isempty(B{i})
-        test{j} = B{i};
+        
         j = j+1;
     end
 end
 
-%do Q' B on RHS with shrinked array'
+
+
+
+
 for i = 1:d-1
-    test{i} = Qn{i}' * test{i};
+    B{i} = Qn{i}' * B{i};
    
 end
 
 
 %checked that Q' on RHS is accurate
-qtb_KRP = khatrirao(test, 'r');
+qtb_KRP = khatrirao(B, 'r');
 
 
 
@@ -64,15 +57,15 @@ for i = d-1:-1:2
 %     size(B{i})
 %     size(B{i+1})
     
-        test{i-1} = khatrirao(test{i}, test{i-1}); 
+        B{i-1} = khatrirao(B{i}, B{i-1}); 
 %         test
 %         Q_t
-        test{i-1} = Q_t{i-1}' * test{i-1};
+        B{i-1} = Q_t{i-1}' * B{i-1};
         j = j + 1;
 end
 
 
-D = test{1};
+D = B{1};
 size(D);
 
 D = D * C';
