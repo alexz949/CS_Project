@@ -1,0 +1,56 @@
+\documentclass{article}
+\title{CP-ALS-QR report}
+\author{Alex Zhang}
+\date{July 2023}
+\textwidth=16.00cm 
+\textheight=22.00cm 
+\topmargin=0.00cm
+\oddsidemargin=0.00cm 
+\evensidemargin=0.00cm 
+\headheight=0cm 
+\headsep=0.5cm
+\textheight=610pt
+\usepackage{graphicx}
+\usepackage{multicol}
+
+\graphicspath{ {./images/} }
+
+\usepackage{latexsym,array,delarray,amsthm,amssymb,epsfig}
+\usepackage{amsmath}
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily,
+  mathescape
+}
+
+\newcommand{\bmat}[1]{\begin{bmatrix} #1 \end{bmatrix}}
+\newcommand{\mat}[1]{\mathbf{#1}}
+
+\let\ds\displaystyle
+
+\begin{document}
+\maketitle
+\section{Introduction}
+The CANDECOMP/PARAFAC or canonical polyadic (CP) decomposition for multidimensional data, 
+or tensors, is a popular tool for analyzing and interpreting latent patterns that may be 
+present in multidimensional data. Basically CP decomposition of a tensor refers to its
+expression as a sum of $r$ rank-one components and each of them is a vector outer product.
+One of the most popular methods used to compute a CP decomposition is the alternating least
+squares (CP-ALS) approach, which solves a series of linear least squares problems. Usually
+to solve these linear leaste squares problems, normal equations are used for CP-ALS. This
+approach may be sensitive for ill-conditioned inputs. Based on this idea, there are already
+a more stable approach which is solving the linear least sqaures problems using QR decomposition
+instead.
+\\
+For my summer research project, I basically follows the QR apprach but assuming the input tensor
+is in Kruskal structure, that is, a tensor stored as factor matrices and corresponding weights.
+By exploiting this structure, we improve the computation efficiency by not forming Multi-TTM tensor.
+The problem left is when doing CP-ALS, QR-based methods is exponential in $N$, the number of modes.
+
+
+
+
+
+
+
+\end{document}
