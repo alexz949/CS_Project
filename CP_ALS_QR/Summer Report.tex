@@ -13,6 +13,8 @@
 \usepackage{graphicx}
 \usepackage{multicol}
 
+
+
 \graphicspath{ {./images/} }
 
 \usepackage{latexsym,array,delarray,amsthm,amssymb,epsfig}
@@ -25,10 +27,26 @@
 
 \newcommand{\bmat}[1]{\begin{bmatrix} #1 \end{bmatrix}}
 \newcommand{\mat}[1]{\mathbf{#1}}
+\newcommand{\ten}[1]{\mathcal{#1}}
+% matrix/vector/tensor/element macros
+\usepackage{bm}
+\newcommand{\Tra}{T}										% transpose
+\newcommand{\M}[2][]{\bm{#1{\mathbf{\MakeUppercase{#2}}}}} 		% matrix
+\newcommand{\Me}[3][]{\bm{#1{\mathbf{\MakeUppercase{#2}}}}({#3})} 		% matrix entry
+\newcommand{\Mb}[3][]{\bm{#1{\mathbf{\MakeUppercase{#2}}}}_{#3}}       	% submatrix
+\newcommand{\Mbe}[4][]{\bm{#1{\mathbf{\MakeUppercase{#2}}}}_{#3}({#4})}	% submatrix entry
+\newcommand{\Ms}[3][]{\bm{#1{\mathbf{\MakeUppercase{#2}}}}^{(#3)}}       	% matrix in series
+\newcommand{\Mbs}[4][]{\bm{#1{\mathbf{\MakeUppercase{#2}}}}_{#3}^{(#4)}}   % submatrix in series
+\newcommand{\V}[2][]{\bm{#1{\mathbf{\MakeLowercase{#2}}}}} 		% vector
+\newcommand{\Vs}[3][]{\bm{#1{\mathbf{\MakeLowercase{#2}}}}^{(#3)}} 		% vector in series
+\newcommand{\Ve}[3][]{\bm{#1{\mathbf{\MakeLowercase{#2}}}}({#3})}		% vector entry
+\newcommand{\T}[2][]{#1{\mathbf{\cal{#2}}}} 						% tensor
+\newcommand{\Te}[3][]{#1{\mathbf{\cal{#2}}}({#3})}		
 
 \let\ds\displaystyle
 
 \begin{document}
+
 \maketitle
 \section{Introduction}
 The CANDECOMP/PARAFAC or canonical polyadic (CP) decomposition for multidimensional data, 
@@ -42,11 +60,51 @@ approach may be sensitive for ill-conditioned inputs. Based on this idea, there 
 a more stable approach which is solving the linear least sqaures problems using QR decomposition
 instead.
 \\
-For my summer research project, I basically follows the QR apprach but assuming the input tensor
-is in Kruskal structure, that is, a tensor stored as factor matrices and corresponding weights.
-By exploiting this structure, we improve the computation efficiency by not forming Multi-TTM tensor.
+For my summer research project, I basically follows the QR apprach but trying to 
+improve the efficiency for QR decomposition when assuming the input tensor is in Kruskal structure,
+that is, a tensor stored as factor matrices and corresponding weights. By exploiting this structure, 
+we improve the computation efficiency by not forming Multi-TTM tensor.
 The problem left is when doing CP-ALS, QR-based methods is exponential in $N$, the number of modes.
+The normal equations approach is linear in $N$ for Kruskal tensor. During the summer I tried
+to revise and implement former QR method which archieved better stability than normal equations
+but computation time increases linearly with respect to $N$.
 
+
+\section{Background}
+\subsection*{CP Decomposition}
+Given a $d$-way tensor $\T{X} \in \mathbb{R}^{n_1\times n_2\times \dots \times n_d}$, Its
+CP decomposition of rank $r \in \mathbb{N}$ can be represented as 
+$$\T{X}(i_1,i_2,\dots, i_d) \approx \sum^{r}_{j=1}\mat{A_1}(i_1,j)\mat{A_2}(i_2,j) \dots \mat{A_r}(i_r,j)$$
+$$\text{for all } (i_1,i_2,\dots, i_d) \in [n_1] \otimes [n_2] \otimes [n_3] \otimes \dots \otimes [n_d]$$
+Where $\mat{A_k} \in \mathbb{R}^{n_k \times r}$ is a factor matrix for all $k \in [d]$.
+\subsection*{CP-ALS}
+For doing CP decomposition, one method is about working on CP-ALS technique to factorize tensor, which
+is solving a bunch of linear least squares problems.
+\subsection*{Linear Least Square Problem}
+In mathmatical form, a sample least square problem is like 
+$$\min_{\mat{X}}||\mat{B} - \mat{X}\mat{A}^\top||_{F}$$
+Solving this least sqaure with QR decomposition will be
+\begin{align}
+  \mat{X}\mat{A}^\top &= \mat{B} \nonumber \\
+  \mat{X}(\mat{Q}\mat{R})^\top &= \mat{B} \nonumber \\
+  \mat{X}\mat{R}^\top\mat{Q}^\top\mat{Q} &= \mat{B}\mat{Q} \nonumber \\
+  \mat{X}^\top &= \mat{R}^{-\top}\mat{B}\mat{Q} \nonumber
+\end{align} 
+In terms of the work in CP-ALS, we need to solve least square problem in the form 
+$$\min_{\mat{\hat{A}}_n}||\mat{X_{(n)}} - {\mat{\hat{A}_n}}\mat{Z}^\top_n ||$$
+where $\mat{X_{(n)}}$ is the matricized tensors, $\mat{\hat{A}_n}$ is the factor matrix we are about to solve and 
+$\mat{Z}^\top_n$ is transpose of the Khatri-Rao product of all factor matrices except $n$-mode which
+$$\mat{Z}^\top_n = (\mat{A}_N \odot \mat{A}_{N-1} \odot \dots \odot \mat{A}_{n+1} \odot \mat{A}_{n-1} \odot \dots \odot \mat{A}_1)^\top $$ 
+\subsection*{CP-Rounding}
+
+\subsection*{CP-ALS-QR}
+
+
+
+
+\section*{Result}
+
+\section*{Conclusion}
 
 
 

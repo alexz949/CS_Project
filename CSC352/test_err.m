@@ -55,8 +55,8 @@ normal_err = norm(full(T) - full(X)) / norm(X);
 
 
 %test for pairwise elimination
-tic
-[Qp,Qhatp,Rp] = kr_qr(Ty);
+
+[Qp,Qhatp,Rp,t] = kr_qr(Ty);
 D = apply_kr_qr(Qp,Qhatp,Xy,X.U{d});
 %condR = cond(Rp)
 XX = (Rp \ D)';
@@ -72,7 +72,7 @@ store_pair(n-4) = pairwise_err;
 end
 %%
 figure,
-x = [5-4:20-4];
+x = [5:20];
 
 semilogy(x,store_true,x,store_nor,x,store_exp,x,store_pair)
 title('Relative Error for different methods, K = 4e11')
