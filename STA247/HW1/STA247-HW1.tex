@@ -1,0 +1,103 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{matlab-prettifier}
+\title{STA247-HW1}
+\author{Alex Zhang}
+\date{Sep 2023}
+\textwidth=16.00cm 
+\textheight=22.00cm 
+\topmargin=0.00cm
+\oddsidemargin=0.00cm 
+\evensidemargin=0.00cm 
+\headheight=0cm 
+\headsep=0.5cm
+\textheight=610pt
+\usepackage{graphicx}
+\usepackage{multicol}
+
+\graphicspath{ {./images/} }
+
+\usepackage{latexsym,array,delarray,amsthm,amssymb,epsfig}
+\usepackage{amsmath}
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily,
+  mathescape
+}
+
+\newcommand{\bmat}[1]{\begin{bmatrix} #1 \end{bmatrix}}
+\newcommand{\mat}[1]{\mathbf{#1}}
+\newcommand{\ten}[1]{\mathcal{#1}}
+% matrix/vector/tensor/element macros
+\usepackage{bm}
+\newcommand{\Tra}{T}										% transpose
+\newcommand{\M}[2][]{\bm{#1{\mathbf{\MakeUppercase{#2}}}}} 		% matrix
+\newcommand{\Me}[3][]{\bm{#1{\mathbf{\MakeUppercase{#2}}}}({#3})} 		% matrix entry
+\newcommand{\Mb}[3][]{\bm{#1{\mathbf{\MakeUppercase{#2}}}}_{#3}}       	% submatrix
+\newcommand{\Mbe}[4][]{\bm{#1{\mathbf{\MakeUppercase{#2}}}}_{#3}({#4})}	% submatrix entry
+\newcommand{\Ms}[3][]{\bm{#1{\mathbf{\MakeUppercase{#2}}}}^{(#3)}}       	% matrix in series
+\newcommand{\Mbs}[4][]{\bm{#1{\mathbf{\MakeUppercase{#2}}}}_{#3}^{(#4)}}   % submatrix in series
+\newcommand{\V}[2][]{\bm{#1{\mathbf{\MakeLowercase{#2}}}}} 		% vector
+\newcommand{\Vs}[3][]{\bm{#1{\mathbf{\MakeLowercase{#2}}}}^{(#3)}} 		% vector in series
+\newcommand{\Ve}[3][]{\bm{#1{\mathbf{\MakeLowercase{#2}}}}({#3})}		% vector entry
+\newcommand{\T}[2][]{#1{\mathbf{\cal{#2}}}} 						% tensor
+\newcommand{\Te}[3][]{#1{\mathbf{\cal{#2}}}({#3})}	
+\DeclareMathOperator*{\hada}{\scalebox{1.5}{$\ast$}}
+
+\let\ds\displaystyle
+
+\begin{document}
+\maketitle
+\section*{3}
+Target population: all reviews of the books online bookseller sell\\
+Sampling frame: all reviews that people rate online\\
+Sampling unit: a review of a book\\
+Observation unit: a review\\
+
+I think this may cause undercoverage because not all readers will submit the reviews after they bought the books.
+The sampling frame only count people who review online.
+\section*{8}
+Target population: all boarding homes in Washington State\\
+Sampling frame: all 184 licensed homes in Washington State\\
+Sampling unit: a single licensed home\\
+Observation unit: a boarding home\\
+
+It is possible to have a nonresponsive bias because only about 23 percent of homes responded and the number is only 43 which I think is low.
+
+
+
+\section*{17}
+Target population: all statisticians\\
+Sampling frame: 12053 e-mail addresses of statisticians\\
+Sampling unit: an e-mail address\\
+Observation unit: a statistician\\
+
+One possible measurement error will be that some statisticians may not answer honestly. 
+They may prefer some journals and dislike others.
+This will increase or decrease some journals' importance and usefulness which not showing the actual results.
+
+
+
+\section*{30}
+Target population: all residents and visitors in Little Rock\\
+Sampling frame: residents or visitors who view city's website and social medias \\
+Sampling unit: person who did the survey\\
+Observation unit: a resident or a visitor\\
+
+I think this is a self-selected sample because the questionnaire was posted on websites and social media which I think only people who care about waste-reduction will respond.
+
+\section*{supplemental question}
+Target population: all students in his dorm\\
+Sampling frame: 5 suites he chose\\
+Sampling unit: a suite\\
+Observation unit: a student\\
+
+It is possible to have a convenience sample because I think only 20 students in total cannot really represent the average GPA in his dorm where contains 400 students. Choosing five suites and record the GPA is easy but not representative.     
+
+
+
+
+
+\end{document}

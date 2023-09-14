@@ -2,7 +2,7 @@
 % 5-way ktensors 
 %30
 d = 6;
-n = 10000;
+n = 50000;
 t_krp = 0;
 t_back = 0;
 t_gram = 0;
@@ -113,7 +113,7 @@ t_par = tttc;
 t_par_apply = tttp;
 %pairwise_err = norm(full(T) - full(X)) / norm(X)
 
-part = [t_krp, t_comp,t_comp_apply,t_par,t_par_apply,t_apply,t_back];
+part = [t_krp, t_comp,t_par,t_comp_apply,t_par_apply,t_apply,t_back];
 
 
 
@@ -126,7 +126,7 @@ time51 = [part ;nort; expt];
 % 5-way ktensors 
 %30
 d = 6;
-n = 20000;
+n = 60000;
 t_krp = 0;
 t_back = 0;
 t_gram = 0;
@@ -237,7 +237,7 @@ t_par = tttc;
 t_par_apply = tttp;
 %pairwise_err = norm(full(T) - full(X)) / norm(X)
 
-part = [t_krp, t_comp,t_comp_apply,t_par,t_par_apply,t_apply,t_back];
+part = [t_krp, t_comp,t_par,t_comp_apply,t_par_apply,t_apply,t_back];
 
 
 
@@ -250,7 +250,7 @@ time52 = [part ;nort; expt];
 % 5-way ktensors 
 %30
 d = 6;
-n = 30000;
+n = 70000;
 t_krp = 0;
 t_back = 0;
 t_gram = 0;
@@ -361,7 +361,7 @@ t_par = qtb;
 t_par_apply = pairRHS;
 %pairwise_err = norm(full(T) - full(X)) / norm(X)
 
-part = [t_krp, t_comp,t_comp_apply,t_par,t_par_apply,t_apply,t_back];
+part = [t_krp, t_comp,t_par,t_comp_apply,t_par_apply,t_apply,t_back];
 
 
 
@@ -376,7 +376,7 @@ time53 = [part ;nort; expt];
 % 5-way ktensors 
 %30
 d = 6;
-n = 40000;
+n = 80000;
 t_krp = 0;
 t_back = 0;
 t_gram = 0;
@@ -480,29 +480,46 @@ tic
 XX = (Rp \ D)';
 T.U{d} = XX;
 t = toc; t_back = t_back+t;
-
+%compute factor QR
 t_comp = ttc;
+%pairwise QR
 t_comp_apply = ttp;
+%qtb
 t_par = tttc;
+%pairwise qtb
 t_par_apply = tttp;
 %pairwise_err = norm(full(T) - full(X)) / norm(X)
 
-part = [t_krp, t_comp,t_comp_apply,t_par,t_par_apply,t_apply,t_back];
+part = [t_krp, t_comp,t_par,t_comp_apply,t_par_apply,t_apply,t_back];
 
 
 
 
 time54 = [part ;nort; expt];
 %%
+%%add space between figure
  time51 = [time51(1:2,:);0 0 0 0 0 0 0];
  time52 = [time52(1:2,:);0 0 0 0 0 0 0];
  time53 = [time53(1:2,:);0 0 0 0 0 0 0];
  time54 = [time54(1:2,:);0 0 0 0 0 0 0];
+ sixway = struct;
+ ft = size(time51,1);
+ st = size(time51,2);
+ sixway.t1 = zeros(ft,st);
+ sixway.t2 = zeros(ft,st);
+ sixway.t3 = zeros(ft,st);
+ sixway.t4 = zeros(ft,st);
+ sixway.t1 = time51;
+ sixway.t2 = time52;
+ sixway.t3 = time53;
+ sixway.t4 = time54;
+ save('sixway.mat','sixway');
 %%
 figure,
 
+load('sixway.mat', 'sixway');
 
-bar([time51; time52; time53; time54],'stacked');
+bar([sixway.t1; sixway.t2; sixway.t3; sixway.t4],'stacked');
 title('6-way sine of sums ktensor');
 ylabel('runtime (secs)')
 
@@ -510,8 +527,8 @@ xlabel('dimensions')
 xticks([0:12]);
 xticklabels({'','pairwise Elim','normal EQ','','pairwise Elim','normal EQ','','pairwise Elim','normal EQ','','pairwise Elim','normal EQ'})
 v = -0.0002;
-text(1,v,'10000','fontsize',10)
-text(4,v,'20000','fontsize',10)
-text(7,v,'30000','fontsize',10)
-text(10,v,'40000','fontsize',10)
-legend('KRP','Gram/QR','Apply QR','Qtb','Pairwise RHS','Atb','Back','fontsize',16)
+text(1,v,'50000','fontsize',10)
+text(4,v,'60000','fontsize',10)
+text(7,v,'70000','fontsize',10)
+text(10,v,'80000','fontsize',10)
+legend('KRP','Gram/QR','Qtb','Apply QR','Pairwise RHS','Atb','Back','fontsize',16)

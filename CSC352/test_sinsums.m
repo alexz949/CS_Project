@@ -1,5 +1,5 @@
-d = 4;
-n = 32;
+d = 5;
+n = 50;
 
 
 %rng(1)
@@ -23,7 +23,7 @@ XXX = K \ (khatrirao(Xy) * X.U{d}');
 T.U{d} = XXX';
 
 exp_err = norm(full(T) - full(X)) / norm(X)
-toc
+
 
 
 

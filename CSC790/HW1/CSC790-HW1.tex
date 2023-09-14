@@ -1,0 +1,74 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{matlab-prettifier}
+\title{CSC790-HW1}
+\author{Alex Zhang}
+\date{Sep 2023}
+\textwidth=16.00cm 
+\textheight=22.00cm 
+\topmargin=0.00cm
+\oddsidemargin=0.00cm 
+\evensidemargin=0.00cm 
+\headheight=0cm 
+\headsep=0.5cm
+\textheight=610pt
+\usepackage{graphicx}
+\usepackage{multicol}
+
+\graphicspath{ {./images/} }
+
+\usepackage{latexsym,array,delarray,amsthm,amssymb,epsfig}
+\usepackage{amsmath}
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily,
+  mathescape
+}
+
+\newcommand{\bmat}[1]{\begin{bmatrix} #1 \end{bmatrix}}
+\newcommand{\mat}[1]{\mathbf{#1}}
+\newcommand{\ten}[1]{\mathcal{#1}}
+% matrix/vector/tensor/element macros
+\usepackage{bm}
+\newcommand{\Tra}{T}										% transpose
+\newcommand{\M}[2][]{\bm{#1{\mathbf{\MakeUppercase{#2}}}}} 		% matrix
+\newcommand{\Me}[3][]{\bm{#1{\mathbf{\MakeUppercase{#2}}}}({#3})} 		% matrix entry
+\newcommand{\Mb}[3][]{\bm{#1{\mathbf{\MakeUppercase{#2}}}}_{#3}}       	% submatrix
+\newcommand{\Mbe}[4][]{\bm{#1{\mathbf{\MakeUppercase{#2}}}}_{#3}({#4})}	% submatrix entry
+\newcommand{\Ms}[3][]{\bm{#1{\mathbf{\MakeUppercase{#2}}}}^{(#3)}}       	% matrix in series
+\newcommand{\Mbs}[4][]{\bm{#1{\mathbf{\MakeUppercase{#2}}}}_{#3}^{(#4)}}   % submatrix in series
+\newcommand{\V}[2][]{\bm{#1{\mathbf{\MakeLowercase{#2}}}}} 		% vector
+\newcommand{\Vs}[3][]{\bm{#1{\mathbf{\MakeLowercase{#2}}}}^{(#3)}} 		% vector in series
+\newcommand{\Ve}[3][]{\bm{#1{\mathbf{\MakeLowercase{#2}}}}({#3})}		% vector entry
+\newcommand{\T}[2][]{#1{\mathbf{\cal{#2}}}} 						% tensor
+\newcommand{\Te}[3][]{#1{\mathbf{\cal{#2}}}({#3})}	
+\DeclareMathOperator*{\hada}{\scalebox{1.5}{$\ast$}}
+
+\let\ds\displaystyle
+
+
+\begin{document}
+\maketitle
+
+
+\section*{Question 1}
+\subsection*{(a)}
+There should be $n \times p$ columns fibers, $m \times p$ row fibers, and $m \times n$ tube fibers for $\T[]{X}$.
+\subsection*{(b)}
+There should be $m$ horizontal slices, $n$ lateral slices, and $p$ frontal slices for $\T[]{X}$.
+\subsection*{(c)}
+There are total $n_1 \times \cdots \times n_{k-1} \times n_{k+1} \times \cdots \times n_d$ mode-$k$ fiber for $\T[]{Y}$.
+It's dimension is $n_k \times 1$.
+\subsection*{(d)}
+$\T[]{Y}$ should have $n_3 \times \cdots \times n_d$ frontal slices.
+\section*{Question 2}
+\subsection*{(a)}
+
+
+
+
+
+
+\end{document}
