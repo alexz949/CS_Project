@@ -1,0 +1,1 @@
+print(array_cdf(180))
