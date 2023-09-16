@@ -40,6 +40,7 @@ def histEq(path):
     plt.hist(np_img.flatten(),256,[0,256])
     plt.xlim([0,256])
     plt.show()
+    
     cv2.imshow('image', np_img)
     cv2.waitKey(0)
 
