@@ -18,11 +18,22 @@ def conv(path,k):
     print(m,n)
     
 
+    for i in range(k):
+        np_img = np.insert(np_img, 0, np.reshape(np.zeros(n),(1,n)),axis=0)
+        np_img = np.insert(np_img, len(np_img), np.reshape(np.zeros(n),(1,n)),axis=0)
+
+
+    for  i in range(k):
+        np_img = np.insert(np_img, 0, np.zeros(len(np_img)),axis=1)
+        np_img = np.insert(np_img, len(np_img[0]),np.zeros(len(np_img)) ,axis=1)
+
     
-    
-  
-    
+    print(len(np_img))
+
+
     num_img = []
+
+
     new_row = np.empty(0,dtype=np.uint8)
     for t1 in range(m-t):
         for t2 in range(n-t):
@@ -31,7 +42,7 @@ def conv(path,k):
                 for l in range(t2,t2+t):
                     sum = sum + np_img[p][l]
             
-            sum = sum // (t*t)
+            sum = sum // (t*t) 
             
     
             new_row = np.append(new_row,sum)
@@ -44,23 +55,39 @@ def conv(path,k):
         for j in range(n-t):
             new_img[i][j] = num_img[i][j]
     
+    print(len(new_img))
     
+    """
     
+    print(len(new_img))
+    #print(new_img)
+    plt.subplot(121),plt.imshow(imgray),plt.title('Original')
+    plt.xticks([]), plt.yticks([])
+    plt.subplot(122),plt.imshow(new_img),plt.title('Blurred')
+    plt.xticks([]), plt.yticks([])
+    plt.show()
+    """
+
+
+
+
+
+
+
+def cv_conv(path,k):
+    t = 2 * k+1
+    img = cv2.imread(path)
+    assert img is not None, "file could not be read, check with os.path.exists()"
+    blur = cv2.blur(img,(t,t))
+    #print(blur)
+    #print(len(blur[0]))
     
-    
-    cv2.imshow('image_blur', new_img)
-    
-    cv2.imshow("original", imgray)
-
-    cv2.waitKey(0)
-
-
-
-
-
-
-
-
+    #print(len(blur))
+    plt.subplot(121),plt.imshow(img),plt.title('Original')
+    plt.xticks([]), plt.yticks([])
+    plt.subplot(122),plt.imshow(blur),plt.title('Blurred')
+    plt.xticks([]), plt.yticks([])
+    plt.show()
 
 
     
@@ -70,7 +97,9 @@ def conv(path,k):
 
 def main():
     print("hello world")
-    conv(r"CSC391-B\\Project1\\big-samu.jpg",4)
+    k = 2
+    conv(r"CSC391-B\\Project1\\samurai.jpg",k)
+    #cv_conv(r"CSC391-B\\Project1\\samurai.jpg",k)
 
 
 

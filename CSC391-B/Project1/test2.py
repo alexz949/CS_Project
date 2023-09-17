@@ -1,5 +1,12 @@
 import numpy as np
-test = np.empty((0,3))
+test = np.arange(9).reshape(3,3)
 new_row = np.array([1,2,3],dtype=int)
-test = np.append(test,np.reshape(new_row,(1,3)), axis=0)
+test = np.insert(test, len(test), new_row,axis=0)
+test = np.insert(test, len(test), new_row,axis=0)
+print(test)
+new_row = np.zeros(5)
+print(new_row)
+test = np.insert(test, len(test[0]), new_row,axis=1)
+
+
 print(test)
