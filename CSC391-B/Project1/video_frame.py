@@ -16,11 +16,12 @@ unsharp = False
 # will continue to capture until 'q' key is pressed
 while True:
     ret, frame = cap.read()
+    frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+
     img = frame
     
     #turn into grey scale  and do histEq
     if gray:
-        img = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         img = cv2.equalizeHist(img)
     # smoothing using Gaussian
     if smooth:

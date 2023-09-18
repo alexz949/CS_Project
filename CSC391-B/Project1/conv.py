@@ -2,6 +2,18 @@ import numpy as np
 import cv2
 from matplotlib import pyplot as plt
 import time
+def tic():
+    #Homemade version of matlab tic and toc functions
+    import time
+    global startTime_for_tictoc
+    startTime_for_tictoc = time.time()
+
+def toc():
+    import time
+    if 'startTime_for_tictoc' in globals():
+        print ("Elapsed time is " + str(time.time() - startTime_for_tictoc) + " seconds.")
+    else:
+        print ("Toc: start time not set")
 
 
 def conv(path,k):
@@ -32,9 +44,10 @@ def conv(path,k):
     #Box Filter
     t1 = 0
     t2 = 0
-    for i in range(k,len(np_img)-k):
-        
+    tic()
+    for i in range(k,len(np_img)-k):  
         for q in range(k,len(np_img[0])-k):
+            np_img[i-k:i+k+1, q-k,q+k+1]
             sum = 0
             for p in range(i-k,i+k+1):
                 for l in range(q-k,q+k+1):
@@ -50,16 +63,23 @@ def conv(path,k):
  
     #sent array back to np array
     #return the np array
+    toc()
     return new_img
 
 
 
 #built in function for doing box filter
 def cv_conv(path,k):
-    t = 2 * k+1
+    kernel = np.empty(0)
+    if k == 1:
+        kernel = np.ones((3,3)) / 9
+    elif k == 2:
+        kernel = np.ones((5,5)) /25
+    else:
+        print("Wrong k value")
     img = cv2.imread(path)
     imgray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    kernel = np.array([[1/9,1/9,1/9],[1/9,1/9,1/9],[1/9,1/9,1/9]])
+    
     blur = cv2.filter2D(imgray,-1,kernel)
 
     
