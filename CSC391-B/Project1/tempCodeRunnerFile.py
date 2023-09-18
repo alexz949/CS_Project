@@ -1,1 +1,2 @@
-print(array_cdf(180))
+
+    tic = time.time()

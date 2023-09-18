@@ -2,37 +2,55 @@ import numpy as np
 import cv2
 from matplotlib import pyplot as plt
 import time 
+def tic():
+    #Homemade version of matlab tic and toc functions
+    import time
+    global startTime_for_tictoc
+    startTime_for_tictoc = time.time()
+
+def toc():
+    import time
+    if 'startTime_for_tictoc' in globals():
+        print ("Elapsed time is " + str(time.time() - startTime_for_tictoc) + " seconds.")
+    else:
+        print ("Toc: start time not set")
 
 
 def histEq(path):
     #convert color image into gray image
     img = cv2.imread(path)
-    imgray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
-
+    np_img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+    
     #create histogram for original image
-    hist,bins = np.histogram(imgray.flatten(),bins = 256, range = [0,256])
-    start = time.time()
+    hist = np.histogram(np_img.flatten(),bins = 256, range = [0,256])
+    
 
     #setup cdf function
     size = len(hist)
-    array_cdf = np.empty(size)
-    array_cdf[0] = hist[0]
-    for i in range(1,len(array_cdf)):
-      array_cdf[i] = array_cdf[i-1] + hist[i]
+    array_cdf = np.empty(0,dtype=np.uint8)
+    array_cdf = np.append(array_cdf,hist[0])
     
-
     
+    for i in range(1,size):
+        array_cdf = np.append(array_cdf,array_cdf[i-1]+hist[i])
+        
+    
+    
+    t1 = array_cdf.max()
+    t2 = array_cdf.min()
+    t3 = t1-t2
+    m = len(np_img)
+    n = len(np_img[0])
     #histogram eqaution
-    np_img = np.array(imgray)
-    for i in range(len(np_img)):
-        for j in range(len(np_img[0])):
-            h = (int)((array_cdf[np_img[i][j]] - array_cdf.min()) / (array_cdf.max() - array_cdf.min()) * 255)
-            np_img[i][j] = h
-    
-    end = time.time()
+    m_cdf = np.ma.masked_equal(array_cdf,0)
+    m_cdf = (m_cdf - t2) * 255 / t3
+    array_cdf = np.ma.filled(m_cdf,0).astype('uint8')
 
-    print(end - start)
+
+    np_img = array_cdf[np_img]
+    
     #plotting
+    """
     plt.hist(imgray.flatten(),256,[0,256])
     plt.xlim([0,256])
     plt.show()
@@ -40,22 +58,22 @@ def histEq(path):
     plt.hist(np_img.flatten(),256,[0,256])
     plt.xlim([0,256])
     plt.show()
+    """
     
-    cv2.imshow('image', np_img)
-    cv2.waitKey(0)
+    return np_img
 
 #function for doing hist equalization with built-in function
 def cv_hist_eq(path):
+    img = cv2.imread(path)
+    imgray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
     
-    img_cv = cv2.imread(path)
-    imgray_cv = cv2.cvtColor(img_cv, cv2.COLOR_RGB2GRAY)
-    start = time.time()
-    cv_hist = cv2.equalizeHist(imgray_cv)
-    end = time.time()
-    print(end - start)
+    
+    cv_hist = cv2.equalizeHist(imgray)
+    
 
 
     #plotting
+    """
     plt.hist(imgray_cv.flatten(),256,[0,256])
     plt.xlim([0,256])
     plt.show()
@@ -63,9 +81,9 @@ def cv_hist_eq(path):
     plt.hist(cv_hist.flatten(),256,[0,256])
     plt.xlim([0,256])
     plt.show()
+    """
 
-    cv2.imshow('cv_image',cv_hist)
-    cv2.waitKey(0)
+    return cv_hist
     
 
 
@@ -73,9 +91,23 @@ def cv_hist_eq(path):
 #main function
 def main():
     #given a path of an image
-    histEq(r"CSC391-B\\Project1\\big-samu.jpg")
-    cv_hist_eq(r"CSC391-B\\Project1\\big-samu.jpg")
+    path = r"rectest.jpg"
 
 
+    tic = time.time()
+    new_img = histEq(path)
+    toc = time.time()
+    print("My function: ", toc - tic)
+
+
+    tic = time.time()
+    cv_hist = cv_hist_eq(path)
+    toc = time.time()
+    print("built-in function: ", toc-tic)
+
+    cv2.imshow("hist",new_img)
+    cv2.imshow("built-in", cv_hist)
+    cv2.waitKey(0)
+    
 if __name__ == "__main__":
     main()
