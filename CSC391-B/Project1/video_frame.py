@@ -4,25 +4,25 @@ import numpy as np
   
 # capturing from the first camera attached
 cap = cv2.VideoCapture(0)
-#init
+#init boolean
 gray = False
 smooth = False
 edge = False
+unsharp = False
 #edge kernel
 edge_kernel = np.array([[-1,-1,-1],[-1,8,-1],[-1,-1,-1]])
 
-unsharp = False
-
+#main while loop
 # will continue to capture until 'q' key is pressed
 while True:
+    #get frame
     ret, frame = cap.read()
     frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-
     img = frame
-    
-    #turn into grey scale  and do histEq
+    #do histogram equalization
     if gray:
         img = cv2.equalizeHist(img)
+
     # smoothing using Gaussian
     if smooth:
         img = cv2.GaussianBlur(frame,(5,5),0)
@@ -38,29 +38,31 @@ while True:
     if edge:
         img = cv2.filter2D(frame,-1,edge_kernel,)
       
-    cv2.imshow('Original', frame)
-    cv2.imshow('Var', img)
+    #show video
+    cv2.imshow('Original (press q to quit)', frame)
+    cv2.imshow('Filter (press q to quit)', img)
    
     #press h to histEq
-    if cv2.waitKey(1) == ord('h'):
+    keycode = cv2.waitKey(1)
+    if keycode == 104:
         gray = \
             not gray
 
     #press e to detect edge
-    if cv2.waitKey(1) == ord('e'):
+    elif keycode == 101:
         edge = \
             not edge
     #press s to smooth
-    if cv2.waitKey(1) == ord('s'):
+    elif keycode == 115:
         smooth = \
             not smooth
     #press u to unsharp
-    if cv2.waitKey(1) == ord('u'):
+    elif keycode == 117:
         unsharp = \
             not unsharp
 
     #press q to quit
-    if cv2.waitKey(1) == ord('q'):
+    elif keycode == 113:
         break
   
 # Releasing all the resources

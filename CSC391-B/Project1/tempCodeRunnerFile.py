@@ -1,2 +1,2 @@
 
-    tic = time.time()
+   

@@ -2,73 +2,62 @@ import numpy as np
 import cv2
 from matplotlib import pyplot as plt
 import time
-def tic():
-    #Homemade version of matlab tic and toc functions
-    import time
-    global startTime_for_tictoc
-    startTime_for_tictoc = time.time()
 
-def toc():
-    import time
-    if 'startTime_for_tictoc' in globals():
-        print ("Elapsed time is " + str(time.time() - startTime_for_tictoc) + " seconds.")
-    else:
-        print ("Toc: start time not set")
-
-
+#my function
 def conv(path,k):
     t = 2 * k+1
     
     #convert color image into gray image and put it into np array
     img = cv2.imread(path)
-    row = len(img)
-    col = len(img[0])
+    int_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)  
+
+    #init
+    m = len(int_img)
+    n = len(int_img[0]) 
+    np_img = np.zeros((m+1,n+1))
+
+    # Create Integral graph
+    np_img = cv2.integral(int_img)    
     
-    np_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)         
     
-    
-    m = len(np_img)
-    n = len(np_img[0])
     
     #extend the image size for boundray coundition
     #edge case everything pixel not in image is 0
     for i in range(k):
-        np_img = np.insert(np_img, 0, np.reshape(np.zeros(n),(1,n)),axis=0)
-        np_img = np.insert(np_img, len(np_img), np.reshape(np.zeros(n),(1,n)),axis=0)
+        np_img = np.insert(np_img, 0, np.reshape(np.zeros(len(np_img[0])),(1,len(np_img[0]))),axis=0)
+        np_img = np.insert(np_img, len(np_img), np.reshape(np.zeros(len(np_img[0])),(1,len(np_img[0]))),axis=0)
         np_img = np.insert(np_img, 0, np.zeros(len(np_img)),axis=1)
         np_img = np.insert(np_img, len(np_img[0]),np.zeros(len(np_img)) ,axis=1)
+    
 
 
+    #init new image
     new_img = np.zeros((m,n),dtype=np.uint8)
+    
+
+    t1=0
+
+    #box filter
+    for i in range(k+1,m+k+1):  
+        a = i-k-1
+        b = i+k
+        test1 = np_img[a,:]
+        test2 = np_img[b,:]
+        new_row = np.zeros(n)
+        for j in range(k+1,n+k+1):
+            c = test2[j+k] + test1[j-k-1] - test2[j-k-1] - test1[j+k]
+            new_row[j-k-1] = c // t**2
+        new_img[i-k-1,:] = np.add(new_img[i-k-1,:], new_row)
+           
    
-    #Box Filter
-    t1 = 0
-    t2 = 0
-    tic()
-    for i in range(k,len(np_img)-k):  
-        for q in range(k,len(np_img[0])-k):
-            np_img[i-k:i+k+1, q-k,q+k+1]
-            sum = 0
-            for p in range(i-k,i+k+1):
-                for l in range(q-k,q+k+1):
-                    sum = sum + np_img[p][l]
-            
-            
-            new_img[t1][t2] = sum // (t**2)
-            
-            t2 += 1
-        t2 = 0
-        
-        t1+=1
- 
-    #sent array back to np array
+    
+    
     #return the np array
-    toc()
     return new_img
 
 
 
-#built in function for doing box filter
+#built-in function
 def cv_conv(path,k):
     kernel = np.empty(0)
     if k == 1:
@@ -79,34 +68,45 @@ def cv_conv(path,k):
         print("Wrong k value")
     img = cv2.imread(path)
     imgray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    
+    #blurring
     blur = cv2.filter2D(imgray,-1,kernel)
-
     
+
     return blur
 
 
 def main():
     
     #processing image
-    img = cv2.imread(r"big-samu.jpg")
-
+    path = r"img_test.jpg"
+    img = cv2.imread(path)
     imgray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
+    # when k = 1, this creates a 3 by 3 filter, and k = 2, creating a 5 by 5 filter
+    k = 2
+
+    #time my function
     tic = time.time()
-    new_img = conv(r"big-samu.jpg",1)
+    new_img = conv(path,k)
     toc = time.time()
     print("my function: ",toc - tic)
+
+
+    #time the built-in function
     tic = time.time()
-    blur = cv_conv(r"big-samu.jpg",1)
+    blur = cv_conv(path,k)
     toc = time.time()
     print("built-in function: ", toc - tic)
+
+
+
 
     #showing images
     cv2.imshow("Original",imgray)
     cv2.imshow("conv blur",new_img)
     cv2.imshow("built-in blur", blur)
     cv2.waitKey(0)
+    
 
 
 
