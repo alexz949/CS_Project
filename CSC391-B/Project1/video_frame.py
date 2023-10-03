@@ -9,6 +9,7 @@ gray = False
 smooth = False
 edge = False
 unsharp = False
+sift = False
 #edge kernel
 edge_kernel = np.array([[-1,-1,-1],[-1,8,-1],[-1,-1,-1]])
 
@@ -37,7 +38,11 @@ while True:
     #edge detect
     if edge:
         img = cv2.filter2D(frame,-1,edge_kernel,)
-      
+    if sift:
+        fast = cv2.FastFeatureDetector_create()
+        kp = fast.detect(img,None)
+        img = cv2.drawKeypoints(img, kp, None, color=(255,0,0))
+    
     #show video
     cv2.imshow('Original (press q to quit)', frame)
     cv2.imshow('Filter (press q to quit)', img)
@@ -60,10 +65,13 @@ while True:
     elif keycode == 117:
         unsharp = \
             not unsharp
-
+    elif keycode == 97:
+        sift = \
+            not sift
     #press q to quit
     elif keycode == 113:
         break
+
   
 # Releasing all the resources
 cap.release()
