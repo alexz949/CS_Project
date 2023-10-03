@@ -33,10 +33,31 @@
 \section*{Part1}
 \subsection*{Rotation}
 For SIFT, I tried to rotate the image counterclockwise by 45 degree.
-I think the result shows that SIFT is not completely rotation invariant. 
-When running python rotation, the features for doing SIFT increase a lot if I rotate the image.
-I cannot really tell 
-`'
+I think the result shows that SIFT is rotation invariant. 
+When running python rotation, it is true that after rotated the image, the number of features increases.
+However, I think it didn't really change the overall detection. 
+It still can draw features without any difficulties.\\
+\\
+For FAST, I tried to rotate image 90 degree clockwisely.
+I think in this case, FAST has even better rotation invariant than SIFT.
+MOst of the features didn't change even if I increase the rotation degree.
+Currently, one interesting thing I found is that there is a stripe pillow on my left side.
+Both SIFt and FAST seem to have to many features on that pillow. 
+It is probably the size of that pillow is small so that these algorithm cannot draw keypoints too specificly.\\
+\\
+For Harris Corner Detection, I also rotate the image to 90 degree to compare.
+It turns out Harris Corner Detection is also rotation invariant.
+It can succesfully detect corner even if the image changes direction.
+One interesting stuff for Harris's idea is that it didn't count the top of my hair under the light as corner whearas it detects my hair close to my shoulder to be corner.
+I think this is because the illumination makes my hair so bright which Harris detection didn't count it.\\
+\\
+For ORB, I also rotate the image to 90 degree.
+I can also tell that ORB is rotation invariant because keypoints didn't change after doing the rotation.
+For the same stripe pillow problem, I think this time ORB performs better than the begining two.
+\subsection*{Scale}
+
+
+
 \subsection*{Low-light illumination}
 
 
