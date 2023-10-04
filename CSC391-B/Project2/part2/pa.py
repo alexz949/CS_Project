@@ -8,6 +8,16 @@ class Stitcher:
         # determine if we are using OpenCV v3.X
         self.isv3 = imutils.is_cv3(or_better=True)
     
+    def testfun(self,input,length):
+        count = 0
+        for i in range(length):
+            if(input[i].all() == 0):
+                count = count+1
+        result = (length-count) / length
+        if(result >= 0.95):
+            return True
+        return False
+        
     
 
     def stitch(self, images, ratio=0.75, reprojThresh=4.0, showMatches=False,num=1):
@@ -42,13 +52,15 @@ class Stitcher:
                 break
             check = True
         print("this is count number:", count)
-        for i in range(count,-1):
-            print("hello world")
+        for i in range(count, 0, -1):
+            see = testfun(result[:,count],width)
+        print("update count number",count)
         if(num == 1):
             if(count > 0):
                 result = result[:, 0:count]
         
         
+            
         # check to see if the keypoint matches should be visualized
         if showMatches:
             vis = self.drawMatches(imageA, imageB, kpsA, kpsB, matches,
@@ -130,6 +142,5 @@ class Stitcher:
         # return the visualization
         return vis
 
-
-        
+    
        

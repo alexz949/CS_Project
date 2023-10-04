@@ -25,7 +25,7 @@ imageC = imutils.resize(imageC, width=400)
 # stitch the images together to create a panorama
 stitcher = Stitcher()
 
-(result, vis) = stitcher.stitch([imageA, imageB], showMatches=True,num=1)
+(result, vis) = stitcher.stitch([imageA, imageB], showMatches=True,num=2)
 #(result2, vis2) = stitcher.stitch([imageA, imageB], showMatches=True,num=1)
 cv2.imshow("Result", result)
 #cv2.imshow("result2", result2)
