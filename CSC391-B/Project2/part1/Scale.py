@@ -55,7 +55,7 @@ def sca_FAST(path):
     img2 = cv2.resize(img2,dim,interpolation=cv2.INTER_AREA)
 
     img2 = cv2.GaussianBlur(img2,(5,5),0)
-
+    
     gray2  = cv2.cvtColor(img2,cv2.COLOR_BGR2GRAY)
     fast2 = cv2.FastFeatureDetector_create()
     kp2 = fast2.detect(gray2,None)
