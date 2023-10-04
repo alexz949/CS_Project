@@ -42,7 +42,7 @@ def rot_FAST(path):
     fast = cv2.FastFeatureDetector_create()
     kp = fast.detect(gray,None)
     out = cv2.drawKeypoints(gray, kp, None, color=(255,0,0))
-
+    
 
 
     #rotate image and do FAST again

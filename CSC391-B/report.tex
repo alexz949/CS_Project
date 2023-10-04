@@ -55,13 +55,48 @@ For ORB, I also rotate the image to 90 degree.
 I can also tell that ORB is rotation invariant because keypoints didn't change after doing the rotation.
 For the same stripe pillow problem, I think this time ORB performs better than the begining two.
 \subsection*{Scale}
+To test the scale invariant, I first shrink the image and then perform Gaussian Blur with a 5 by 5 kernel.\\
+For SIFT, I think it can still draw some part of the keypoints, but compare to the original image, it still loses many keypoints.
+I don't think SIFT algorithm did well when adding blurring and shrinking the size compare to other methods like ORB.
+It is different from what I know about this algorithm, because it should be scale-invariant.
+After reading the textbook, I found that SIFT algorithm perform worse when shrinking than magnifying the image and I think blurring also make SIFT unable to present ideal result.\\
+\\
+For FAST, from my result, I think FAST algorithm is not invariant to blurring.
+After I shrinked and blurred my image, I found that FAST didn't detect some part of my hair and some parts of the roof.
+Based on this, I look at the description of how FAST is actually doing.
+It is just taking pixels around the testing point and check whether it exceeds the threashold. 
+Blurring will definitely affect the detection because each pixel value is changed based on the around values.\\
+\\
+For Harris corner detection, I think it also didn't do well if I try to blur the image.
+Part of my hair was not detected for blurred image.
+I think this is because after blurring, the intensity for each pixel is mixed.
+In this case, the edge and corner can also be mixed and Harris detection failed.\\
+\\
+For ORB, I think it has the best performance after shrinking and blurring the image.
+I took a look at the repeatability diagram in textbook and it shows that ORB is invariant in blurring and doing fine if the image got shrink.
 
 
 
 \subsection*{Low-light illumination}
+I tried to make testing image to decrease the illumination.\\
+For SIFT, I think it can still have really good detection even if I decrease the illumination.
+I will say that SIFT is robust for Low-light illumination.\\
+\\
+For FAST, it has many more keypoints in low-illumination image than the original image. 
+It even lost many keypoints on my face. 
+I think the problem here is that for any pixel, if its surrounding intensity is low, FAST will not detect correctly.
+It will add keypoints if a pixel used to has high illumination because the contrast increase.
+FAST is not really robust for low-light illumination from my experiment.\\
+\\
+For Harris, I think it is doing fine for low-light illumination.
+Harris can still detect many corners when I decrease the illumination.
+I think the change for gradient on corner after decreasing light can still be detected for Harris.
+So Harris corner detection should be robust for low-light illumination.\\
+\\
+For ORB, I think it can still work well with low-light image.
+It lost some keypoints on my face but for the rest part it can still detect.
+I think ORB is robust for low-light illumination.
+\section*{Part2}
 
 
-
-I find out that ORB approach is more invariant when the brightness changed compared to SIFT algorithm
-I will try with surf once I finish cmake
 \end{document}

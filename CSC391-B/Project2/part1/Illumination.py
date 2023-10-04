@@ -1,6 +1,7 @@
 import numpy as np
 import cv2
 
+ga = 0.4
 
 def adjust_gamma(image, gamma):
 
@@ -21,7 +22,7 @@ def ill_SIFT(path):
 
     #decrease the illumination
     img2 = cv2.imread(path)
-    img2 = adjust_gamma(img2,0.5)
+    img2 = adjust_gamma(img2,ga)
 
     #do SIFT
     gray2  = cv2.cvtColor(img2,cv2.COLOR_BGR2GRAY)
@@ -50,7 +51,7 @@ def ill_FAST(path):
 
     #decrease the illumination
     img2 = cv2.imread(path)
-    img2 = adjust_gamma(img2,0.5)
+    img2 = adjust_gamma(img2,ga)
 
     #apply FAST
     gray2  = cv2.cvtColor(img2,cv2.COLOR_BGR2GRAY)
@@ -79,7 +80,7 @@ def ill_Harris(path):
 
     #decrease the illumination
     img2 = cv2.imread(path)
-    img2 = adjust_gamma(img2,0.5)
+    img2 = adjust_gamma(img2,ga)
 
      #do harris
     gray2  = cv2.cvtColor(img2,cv2.COLOR_BGR2GRAY)
@@ -113,7 +114,7 @@ def ill_ORB(path):
 
     #decrease the illumination
     img2 = cv2.imread(path)
-    img2 = adjust_gamma(img2,0.5)
+    img2 = adjust_gamma(img2,ga)
 
     #do ORB
     gray2  = cv2.cvtColor(img2,cv2.COLOR_BGR2GRAY)

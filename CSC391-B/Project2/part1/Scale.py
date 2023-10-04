@@ -10,7 +10,7 @@ def sca_SIFT(path):
     kp = sift.detect(gray,None)
     out = cv2.drawKeypoints(gray,kp,img)
 
-    #scale image to 0.75 of original
+    #scale image to 0.75 of original and take an gaussian blur of 3 by 3
     percent = 75
 
     img2 = cv2.imread(path)
@@ -18,7 +18,8 @@ def sca_SIFT(path):
     length = int(img2.shape[0] * percent / 100)
     dim = (width, length)
     img2 = cv2.resize(img2,dim,interpolation=cv2.INTER_AREA)
-
+    #perform gaussian blur
+    img2 = cv2.GaussianBlur(img2,(5,5),0)
     gray2  = cv2.cvtColor(img2,cv2.COLOR_BGR2GRAY)
     sift2 = cv2.SIFT_create()
     kp2 = sift2.detect(gray2,None)
@@ -53,6 +54,8 @@ def sca_FAST(path):
     dim = (width, length)
     img2 = cv2.resize(img2,dim,interpolation=cv2.INTER_AREA)
 
+    img2 = cv2.GaussianBlur(img2,(5,5),0)
+
     gray2  = cv2.cvtColor(img2,cv2.COLOR_BGR2GRAY)
     fast2 = cv2.FastFeatureDetector_create()
     kp2 = fast2.detect(gray2,None)
@@ -86,10 +89,9 @@ def sca_Harris(path):
     length = int(img2.shape[0] * percent / 100)
     dim = (width, length)
     img2 = cv2.resize(img2,dim,interpolation=cv2.INTER_AREA)
-
+    img2 = cv2.GaussianBlur(img2, (5,5),0)
     #do harris
     gray2  = cv2.cvtColor(img2,cv2.COLOR_BGR2GRAY)
-
     gray2 = np.float32(gray2)
 
     dst2 = cv2.cornerHarris(gray2,2,3,0.04)
@@ -125,16 +127,15 @@ def sca_ORB(path):
     dim = (width, length)
     img2 = cv2.resize(img2,dim,interpolation=cv2.INTER_AREA)
 
-
+    img2 = cv2.GaussianBlur(img2,(5,5),0)
     #do ORB
     gray2  = cv2.cvtColor(img2,cv2.COLOR_BGR2GRAY)
-
     orb2 = cv2.ORB_create()
     kp2 = orb2.detect(gray2,None)
     kp2, des2 = orb2.compute(gray2,kp2)
     out2 = cv2.drawKeypoints(gray2,kp2,None,color = (255,0,0), flags=0)
 
-
+    
 
 
     cv2.imshow("original ORB",out)
