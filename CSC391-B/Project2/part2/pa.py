@@ -8,15 +8,7 @@ class Stitcher:
         # determine if we are using OpenCV v3.X
         self.isv3 = imutils.is_cv3(or_better=True)
     
-    def testfun(self,input,length):
-        count = 0
-        for i in range(length):
-            if(input[i].all() == 0):
-                count = count+1
-        result = (length-count) / length
-        if(result >= 0.95):
-            return True
-        return False
+    
         
     
 
@@ -32,35 +24,18 @@ class Stitcher:
         # keypoints to create a panorama
         if M is None:
             return None
+        # otherwise, apply a perspective warp to stitch the images
+        # together
         (matches, H, status) = M
+        img_b_h, img_b_w, _ = imageB.shape
+        orig_corners_img_b = self.get_corners_as_array(img_b_h, img_b_w)
+        ans = self.transform_with_homography(H, orig_corners_img_b)
         
         
-        result = cv2.warpPerspective(imageA, H, (imageA.shape[1] + imageB.shape[1], imageA.shape[0]))
+        result = cv2.warpPerspective(imageA, H,
+            (imageA.shape[1] + imageB.shape[1], imageA.shape[0]))
         result[0:imageB.shape[0], 0:imageB.shape[1]] = imageB
-        
-        height = result.shape[0]
-        width = result.shape[1]
-        print("this is width:", width)
-        count = 0
-        check = True
-        for i in range(width):
-            for j in range(height):
-                if(result[j,i].all() != 0):
-                   check = False
-            if(check):
-                count = i
-                break
-            check = True
-        print("this is count number:", count)
-        for i in range(count, 0, -1):
-            see = testfun(result[:,count],width)
-        print("update count number",count)
-        if(num == 1):
-            if(count > 0):
-                result = result[:, 0:count]
-        
-        
-            
+        result = result[:,0:int(ans[1][0])]
         # check to see if the keypoint matches should be visualized
         if showMatches:
             vis = self.drawMatches(imageA, imageB, kpsA, kpsB, matches,
@@ -141,6 +116,85 @@ class Stitcher:
                 cv2.line(vis, ptA, ptB, (0, 255, 0), 1)
         # return the visualization
         return vis
+    def transform_with_homography(self,h_mat, points_array):
+        """Function to transform a set of points using the given homography matrix.
+        Points are normalized after transformation with the last column which represents the scale
+    
+        Args:
+        h_mat (numpy array): of shape (3, 3) representing the homography matrix
+        points_array (numpy array): of shape (n, 2) represting n set of x, y pixel coordinates that are
+            to be transformed
+        """
+    # add column of ones so that matrix multiplication with homography matrix is possible
+        ones_col = np.ones((points_array.shape[0], 1))
+        points_array = np.concatenate((points_array, ones_col), axis=1)
+        transformed_points = np.matmul(h_mat, points_array.T)
+        epsilon = 1e-7 # very small value to use it during normalization to avoid division by zero
+        transformed_points = transformed_points / (transformed_points[2,:].reshape(1,-1) + epsilon)
+        transformed_points = transformed_points[0:2,:].T
+        return transformed_points
+    
+    def get_corners_as_array(self,img_height, img_width):
+    
+        corners_array = np.array([[0, 0],
+                            [img_width - 1, 0],
+                            [img_width - 1, img_height - 1],
+                            [0, img_height - 1]])
+        return corners_array
+    def get_crop_points_horz(img_a_h, transfmd_corners_img_b):
+    
+        # the four transformed corners of image B
+        top_lft_x_hat, top_lft_y_hat = transfmd_corners_img_b[0, :]
+        top_rht_x_hat, top_rht_y_hat = transfmd_corners_img_b[1, :]
+        btm_rht_x_hat, btm_rht_y_hat = transfmd_corners_img_b[2, :]
+        btm_lft_x_hat, btm_lft_y_hat = transfmd_corners_img_b[3, :]
+
+    # initialize the crop points
+    # since image A (on the left side) is used as pivot, x_start will always be zero
+        x_start, y_start, x_end, y_end = (0, None, None, None)
+
+        if (top_lft_y_hat > 0) and (top_lft_y_hat > top_rht_y_hat):
+            y_start = top_lft_y_hat
+        elif (top_rht_y_hat > 0) and (top_rht_y_hat > top_lft_y_hat):
+            y_start = top_rht_y_hat
+        else:
+            y_start = 0
+        
+        if (btm_lft_y_hat < img_a_h - 1) and (btm_lft_y_hat < btm_rht_y_hat):
+            y_end = btm_lft_y_hat
+        elif (btm_rht_y_hat < img_a_h - 1) and (btm_rht_y_hat < btm_lft_y_hat):
+            y_end = btm_rht_y_hat
+        else:
+            y_end = img_a_h - 1
+
+        if (top_rht_x_hat < btm_rht_x_hat):
+            x_end = top_rht_x_hat
+        else:
+            x_end = btm_rht_x_hat
+    
+        return int(x_start), int(y_start), int(x_end), int(y_end)
+
+    def get_crop_points(h_mat, img_a, img_b, stitch_direc):
+    
+        img_a_h, img_a_w, _ = img_a.shape
+        img_b_h, img_b_w, _ = img_b.shape
+
+        orig_corners_img_b = get_corners_as_array(img_b_h, img_b_w)
+                
+        transfmd_corners_img_b = transform_with_homography(h_mat, orig_corners_img_b)
+
+        if stitch_direc == 1:
+            x_start, y_start, x_end, y_end = get_crop_points_horz(img_a_w, transfmd_corners_img_b)
+        # initialize the crop points
+        x_start = None
+        x_end = None
+        y_start = None
+        y_end = None
+
+        if stitch_direc == 1: # 1 is horizontal
+            x_start, y_start, x_end, y_end = get_crop_points_horz(img_a_h, transfmd_corners_img_b)
+        
+        return x_start, y_start, x_end, y_end
 
     
        

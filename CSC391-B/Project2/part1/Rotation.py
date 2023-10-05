@@ -5,59 +5,111 @@ import cv2
 
 def rot_SIFT(path):
     
-    #convert to gray scale
     img = cv2.imread(path)
     gray= cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
     #Do SIFT for original image
     sift = cv2.SIFT_create()
-    kp = sift.detect(gray,None)
+    kp,feature1 = sift.detectAndCompute(gray,None)
     out = cv2.drawKeypoints(gray,kp,img)
 
-    #rotate 90 degree counterclockwise 
-    #img2 = cv2.rotate(img,cv2.ROTATE_180)
-    gray2 = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-    height, width = gray2.shape[:2]
+    #rotate 90 degree counterclockwise  
+    img2 = cv2.imread(path)
+    img2 = cv2.rotate(img2,cv2.ROTATE_180)
+    height, width = img2.shape[:2]
     center = (width/2, height/2)
     rotate_matrix = cv2.getRotationMatrix2D(center=center, angle=45, scale=1)
-    gray2 = cv2.warpAffine(src=gray2, M=rotate_matrix, dsize=(width, height))
+    img2 = cv2.warpAffine(src=img2, M=rotate_matrix, dsize=(width, height))
+    gray2 = cv2.cvtColor(img2,cv2.COLOR_BGR2GRAY)
+    '''
+
+    ''' 
+
 
     #gray2 = cv2.cvtColor(img2,cv2.COLOR_BGR2GRAY)
 
     sift2 = cv2.SIFT_create()
-    kp2 = sift2.detect(gray2,None)
-    out2 = cv2.drawKeypoints(gray2,kp2,None)
+    kp2, feature2 = sift2.detectAndCompute(gray2,None)
+    out2 = cv2.drawKeypoints(gray2,kp2, img2)
 
-    cv2.imshow("origin SIFT",out)
-    cv2.imshow("rotate SIFT", out2)
+
+
+    # create BFMatcher object
+    bf = cv2.BFMatcher()
+
+    # Match descriptors.
+    matches = bf.match(feature1,feature2)
+    print(len(kp))
+    print(len(kp2))
+    print(len(feature2))
+    # sort the matches based on distance
+    matches = sorted(matches, key=lambda val: val.distance)
+    print(len(matches))
+    # Draw first 50 matches.
+    out = cv2.drawMatches(img, kp, img2, kp2, matches[450:500], None, flags=2)
+
+    cv2.imshow("test",out)
     cv2.waitKey(0)
 
 
 
 def rot_FAST(path):
-    #convert to gray scale
     img = cv2.imread(path)
-    gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+    gray= cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+    #Do SIFT for original image
+    fast1 = cv2.FastFeatureDetector_create()
+    sift1 = cv2.SIFT_create()
+    kp1 = fast1.detect(gray,None)
+    _,des1 = sift1.compute(gray,kp1)
+    out = cv2.drawKeypoints(gray,kp1,img)
 
-    #Do FAST on original image with nonmax suppression
-    fast = cv2.FastFeatureDetector_create()
-    kp = fast.detect(gray,None)
-    out = cv2.drawKeypoints(gray, kp, None, color=(255,0,0))
-    
-
-
-    #rotate image and do FAST again
-    img2 = cv2.rotate(img,cv2.ROTATE_90_CLOCKWISE)
+    #rotate 90 degree counterclockwise  
+    img2 = cv2.imread(path)
+    img2 = cv2.rotate(img2,cv2.ROTATE_180)
+    height, width = img2.shape[:2]
+    center = (width/2, height/2)
+    rotate_matrix = cv2.getRotationMatrix2D(center=center, angle=45, scale=1)
+    img2 = cv2.warpAffine(src=img2, M=rotate_matrix, dsize=(width, height))
     gray2 = cv2.cvtColor(img2,cv2.COLOR_BGR2GRAY)
-    
+    '''
+
+    ''' 
+
+
+    #gray2 = cv2.cvtColor(img2,cv2.COLOR_BGR2GRAY)
 
     fast2 = cv2.FastFeatureDetector_create()
+    sift2 = cv2.SIFT_create()
+    
     kp2 = fast2.detect(gray2,None)
+    _,des2 = sift2.compute(gray2,kp2)
 
-    out2 = cv2.drawKeypoints(gray2,kp2,None, color = (255,0,0))
+    out2 = cv2.drawKeypoints(gray2,kp2, img2)
 
-    cv2.imshow("original FAST", out)
-    cv2.imshow("rotate FAST", out2)
+    print(len(kp1))
+    print(len(kp2))
+    cv2.imshow("cool",out)
+    cv2.imshow("cooool", out2)
     cv2.waitKey(0)
+
+     # create BFMatcher object
+    bf = cv2.BFMatcher()
+
+    # Match descriptors.
+    matches = bf.match(des1,des2)
+    print(len(kp1))
+    print(len(kp2))
+    
+    # sort the matches based on distance
+    matches = sorted(matches, key=lambda val: val.distance)
+    print(len(matches))
+    # Draw first 50 matches.
+    out = cv2.drawMatches(img, kp1, img2, kp2, matches[300:350], None, flags=2)
+
+    cv2.imshow("test",out)
+    cv2.waitKey(0)
+
+    
+    
 
 def rot_Harris(path):
     #convert to gray scale
@@ -73,7 +125,11 @@ def rot_Harris(path):
 
     #rotate and doing detection again
     img2 = cv2.imread(path)
-    img2 = cv2.rotate(img2,cv2.ROTATE_90_COUNTERCLOCKWISE)
+    img2 = cv2.rotate(img2,cv2.ROTATE_180)
+    height, width = img2.shape[:2]
+    center = (width/2, height/2)
+    rotate_matrix = cv2.getRotationMatrix2D(center=center, angle=45, scale=1)
+    img2 = cv2.warpAffine(src=img2, M=rotate_matrix, dsize=(width, height))
     gray2 = cv2.cvtColor(img2,cv2.COLOR_BGR2GRAY)
     
 
@@ -86,11 +142,14 @@ def rot_Harris(path):
     img2[dst2>0.01*dst2.max()] = [0,0,255]
 
 
+
+
+    print(len(dst))
+    print(len(dst2))
     cv2.imshow("original Harris",img)
     cv2.imshow("rotate Harris", img2)
-
-
     cv2.waitKey(0)
+
 
 
 def rot_ORB(path):
@@ -106,7 +165,12 @@ def rot_ORB(path):
     out = cv2.drawKeypoints(gray,kp,None,color = (255,0,0),flags=0)
 
     #rotate image and perform ORB again
-    img2 = cv2.rotate(img,cv2.ROTATE_90_COUNTERCLOCKWISE)
+    img2 = cv2.imread(path)
+    img2 = cv2.rotate(img2,cv2.ROTATE_180)
+    height, width = img2.shape[:2]
+    center = (width/2, height/2)
+    rotate_matrix = cv2.getRotationMatrix2D(center=center, angle=45, scale=1)
+    img2 = cv2.warpAffine(src=img2, M=rotate_matrix, dsize=(width, height))
     gray2 = cv2.cvtColor(img2,cv2.COLOR_BGR2GRAY)
     
     orb2 = cv2.ORB_create()
@@ -122,10 +186,28 @@ def rot_ORB(path):
     cv2.waitKey(0)
 
 
+    # create BFMatcher object
+    bf = cv2.BFMatcher()
 
-path = r'CSC391-B/Project2/part1/self-test.jpg'
-rot_SIFT(path)
-rot_FAST(path)
+    # Match descriptors.
+    matches = bf.match(des,des2)
+    print(len(kp))
+    print(len(kp2))
+    
+    # sort the matches based on distance
+    matches = sorted(matches, key=lambda val: val.distance)
+    print(len(matches))
+    # Draw first 50 matches.
+    out = cv2.drawMatches(img, kp, img2, kp2, matches[300:350], None, flags=2)
+
+    cv2.imshow("test",out)
+    cv2.waitKey(0)
+
+
+
+path = "self-test.jpg"
+#rot_SIFT(path)
+#rot_FAST(path)
 rot_Harris(path)
-rot_ORB(path)
+#rot_ORB(path)
 

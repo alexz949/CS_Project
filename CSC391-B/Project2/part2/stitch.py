@@ -9,19 +9,17 @@ ap.add_argument("-f", "--first", required=True,
 	help="path to the first image")
 ap.add_argument("-s", "--second", required=True,
 	help="path to the second image")
-ap.add_argument("-t", "--third", required=True,
-	help="path to the third image")
 args = vars(ap.parse_args())
 
 # load the two images and resize them to have a width of 400 pixels
 # (for faster processing)
 imageA = cv2.imread(args["first"])
 imageB = cv2.imread(args["second"])
-imageC = cv2.imread(args["third"])
+
 
 imageA = imutils.resize(imageA, width=400)
 imageB = imutils.resize(imageB, width=400)
-imageC = imutils.resize(imageC, width=400)
+
 # stitch the images together to create a panorama
 stitcher = Stitcher()
 
@@ -34,9 +32,7 @@ cv2.imshow("Result", result)
 
 
 
-(result2, vis2) = stitcher.stitch([result,imageC],showMatches=True,num=2)
 
-cv2.imshow("result2", result2)
 '''
 # show the images
 

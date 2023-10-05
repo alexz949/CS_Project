@@ -32,69 +32,80 @@
 \maketitle
 \section*{Part1}
 \subsection*{Rotation}
-For SIFT, I tried to rotate the image counterclockwise by 45 degree.
-I think the result shows that SIFT is rotation invariant. 
-When running python rotation, it is true that after rotated the image, the number of features increases.
-However, I think it didn't really change the overall detection. 
-It still can draw features without any difficulties.\\
+For SIFT, I tried to rotate the image clockwisely 135 degree.
+I think the result shows that SIFT is rotation invariant after drawing the matches between two images.
+The keypoints in bed sheet and human face can match with each other.
+There are also some dismatches like firealert matches to a fan.
+I think just based on this figure, it matches what textbook diagram's result.
+I think the percentage of matches depends on different image and that percentage will change a lot.\\
 \\
-For FAST, I tried to rotate image 90 degree clockwisely.
-I think in this case, FAST has even better rotation invariant than SIFT.
-MOst of the features didn't change even if I increase the rotation degree.
-Currently, one interesting thing I found is that there is a stripe pillow on my left side.
-Both SIFt and FAST seem to have to many features on that pillow. 
-It is probably the size of that pillow is small so that these algorithm cannot draw keypoints too specificly.\\
+For FAST, I also tried to rotate 135 degree
+In this case, the number of keypoints is already different.
+After trying to creat matching, I found out that keypoints are not really match to the correct keypoints.
+I think FAST algorithm performs worse than SIFT when rotating the image or even nort rotation invariant.\\
 \\
-For Harris Corner Detection, I also rotate the image to 90 degree to compare.
-It turns out Harris Corner Detection is also rotation invariant.
-It can succesfully detect corner even if the image changes direction.
-One interesting stuff for Harris's idea is that it didn't count the top of my hair under the light as corner whearas it detects my hair close to my shoulder to be corner.
+For Harris Corner Detection, I did the same rotation.
+It turns out Harris Corner Detection seems to be rotation invariant.
+It can succesfully detect corners even if the image changes direction.
+The number of detectors seem to be the same before or after rotation which is kind of interesting.
+Also, I found out that for both images Harris didn't detect my hair close to light.
 I think this is because the illumination makes my hair so bright which Harris detection didn't count it.\\
 \\
-For ORB, I also rotate the image to 90 degree.
-I can also tell that ORB is rotation invariant because keypoints didn't change after doing the rotation.
-For the same stripe pillow problem, I think this time ORB performs better than the begining two.
+For ORB, same thing happened.
+For ORB, I could say that ORB is rotation invariant, but when rotatring 135 degree, SIFT has better accuracy than ORB.
+There are some matches for pillow and human face.
+However, there are also some dismatches for the fan and bed sheet.
+This result also matches the result in textbook which the rotation invariant for ORB is slightly worser than SIFT.
+
+
+
+
 \subsection*{Scale}
-To test the scale invariant, I first shrink the image and then perform Gaussian Blur with a 5 by 5 kernel.\\
-For SIFT, I think it can still draw some part of the keypoints, but compare to the original image, it still loses many keypoints.
-I don't think SIFT algorithm did well when adding blurring and shrinking the size compare to other methods like ORB.
-It is different from what I know about this algorithm, because it should be scale-invariant.
-After reading the textbook, I found that SIFT algorithm perform worse when shrinking than magnifying the image and I think blurring also make SIFT unable to present ideal result.\\
+To test the scale invariant, I first shrink the image to 0.6 of the original.\\
+For SIFT, I think it can still draw many matches with given keypoints, but compare to the original image, it still has many dismatches.
+I consider SIFT as scale invariant because the number of matches fits the result in textbook diagram.
+One reason I think when SIFT didn't perform well when shrinking the image than expanding image is that, the number of keypoins decreases a lot when shrinking.
+Even every existing keypoint in shrinked image matches, the percentage will still not be so large.\\
 \\
-For FAST, from my result, I think FAST algorithm is not invariant to blurring.
-After I shrinked and blurred my image, I found that FAST didn't detect some part of my hair and some parts of the roof.
+For FAST, from my result, I think FAST is somehow scale invariant.
+I think it is true that some keypoints are missing if I shrinked the image but overall, I think it can still matches most of the keypoints.
+I even think for this case, FAST is doing better than SIFT if just just shrink the image.
 Based on this, I look at the description of how FAST is actually doing.
 It is just taking pixels around the testing point and check whether it exceeds the threashold. 
-Blurring will definitely affect the detection because each pixel value is changed based on the around values.\\
+IF we did not shrink an image a lot, the intensity for each pixel may not change a lot.\\
 \\
-For Harris corner detection, I think it also didn't do well if I try to blur the image.
-Part of my hair was not detected for blurred image.
-I think this is because after blurring, the intensity for each pixel is mixed.
+For Harris corner detection, I think it also didn't do well if I try to shrink the image.
+Part of my hair was not detected and there are some other keypoints added in shrinked image.
+I think this is because after shrinking, the intensity for each pixel is mixed.
 In this case, the edge and corner can also be mixed and Harris detection failed.\\
 \\
-For ORB, I think it has the best performance after shrinking and blurring the image.
-I took a look at the repeatability diagram in textbook and it shows that ORB is invariant in blurring and doing fine if the image got shrink.
+For ORB, I think it is somehow scale invariant because it can still succesfully detect some objests even if I shrinked the image.
+However, I think it did not perform well compared to SIFT because it cannot detect human face and has lots of wrong matches in pillow and bed sheet.
+
 
 
 
 \subsection*{Low-light illumination}
 I tried to make testing image to decrease the illumination.\\
-For SIFT, I think it can still have really good detection even if I decrease the illumination.
-I will say that SIFT is robust for Low-light illumination.\\
+For SIFT, it doesn't perform well if I decrease the illumination of the image.
+Usually, since I didn't rotate or shrink the image, the matches can be easily seen by counting parallel lines.
+In the test image, there are many parallel lines but there are also many interections.
+As textbook said, SIFT's matches can change a lot if it is a low-light illumination.\\
 \\
-For FAST, it has many more keypoints in low-illumination image than the original image. 
-It even lost many keypoints on my face. 
-I think the problem here is that for any pixel, if its surrounding intensity is low, FAST will not detect correctly.
-It will add keypoints if a pixel used to has high illumination because the contrast increase.
-FAST is not really robust for low-light illumination from my experiment.\\
+For FAST, I saw many parallel lines, which indicates that many keypoints should be a match.
+After closer examination, indeed there are some keypoint that is not match but still are parallel to each other.
+I still think many keypoints matches in two images.
+It is true FAST lost some keypoints on human face but I think this is acceptable.
+FAST should be robust to low-light illumination.
 \\
 For Harris, I think it is doing fine for low-light illumination.
 Harris can still detect many corners when I decrease the illumination.
 I think the change for gradient on corner after decreasing light can still be detected for Harris.
 So Harris corner detection should be robust for low-light illumination.\\
 \\
-For ORB, I think it can still work well with low-light image.
-It lost some keypoints on my face but for the rest part it can still detect.
+For ORB, I think it can still work fine with low-light image.
+It is true that there are some interections between lines, most rest lines work well.
+Based on my observation, it has better performance than SIFT which is also what textbook shows.
 I think ORB is robust for low-light illumination.
 \section*{Part2}
 

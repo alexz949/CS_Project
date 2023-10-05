@@ -17,7 +17,7 @@ def ill_SIFT(path):
     gray= cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
     #Do SIFT for original image
     sift = cv2.SIFT_create()
-    kp = sift.detect(gray,None)
+    kp,des1 = sift.detectAndCompute(gray,None)
     out = cv2.drawKeypoints(gray,kp,img)
 
     #decrease the illumination
@@ -27,7 +27,7 @@ def ill_SIFT(path):
     #do SIFT
     gray2  = cv2.cvtColor(img2,cv2.COLOR_BGR2GRAY)
     sift2 = cv2.SIFT_create()
-    kp2 = sift2.detect(gray2,None)
+    kp2,des2 = sift2.detectAndCompute(gray2,None)
     out2 = cv2.drawKeypoints(gray2,kp2,img2)
 
 
@@ -35,6 +35,22 @@ def ill_SIFT(path):
     cv2.imshow("original SIFT",out)
     cv2.imshow("illuminated SIFT",out2)
 
+    cv2.waitKey(0)
+     # create BFMatcher object
+    bf = cv2.BFMatcher()
+
+    # Match descriptors.
+    matches = bf.match(des1,des2)
+    print(len(kp))
+    print(len(kp2))
+    
+    # sort the matches based on distance
+    matches = sorted(matches, key=lambda val: val.distance)
+    print(len(matches))
+    # Draw first 50 matches.
+    out = cv2.drawMatches(img, kp, img2, kp2, matches[450:550], None, flags=2)
+
+    cv2.imshow("test",out)
     cv2.waitKey(0)
 
 
@@ -58,10 +74,31 @@ def ill_FAST(path):
     fast2 = cv2.FastFeatureDetector_create()
     kp2 = fast2.detect(gray2,None)
 
+    sift = cv2.SIFT_create()
+    _,des1 = sift.compute(img2,kp)
+    _,des2 = sift.compute(img2,kp2)
+
+
     out2 = cv2.drawKeypoints(gray2,kp2,None, color = (255,0,0))
 
     cv2.imshow("original FAST", out)
     cv2.imshow("illuminated FAST", out2)
+    cv2.waitKey(0)
+
+     # create BFMatcher object
+    bf = cv2.BFMatcher()
+
+    # Match descriptors.
+    matches = bf.match(des1,des2)
+    print(len(des1))
+    print(len(matches))
+    # sort the matches based on distance
+    matches = sorted(matches, key=lambda val: val.distance)
+    print(len(matches))
+    # Draw first 50 matches.
+    out = cv2.drawMatches(img, kp, img2, kp2, matches[100:400], None, flags=2)
+
+    cv2.imshow("test",out)
     cv2.waitKey(0)
 
 
@@ -131,18 +168,34 @@ def ill_ORB(path):
     cv2.imshow("illuminated ORB", out2)
     cv2.waitKey(0)
 
+    # create BFMatcher object
+    bf = cv2.BFMatcher()
+
+    # Match descriptors.
+    matches = bf.match(des,des2)
+    print(len(des))
+    print(len(matches))
+    # sort the matches based on distance
+    matches = sorted(matches, key=lambda val: val.distance)
+    print(len(matches))
+    # Draw first 50 matches.
+    out = cv2.drawMatches(img, kp, img2, kp2, matches[200:300], None, flags=2)
+
+    cv2.imshow("test",out)
+    cv2.waitKey(0)
 
 
 
 
 
 
-path = r'CSC391-B/Project2/part1/self-test.jpg'
+
+path = "self-test.jpg"
 
 
-ill_SIFT(path)
-ill_FAST(path)
-ill_Harris(path)
+#ill_SIFT(path)
+#ill_FAST(path)
+#ill_Harris(path)
 ill_ORB(path)
 
 
