@@ -151,14 +151,36 @@ Also for ORB, I don't quite get it why it doesn't perform very well in this set 
 I knew that opencv actually uses ORB in its stitcher class, indicating it should be kind of powerful.
 One potential reason I think is that ORB needs more like parameters than other three.
 I even changed the threshold for good matches for ORB or it will not give my any output.
-Another one is that ORB runs way faster than SIFT, probabily this is also one reason why opencv chose it.\\
+Another one is that ORB runs way faster than SIFT, probably this is also one reason why opencv chose it.\\
 \\
 To improve the quality, I think there are few ways.
 The first one is trying combining different detector and descriptor (Like Harris-SIFT). It may have better quality.
 The second case is trying to rotate, scale, or increase the illumination for images before doing stitching.
-SIFT didn't do well in low-light case, probabilty increasing the light will help SIFT better find matches.
+SIFT didn't do well in low-light case, probably increasing the light will help SIFT better find matches.
 Or analyze the image and extract some property (like light, contrast), and apply detector that has best match in this case(FAST).
-It is even possible to do multiple runs on differnet feature matcher.
+It is even possible to do multiple runs on different feature matcher.
 Find the overlap between these matches and get the best stitched image.
+
+\section*{Part3}
+One descriptor I learnt about is BRIEF(Binary Robust Independent Elementary Features).
+Basically, BRIEF stores feature descriptor in a binary encoding way. This can really reduce the storage requirement for keypoints descriptor.
+It can also possible increase the speed for generating descriptor.
+I learnt from opencv document that SIFT creates its keypoints descriptor by dividing sub-blocks from its neighbourhood and creating bin orientation histogram.
+total 128 bin value store as vector. This will takes a lots of space. 
+\\
+BRIEF introduced pairwise intensity comparison based on image patches.
+For example, in an image patch, first doing smoothing by applying Gaussian kernel, and then choosing n-pairs pixel (X,Y).
+After choosing, define a test on intensity of X and Y, if I(Y) is bigger than I(X), then its result is 1, else it will be 0.
+The author in BRIEF's paper actually mentioned 5 different ways to choose n-pair, and they ended up choosing one isotropic Gaussian Distribution.
+After conducting this method, they did some further test which I observe that the speed for using BRIEF as an descriptor is much faster than using SIFT.
+The computation time for descriptor is about 30 times faster overall.
+\\
+For the recognition rate, BRIEF did really well compare to SIFT if we blur the image. 
+Usually it has about 70\% of accuracy but SIFT only has around 50\% to 40\%.
+However, we can further observe that BRIEF is not rotation invariant because once the rotation degree exceeds 30, the accuracy dropped to around 0.
+\\
+In the paper, they use SURF as detector and then BRIEF as descriptor to do feature matching.
+To further test how fast BRIEF can do in feature matching, I replace SURF with FAST as detector to further improve the speed.
+
 
 \end{document}
