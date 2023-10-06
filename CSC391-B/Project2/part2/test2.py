@@ -240,7 +240,7 @@ def get_matcher(args):
 
 
 def get_compensator(args):
-    
+        
     expos_comp_nr_feeds = args.expos_comp_nr_feeds
     expos_comp_block_size = args.expos_comp_block_size
     # expos_comp_nr_filtering = args.expos_comp_nr_filtering

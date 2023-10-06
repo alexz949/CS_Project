@@ -63,7 +63,7 @@ def warpImages(img1, img2, H):
   return output_img
 
 
-MIN_MATCH_COUNT = 10
+MIN_MATCH_COUNT = 11
 
 if len(good) > MIN_MATCH_COUNT:
     # Convert keypoints to an argument for findHomography

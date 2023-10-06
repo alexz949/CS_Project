@@ -12,12 +12,12 @@ class Stitcher:
         
     
 
-    def stitch(self, images, ratio=0.75, reprojThresh=4.0, showMatches=False,num=1):
+    def stitch(self, images, ratio=0.75, reprojThresh=4.0, showMatches=False,num=1,detector="harris"):
         # unpack the images, then detect keypoints and extract
         # local invariant descriptors from them
         (imageB, imageA) = images
-        (kpsA, featuresA) = self.detectAndDescribe(imageA)
-        (kpsB, featuresB) = self.detectAndDescribe(imageB)
+        (kpsA, featuresA) = self.detectAndDescribe(imageA,detector)
+        (kpsB, featuresB) = self.detectAndDescribe(imageB,detector)
         # match features between the two images
         M = self.matchKeypoints(kpsA, kpsB, featuresA, featuresB, ratio, reprojThresh)
         # if the match is None, then there aren't enough matched
@@ -32,10 +32,13 @@ class Stitcher:
         ans = self.transform_with_homography(H, orig_corners_img_b)
         
         
+        
         result = cv2.warpPerspective(imageA, H,
             (imageA.shape[1] + imageB.shape[1], imageA.shape[0]))
+        
         result[0:imageB.shape[0], 0:imageB.shape[1]] = imageB
-        result = result[:,0:int(ans[1][0])]
+        #result = result[:,0:int(ans[1][0])]
+        
         # check to see if the keypoint matches should be visualized
         if showMatches:
             vis = self.drawMatches(imageA, imageB, kpsA, kpsB, matches,
@@ -47,24 +50,34 @@ class Stitcher:
         return result
 
 
-    def detectAndDescribe(self, image):
+    def detectAndDescribe(self, image,detector):
         # convert the image to grayscale
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         # check to see if we are using OpenCV 3.X
-        if self.isv3:
-            # detect and extract features from the image
-            descriptor = cv2.SIFT_create()
-            (kps, features) = descriptor.detectAndCompute(image, None)
-        # otherwise, we are using OpenCV 2.4.X
+        if detector == 'sift':
+            sift = cv2.SIFT_create()
+            (kps, features) = sift.detectAndCompute(gray,None)
+        elif detector == 'brisk':
+            brisk = cv2.BRISK_create()
+            kps,features = brisk.detectAndCompute(gray,None)
+        elif detector == 'orb':
+            orb = cv2.ORB_create()
+            (kps,features) = orb.detectAndCompute(gray,None)
+        
         else:
-            # detect keypoints in the image
-            detector = cv2.FeatureDetector_create("SIFT")
-            kps = detector.detect(gray)
-            # extract features from the image
-            extractor = cv2.DescriptorExtractor_create("SIFT")
-            (kps, features) = extractor.compute(gray, kps)
-        # convert the keypoints from KeyPoint objects to NumPy
-        # arrays
+            gray = np.float32(gray)
+            dst = cv2.cornerHarris(gray,2,3,0.04)
+            dst = cv2.dilate(dst,None)
+    
+            # convert coordinates to Keypoint type
+            gray = cv2.normalize(gray, None, 0, 255, cv2.NORM_MINMAX).astype('uint8')
+            kps = np.argwhere(dst > 0.01 * dst.max())
+            kps = [cv2.KeyPoint(float(x[1]), float(x[0]), 3) for x in kps]
+
+            # compute SIFT descriptors from corner keypoints
+            sift = cv2.SIFT_create()
+            _,features = sift.compute(gray,kps)
+            
         kps = np.float32([kp.pt for kp in kps])
         # return a tuple of keypoints and features
         return (kps, features)
@@ -84,6 +97,7 @@ class Stitcher:
             if len(m) == 2 and m[0].distance < m[1].distance * ratio:
                 matches.append((m[0].trainIdx, m[0].queryIdx))
         # computing a homography requires at least 4 matches
+        
         if len(matches) > 4:
             # construct the two sets of points
             ptsA = np.float32([kpsA[i] for (_, i) in matches])
@@ -141,7 +155,7 @@ class Stitcher:
                             [img_width - 1, img_height - 1],
                             [0, img_height - 1]])
         return corners_array
-    def get_crop_points_horz(img_a_h, transfmd_corners_img_b):
+    def get_crop_points_horz(self,img_a_h, transfmd_corners_img_b):
     
         # the four transformed corners of image B
         top_lft_x_hat, top_lft_y_hat = transfmd_corners_img_b[0, :]
@@ -174,17 +188,17 @@ class Stitcher:
     
         return int(x_start), int(y_start), int(x_end), int(y_end)
 
-    def get_crop_points(h_mat, img_a, img_b, stitch_direc):
+    def get_crop_points(self,h_mat, img_a, img_b, stitch_direc):
     
         img_a_h, img_a_w, _ = img_a.shape
         img_b_h, img_b_w, _ = img_b.shape
 
-        orig_corners_img_b = get_corners_as_array(img_b_h, img_b_w)
+        orig_corners_img_b = self.get_corners_as_array(img_b_h, img_b_w)
                 
-        transfmd_corners_img_b = transform_with_homography(h_mat, orig_corners_img_b)
+        transfmd_corners_img_b = self.transform_with_homography(h_mat, orig_corners_img_b)
 
         if stitch_direc == 1:
-            x_start, y_start, x_end, y_end = get_crop_points_horz(img_a_w, transfmd_corners_img_b)
+            x_start, y_start, x_end, y_end = self.get_crop_points_horz(img_a_w, transfmd_corners_img_b)
         # initialize the crop points
         x_start = None
         x_end = None
@@ -192,7 +206,7 @@ class Stitcher:
         y_end = None
 
         if stitch_direc == 1: # 1 is horizontal
-            x_start, y_start, x_end, y_end = get_crop_points_horz(img_a_h, transfmd_corners_img_b)
+            x_start, y_start, x_end, y_end = self.get_crop_points_horz(img_a_h, transfmd_corners_img_b)
         
         return x_start, y_start, x_end, y_end
 
