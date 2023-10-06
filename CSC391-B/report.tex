@@ -102,14 +102,63 @@ Based on my observation, it has similar performance with SIFT which is also what
 I think ORB can be robust for low-light illumination but not good as FAST and Harris in this image.
 \section*{Part2}
 \subsection*{SIFT}
-the following image is using SIFT as detector and descriptor.
-\begin{figure}[!ht]
+The following image is using SIFT as detector and descriptor.
+\begin{figure}[ht!]
   \begin{center}
     \includegraphics[scale=0.4]{SIFT-result.jpg}
-    \label{fig:boat1}
+    \caption[short]{SIFT}
+    \label{fig:sift}
   \end{center} 
 \end{figure}
 
 \subsection*{BRISK}
+the following image is using BRISK as detector and descripor.
+\begin{figure}[ht!]
+  \begin{center}
+    \includegraphics[scale=0.4]{BRISK-result.jpg}
+    \caption[short]{BRISK}
+    \label{fig:brisk}
+  \end{center} 
+\end{figure}
+\subsection*{Harris}
+The following image is using Harris corner as dectector and SIFT as descriptor.
+\begin{figure}[ht!]
+  \begin{center}
+    \includegraphics[scale=0.4]{Harris-result.jpg}
+    \caption[short]{Harris}
+    \label{fig:harris}
+  \end{center} 
+\end{figure}
+
+\subsection*{ORB}
+The following image is using ORB as detctor asn descriptor.
+\begin{figure}[ht!]
+  \begin{center}
+    \includegraphics[scale=0.4]{ORB-result.jpg}
+    \caption[short]{ORB}
+    \label{fig:orb}
+  \end{center} 
+\end{figure}
+\subsection*{Result}
+From my observation, I think using Harris as detector and SIFT as descriptor has the best stitching.
+SIFT as detector and descriptor is the follow ones. ORB has the worst performace because I can hardly tell what object is in the last chunk.\\
+\\
+I'm surprised that Harris actually is the best among four.
+SIFT, ORB,and BRISK all are well developed feature matcher, and Harris is just a corner detector and it even used SIFT to find descriptor.
+I thought SIFT algorithm will at least be better than Harris.\\
+\\
+Also for ORB, I don't quite get it why it doesn't perform very well in this set of images.
+I knew that opencv actually uses ORB in its stitcher class, indicating it should be kind of powerful.
+One potential reason I think is that ORB needs more like parameters than other three.
+I even changed the threshold for good matches for ORB or it will not give my any output.
+Another one is that ORB runs way faster than SIFT, probabily this is also one reason why opencv chose it.\\
+\\
+To improve the quality, I think there are few ways.
+The first one is trying combining different detector and descriptor (Like Harris-SIFT). It may have better quality.
+The second case is trying to rotate, scale, or increase the illumination for images before doing stitching.
+SIFT didn't do well in low-light case, probabilty increasing the light will help SIFT better find matches.
+Or analyze the image and extract some property (like light, contrast), and apply detector that has best match in this case(FAST).
+It is even possible to do multiple runs on differnet feature matcher.
+Find the overlap between these matches and get the best stitched image.
 
 \end{document}

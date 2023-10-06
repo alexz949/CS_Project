@@ -8,11 +8,7 @@ class Stitcher:
         # determine if we are using OpenCV v3.X
         self.isv3 = imutils.is_cv3(or_better=True)
     
-    
-        
-    
-
-    def stitch(self, images, ratio=0.75, reprojThresh=4.0, showMatches=False,num=1,detector="harris"):
+    def stitch(self, images, ratio=0.8, reprojThresh=4.0, showMatches=False,num=1,detector="harris",crop=True):
         # unpack the images, then detect keypoints and extract
         # local invariant descriptors from them
         (imageB, imageA) = images
@@ -30,14 +26,16 @@ class Stitcher:
         img_b_h, img_b_w, _ = imageB.shape
         orig_corners_img_b = self.get_corners_as_array(img_b_h, img_b_w)
         ans = self.transform_with_homography(H, orig_corners_img_b)
-        
+        print(ans)
         
         
         result = cv2.warpPerspective(imageA, H,
             (imageA.shape[1] + imageB.shape[1], imageA.shape[0]))
-        
+        #calculate transform H matrix to locate stitch part
         result[0:imageB.shape[0], 0:imageB.shape[1]] = imageB
-        #result = result[:,0:int(ans[1][0])]
+        small = min(ans[1][0],ans[2][0])
+        if crop:
+            result = result[:,0:int(small)]
         
         # check to see if the keypoint matches should be visualized
         if showMatches:
@@ -61,7 +59,7 @@ class Stitcher:
             brisk = cv2.BRISK_create()
             kps,features = brisk.detectAndCompute(gray,None)
         elif detector == 'orb':
-            orb = cv2.ORB_create()
+            orb = cv2.ORB_create(nfeatures=1160)
             (kps,features) = orb.detectAndCompute(gray,None)
         
         else:
@@ -131,19 +129,11 @@ class Stitcher:
         # return the visualization
         return vis
     def transform_with_homography(self,h_mat, points_array):
-        """Function to transform a set of points using the given homography matrix.
-        Points are normalized after transformation with the last column which represents the scale
-    
-        Args:
-        h_mat (numpy array): of shape (3, 3) representing the homography matrix
-        points_array (numpy array): of shape (n, 2) represting n set of x, y pixel coordinates that are
-            to be transformed
-        """
     # add column of ones so that matrix multiplication with homography matrix is possible
         ones_col = np.ones((points_array.shape[0], 1))
         points_array = np.concatenate((points_array, ones_col), axis=1)
         transformed_points = np.matmul(h_mat, points_array.T)
-        epsilon = 1e-7 # very small value to use it during normalization to avoid division by zero
+        epsilon = 1e-7
         transformed_points = transformed_points / (transformed_points[2,:].reshape(1,-1) + epsilon)
         transformed_points = transformed_points[0:2,:].T
         return transformed_points
@@ -188,25 +178,24 @@ class Stitcher:
     
         return int(x_start), int(y_start), int(x_end), int(y_end)
 
-    def get_crop_points(self,h_mat, img_a, img_b, stitch_direc):
+    def get_crop_points(self,H, imageA, imageB):
     
-        img_a_h, img_a_w, _ = img_a.shape
-        img_b_h, img_b_w, _ = img_b.shape
+        imageA_h, imageA_w, _ = imageA.shape
+        imageB_h, imageB_w, _ = imageB.shape
 
-        orig_corners_img_b = self.get_corners_as_array(img_b_h, img_b_w)
+        orig_corners_img_b = self.get_corners_as_array(imageB_h, imageB_w)
                 
-        transfmd_corners_img_b = self.transform_with_homography(h_mat, orig_corners_img_b)
+        transfmd_corners_img_b = self.transform_with_homography(H, orig_corners_img_b)
 
-        if stitch_direc == 1:
-            x_start, y_start, x_end, y_end = self.get_crop_points_horz(img_a_w, transfmd_corners_img_b)
+        
+        x_start, y_start, x_end, y_end = self.get_crop_points_horz(imageA_w, transfmd_corners_img_b)
         # initialize the crop points
         x_start = None
         x_end = None
         y_start = None
         y_end = None
 
-        if stitch_direc == 1: # 1 is horizontal
-            x_start, y_start, x_end, y_end = self.get_crop_points_horz(img_a_h, transfmd_corners_img_b)
+        x_start, y_start, x_end, y_end = self.get_crop_points_horz(imageA_h, transfmd_corners_img_b)
         
         return x_start, y_start, x_end, y_end
 

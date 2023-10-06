@@ -16,13 +16,8 @@ def rot_SIFT(path):
     img2 = cv2.imread(path)
     img2 = cv2.rotate(img2,cv2.ROTATE_90_COUNTERCLOCKWISE)
     gray2 = cv2.cvtColor(img2,cv2.COLOR_BGR2GRAY)
-    '''
 
-    ''' 
-
-
-    #gray2 = cv2.cvtColor(img2,cv2.COLOR_BGR2GRAY)
-
+    #do sift for rotated image
     sift2 = cv2.SIFT_create()
     kp2, feature2 = sift2.detectAndCompute(gray2,None)
     out2 = cv2.drawKeypoints(gray2,kp2, img2)
@@ -43,10 +38,10 @@ def rot_SIFT(path):
     print(len(matches))
     
     print(len(good_matches))
-    # Draw first 50 matches.
+    # Draw matches.
     out = cv2.drawMatches(img, kp, img2, kp2, matches[100:150], None, flags=2)
 
-    cv2.imshow("test",out)
+    cv2.imshow("rot sift",out)
     cv2.waitKey(0)
 
 
@@ -54,7 +49,7 @@ def rot_SIFT(path):
 def rot_FAST(path):
     img = cv2.imread(path)
     gray= cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-    #Do SIFT for original image
+    #Do FAST for original image
     fast1 = cv2.FastFeatureDetector_create()
     sift1 = cv2.SIFT_create()
     kp1 = fast1.detect(gray,None)
@@ -66,13 +61,8 @@ def rot_FAST(path):
     img2 = cv2.rotate(img2,cv2.ROTATE_90_COUNTERCLOCKWISE)
    
     gray2 = cv2.cvtColor(img2,cv2.COLOR_BGR2GRAY)
-    '''
-
-    ''' 
-
-
-    #gray2 = cv2.cvtColor(img2,cv2.COLOR_BGR2GRAY)
-
+    
+    #Do FAST for rotated image
     fast2 = cv2.FastFeatureDetector_create()
     sift2 = cv2.SIFT_create()
     
@@ -83,7 +73,7 @@ def rot_FAST(path):
 
     
 
-     # create BFMatcher object
+    # create BFMatcher object
     bf = cv2.BFMatcher()
 
     # Match descriptors.
@@ -93,15 +83,16 @@ def rot_FAST(path):
     # sort the matches based on distance
     matches = sorted(matches, key=lambda val: val.distance)
     print(len(matches))
+    #Find good matches
     good_matches = []
     for m in matches:
         if m.distance < 200:
             good_matches.append(m)
     print(len(good_matches))
-    # Draw first 50 matches.
+    # Draw matches.
     out = cv2.drawMatches(img, kp1, img2, kp2, matches[0:50], None, flags=2)
 
-    cv2.imshow("test",out)
+    cv2.imshow("rot fast",out)
     cv2.waitKey(0)
 
     
@@ -126,12 +117,11 @@ def rot_Harris(path):
     sift = cv2.SIFT_create()
     _,des1 = sift.compute(gray,kp1)
     image_with_keypoints = cv2.drawKeypoints(img,kp1, None, color=(255,0, 0), flags=cv2.DRAW_MATCHES_FLAGS_DEFAULT)
-    cv2.imshow('Harris Keypoints', image_with_keypoints)
-    cv2.waitKey(0)
+    
 
     #rotate and doing detection again
     img2 = cv2.imread(path)
-    #img2 = cv2.rotate(img2,cv2.ROTATE_90_COUNTERCLOCKWISE)
+    img2 = cv2.rotate(img2,cv2.ROTATE_90_COUNTERCLOCKWISE)
     gray2 = cv2.cvtColor(img2,cv2.COLOR_BGR2GRAY)
     
     gray2 = np.float32(gray2)
@@ -145,9 +135,7 @@ def rot_Harris(path):
 
     
     image_with_keypoints = cv2.drawKeypoints(img2,kp2, None, color=(255,0, 0), flags=cv2.DRAW_MATCHES_FLAGS_DEFAULT)
-    cv2.imshow('Harris Keypoints', image_with_keypoints)
-    cv2.waitKey(0)
-
+    
 
     # compute SIFT descriptors from corner keypoints
     sift = cv2.SIFT_create()
@@ -157,14 +145,13 @@ def rot_Harris(path):
 
 
 
-     # create BFMatcher object
+    # create BFMatcher object
     bf = cv2.BFMatcher()
 
     # Match descriptors.
     matches = bf.match(des1,des2)
    
 
-    
     
     # sort the matches based on distance
     matches = sorted(matches, key=lambda val: val.distance)
@@ -174,9 +161,9 @@ def rot_Harris(path):
             good_matches.append(m)
     print(len(matches))
     print(len(good_matches))
-    # Draw first 50 matches.
+    # Draw matches.
     out = cv2.drawMatches(img, kp1, img2, kp2, matches[:250], None, flags=2)
-    cv2.imshow("test", out)
+    cv2.imshow("rot harris", out)
     cv2.waitKey(0)
 
 
@@ -206,12 +193,6 @@ def rot_ORB(path):
 
 
 
-
-    cv2.imshow("original ORB",out)
-    cv2.imshow("rotate ORB", out2)
-    cv2.waitKey(0)
-
-
     # create BFMatcher object
     bf = cv2.BFMatcher()
 
@@ -227,17 +208,18 @@ def rot_ORB(path):
         if m.distance < 0.1:
             good_matches.append(m)
     print(len(good_matches))
-    # Draw first 50 matches.
+    # Draw matches.
     out = cv2.drawMatches(img, kp, img2, kp2, matches[400:450], None, flags=2)
 
-    cv2.imshow("test",out)
+    cv2.imshow("rot ORB",out)
     cv2.waitKey(0)
 
 
 
+#call functions
 path = "self-test.jpg"
-#rot_SIFT(path)
-#rot_FAST(path)
-#rot_Harris(path)
+rot_SIFT(path)
+rot_FAST(path)
+rot_Harris(path)
 rot_ORB(path)
 

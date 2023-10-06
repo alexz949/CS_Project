@@ -1,8 +1,8 @@
 import numpy as np
 import cv2
 
+#function to simulate low-light case
 ga = 0.1
-
 def adjust_gamma(image, gamma):
 
    invGamma = 1.0 / gamma
@@ -11,6 +11,9 @@ def adjust_gamma(image, gamma):
 
    return cv2.LUT(image, table)
 
+
+#start of four feature detecting functions
+#SIFT
 def ill_SIFT(path):
     print("hello world")
     img = cv2.imread(path)
@@ -24,19 +27,22 @@ def ill_SIFT(path):
     img2 = cv2.imread(path)
     img2 = adjust_gamma(img2,ga)
 
-    #do SIFT
+    #do SIFT again
     gray2  = cv2.cvtColor(img2,cv2.COLOR_BGR2GRAY)
     sift2 = cv2.SIFT_create()
     kp2,des2 = sift2.detectAndCompute(gray2,None)
     out2 = cv2.drawKeypoints(gray2,kp2,img2)
 
 
-
+    #drawing the keypoint
+    '''
     cv2.imshow("original SIFT",out)
     cv2.imshow("illuminated SIFT",out2)
+    
 
     cv2.waitKey(0)
     cv2.destroyAllWindows()
+    '''
      # create BFMatcher object
     bf = cv2.BFMatcher()
 
@@ -52,15 +58,15 @@ def ill_SIFT(path):
             good_matches.append(m)
     print(len(matches))
     print(len(des2))
-    # Draw first 50 matches.
+    # Draw matches.
     out = cv2.drawMatches(img, kp, img2, kp2, matches[200:300], None, flags=2)
-    cv2.imshow("test", out)
+    cv2.imshow("ill SIFT", out)
     cv2.waitKey(0)
 
 
 
 def ill_FAST(path):
-    print("hello world")    
+      
     img = cv2.imread(path)
     gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 
@@ -73,23 +79,25 @@ def ill_FAST(path):
     img2 = cv2.imread(path)
     img2 = adjust_gamma(img2,ga)
 
-    #apply FAST
+    #apply FAST after decreasing
     gray2  = cv2.cvtColor(img2,cv2.COLOR_BGR2GRAY)
     fast2 = cv2.FastFeatureDetector_create()
     kp2 = fast2.detect(gray2,None)
 
+    #DO SIFT descriptor
     sift = cv2.SIFT_create()
     _,des1 = sift.compute(img2,kp)
     _,des2 = sift.compute(img2,kp2)
 
 
     out2 = cv2.drawKeypoints(gray2,kp2,None, color = (255,0,0))
-
+    #drawing the keypoint
+    '''
     cv2.imshow("original FAST", out)
     cv2.imshow("illuminated FAST", out2)
     cv2.waitKey(0)
-
-     # create BFMatcher object
+    '''
+    # create BFMatcher object
     bf = cv2.BFMatcher()
 
     # Match descriptors.
@@ -99,17 +107,16 @@ def ill_FAST(path):
     # sort the matches based on distance
     matches = sorted(matches, key=lambda val: val.distance)
     print(len(matches))
-    # Draw first 50 matches.
+    # Draw matches.
     out = cv2.drawMatches(img, kp, img2, kp2, matches[0:1000], None, flags=2)
 
-    cv2.imshow("test",out)
+    cv2.imshow("ill FAST",out)
     cv2.waitKey(0)
 
 
 
 
 def ill_Harris(path):
-    print("hello world")
     img = cv2.imread(path)
     gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
     
@@ -126,30 +133,35 @@ def ill_Harris(path):
     # compute SIFT descriptors from corner keypoints
     sift = cv2.SIFT_create()
     _,des1 = sift.compute(gray,kp1)
+    #draw keypoints
+    '''
     image_with_keypoints = cv2.drawKeypoints(img,kp1, None, color=(255,0, 0), flags=cv2.DRAW_MATCHES_FLAGS_DEFAULT)
     cv2.imshow('Harris Keypoints', image_with_keypoints)
     cv2.waitKey(0)
+    '''
 
     #decrease the illumination
     img2 = cv2.imread(path)
     img2 = adjust_gamma(img2,ga)
 
-     #do harris
+     #do harris again
     gray2  = cv2.cvtColor(img2,cv2.COLOR_BGR2GRAY)
 
     gray2 = np.float32(gray2)
     dst2 = cv2.cornerHarris(gray2,2,3,0.04)
     dst2 = cv2.dilate(dst2,None)
-    
+    # convert coordinates to Keypoint type
     gray2 = cv2.normalize(gray2, None, 0, 255, cv2.NORM_MINMAX).astype('uint8')
     kp2 = np.argwhere(dst2 > 0.01 * dst2.max())
     kp2 = [cv2.KeyPoint(float(x[1]), float(x[0]), 3) for x in kp2]
 
 
-    
+    #draw keypoints
+    '''
     image_with_keypoints = cv2.drawKeypoints(img2,kp2, None, color=(255,0, 0), flags=cv2.DRAW_MATCHES_FLAGS_DEFAULT)
     cv2.imshow('Harris Keypoints', image_with_keypoints)
     cv2.waitKey(0)
+    '''
 
 
     # compute SIFT descriptors from corner keypoints
@@ -158,15 +170,11 @@ def ill_Harris(path):
     _,des2 = sift.compute(gray2,kp2)
 
 
-
-
      # create BFMatcher object
     bf = cv2.BFMatcher()
 
     # Match descriptors.
     matches = bf.match(des1,des2)
-   
-
     
     
     # sort the matches based on distance
@@ -177,9 +185,9 @@ def ill_Harris(path):
             good_matches.append(m)
     print(len(matches))
     print(len(good_matches))
-    # Draw first 50 matches.
+    # Draw matches.
     out = cv2.drawMatches(img, kp1, img2, kp2, matches[1000:2000], None, flags=2)
-    cv2.imshow("test", out)
+    cv2.imshow(" ill Harris", out)
     cv2.waitKey(0)
 
 
@@ -201,7 +209,7 @@ def ill_ORB(path):
     img2 = cv2.imread(path)
     img2 = adjust_gamma(img2,ga)
 
-    #do ORB
+    #do ORB again
     gray2  = cv2.cvtColor(img2,cv2.COLOR_BGR2GRAY)
 
     orb2 = cv2.ORB_create()
@@ -224,10 +232,10 @@ def ill_ORB(path):
     # sort the matches based on distance
     matches = sorted(matches, key=lambda val: val.distance)
     print(len(matches))
-    # Draw first 50 matches.
+    # Draw matches.
     out = cv2.drawMatches(img, kp, img2, kp2, matches[200:300], None, flags=2)
 
-    cv2.imshow("ORB",out)
+    cv2.imshow("ill ORB",out)
     cv2.waitKey(0)
 
 
@@ -238,10 +246,10 @@ def ill_ORB(path):
 
 path = "self-test.jpg"
 
-
+#calling all functions for testing
 ill_SIFT(path)
-#ill_FAST(path)
-#ill_Harris(path)
+ill_FAST(path)
+ill_Harris(path)
 ill_ORB(path)
 
 

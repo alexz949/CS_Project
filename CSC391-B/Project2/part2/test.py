@@ -3,9 +3,56 @@ import argparse
 import imutils
 import cv2
 
+def crop(result):
+
+
+    stitched_img = cv2.copyMakeBorder(result, 10, 10, 10, 10, cv2.BORDER_CONSTANT, (0,0,0))
+
+    gray = cv2.cvtColor(stitched_img, cv2.COLOR_BGR2GRAY)
+    thresh_img = cv2.threshold(gray, 0, 255 , cv2.THRESH_BINARY)[1]
+
+    cv2.imshow("Threshold Image", thresh_img)
+    cv2.waitKey(0)
+
+    contours = cv2.findContours(thresh_img.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+    contours = imutils.grab_contours(contours)
+    areaOI = max(contours, key=cv2.contourArea)
+
+    mask = np.zeros(thresh_img.shape, dtype="uint8")
+    x, y, w, h = cv2.boundingRect(areaOI)
+    cv2.rectangle(mask, (x,y), (x + w, y + h), 255, -1)
+
+    minRectangle = mask.copy()
+    sub = mask.copy()
+
+    while cv2.countNonZero(sub) > 0:
+        minRectangle = cv2.erode(minRectangle, None)
+        sub = cv2.subtract(minRectangle, thresh_img)
+
+
+    contours = cv2.findContours(minRectangle.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+    contours = imutils.grab_contours(contours)
+    areaOI = max(contours, key=cv2.contourArea)
+
+    cv2.imshow("minRectangle Image", minRectangle)
+    cv2.waitKey(0)
+
+    x, y, w, h = cv2.boundingRect(areaOI)
+
+    stitched_img = stitched_img[y:y + h, x:x + w]
+
+
+    cv2.imshow("Stitched Image Processed", stitched_img)
+
+    cv2.waitKey(0)
+    return stitched_img
+
 # Load our images
 img1 = cv2.imread("tests1.jpg")
 img2 = cv2.imread("tests2.jpg")
+
 
 img1_gray = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
 img2_gray = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
@@ -23,6 +70,7 @@ bf = cv2.BFMatcher_create(cv2.NORM_HAMMING)
 
 # Find matching points
 matches = bf.knnMatch(descriptors1, descriptors2,k=2)
+
 
 
 all_matches = []
@@ -63,7 +111,7 @@ def warpImages(img1, img2, H):
   return output_img
 
 
-MIN_MATCH_COUNT = 11
+MIN_MATCH_COUNT = 10
 
 if len(good) > MIN_MATCH_COUNT:
     # Convert keypoints to an argument for findHomography
@@ -74,7 +122,8 @@ if len(good) > MIN_MATCH_COUNT:
     M, _ = cv2.findHomography(src_pts, dst_pts, cv2.RANSAC,5.0)
     
     result = warpImages(img2, img1, M)
+    result = crop(result)
+    cv2.imwrite("result.jpg",result)
 
-    cv2.imshow("result",result)
     cv2.waitKey(0)
 
