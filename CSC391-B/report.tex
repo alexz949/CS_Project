@@ -180,7 +180,13 @@ Usually it has about 70\% of accuracy but SIFT only has around 50\% to 40\%.
 However, we can further observe that BRIEF is not rotation invariant because once the rotation degree exceeds 30, the accuracy dropped to around 0.
 \\
 In the paper, they use SURF as detector and then BRIEF as descriptor to do feature matching.
-To further test how fast BRIEF can do in feature matching, I replace SURF with FAST as detector to further improve the speed.
+To further test how fast BRIEF can do in feature matching, I wrote some codes to measure time doing SIFT for detector and descriptor, and the time for SIFT as detector and BRIEF as descriptor.
+It turns out for a really small image, BRIEF always runs faster than SIFT (0.05 second compared to 0.09 second). We can even increase the time by replacing FAST as detector instead of using SIFT(0.02 second this time).\\
+\\
+For application of feature detection, I ask this question to chatGPT, and I found one application for feature detection is medical imaging.
+There should be some really complicated algorithm for feature matching that identify special structures like blood vessels and tumors.
+People need to have an algorithm that is scale invariant, rotation invariant, and light invariant because some anatomical landmarks have different sizes, in different positions which requires an accurate algorithm to identify.
+Usually this involves many usage of different detection methods and deep learning is frequently used.
 
 
 \end{document}
