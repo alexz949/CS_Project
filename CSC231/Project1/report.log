@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.7) (preloaded format=pdflatex 2022.8.30)  6 OCT 2023 18:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.7) (preloaded format=pdflatex 2022.8.30)  20 OCT 2023 16:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**c:/Users/Administrator/Desktop/CS_Project/CSC391-B/report.tex
-(c:/Users/Administrator/Desktop/CS_Project/CSC391-B/report.tex
+**c:/Users/Administrator/Desktop/CS_Project/CSC231/Project1/report.tex
+(c:/Users/Administrator/Desktop/CS_Project/CSC231/Project1/report.tex
 LaTeX2e <2022-06-01> patch level 5
 L3 programming layer <2022-07-04> (C:\Program Files\MiKTeX\tex/latex/base\article.cls
 Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
@@ -108,6 +108,8 @@ Package: multicol 2021/10/28 v1.9b multicolumn formatting (FMi)
 \mult@nat@firstbox=\box94
 \colbreak@box=\box95
 \mc@col@check@num=\count268
+) (C:\Program Files\MiKTeX\tex/latex/relsize\relsize.sty
+Package: relsize 2013/03/29 ver 4.1
 ) (C:\Program Files\MiKTeX\tex/latex/base\latexsym.sty
 Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
 \symlasy=\mathgroup4
@@ -242,20 +244,20 @@ File: l3backend-pdftex.def 2022-07-01 L3 backend support: PDF output (pdfTeX)
 ) (report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
  (C:\Program Files\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count290
@@ -276,108 +278,38 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 \c@lstlisting=\count296
-LaTeX Font Info:    Trying to load font information for U+lasy on input line 32.
+LaTeX Font Info:    Trying to load font information for U+lasy on input line 38.
  (C:\Program Files\MiKTeX\tex/latex/base\ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 32.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 38.
  (C:\Program Files\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 32.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 38.
  (C:\Program Files\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 10000) in paragraph at lines 35--54
+<DFSM.png, id=1, 804.00375pt x 452.4403pt>
+File: DFSM.png Graphic file (type png)
+<use DFSM.png>
+Package pdftex.def Info: DFSM.png  used on input line 42.
+(pdftex.def)             Requested size: 402.0009pt x 226.2196pt.
+ [1
 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 35--54
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 35--54
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 60--81
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 60--81
-
- []
-
-[1
-
-{C:/Users/Administrator/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 85--103
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 85--103
-
- []
-
-<SIFT-result.jpg, id=9, 899.36pt x 301.125pt>
-File: SIFT-result.jpg Graphic file (type jpg)
-<use SIFT-result.jpg>
-Package pdftex.def Info: SIFT-result.jpg  used on input line 108.
-(pdftex.def)             Requested size: 359.73763pt x 120.44786pt.
-<BRISK-result.jpg, id=10, 887.315pt x 301.125pt>
-File: BRISK-result.jpg Graphic file (type jpg)
-<use BRISK-result.jpg>
-Package pdftex.def Info: BRISK-result.jpg  used on input line 118.
-(pdftex.def)             Requested size: 354.91971pt x 120.44786pt.
-<Harris-result.jpg, id=11, 890.32625pt x 301.125pt>
-File: Harris-result.jpg Graphic file (type jpg)
-<use Harris-result.jpg>
-Package pdftex.def Info: Harris-result.jpg  used on input line 127.
-(pdftex.def)             Requested size: 356.12419pt x 120.44786pt.
-[2 <./SIFT-result.jpg>]
-<ORB-result.jpg, id=15, 888.31876pt x 301.125pt>
-File: ORB-result.jpg Graphic file (type jpg)
-<use ORB-result.jpg>
-Package pdftex.def Info: ORB-result.jpg  used on input line 137.
-(pdftex.def)             Requested size: 355.32121pt x 120.44786pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 143--163
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 143--163
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 143--163
-
- []
-
-[3 <./BRISK-result.jpg> <./Harris-result.jpg> <./ORB-result.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 165--190
-
- []
-
-[4] [5] (report.aux) ) 
+{C:/Users/Administrator/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./DFSM.png>] [2] (report.aux) ) 
 Here is how much of TeX's memory you used:
- 4346 strings out of 478338
- 64588 string characters out of 2846491
- 369910 words of memory out of 3000000
- 22735 multiletter control sequences out of 15000+600000
- 475433 words of font info for 53 fonts, out of 8000000 for 9000
+ 4393 strings out of 478338
+ 65304 string characters out of 2846491
+ 363750 words of memory out of 3000000
+ 22781 multiletter control sequences out of 15000+600000
+ 475126 words of font info for 52 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,8n,62p,290b,273s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ 55i,8n,62p,281b,269s stack positions out of 10000i,1000n,20000p,200000b,80000s
 <C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on report.pdf (5 pages, 325838 bytes).
+Output written on report.pdf (2 pages, 159408 bytes).
 PDF statistics:
- 42 PDF objects out of 1000 (max. 8388607)
+ 32 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
