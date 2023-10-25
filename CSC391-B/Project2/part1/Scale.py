@@ -7,10 +7,10 @@ def sca_SIFT(path):
     img = cv2.imread(path)
     gray= cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
     #Do SIFT for original image
+
     sift = cv2.SIFT_create()
     kp1,des1 = sift.detectAndCompute(gray,None)
     
-
     #scale image to 0.6 of original
     percent = 60
 
@@ -74,12 +74,12 @@ def sca_FAST(path):
     fast2 = cv2.FastFeatureDetector_create()
     kp2 = fast2.detect(gray2,None)
     
-    #Get descripto using SIFT
+    #Get descriptor using SIFT
     out2 = cv2.drawKeypoints(gray2,kp2,None, color = (255,0,0))
     sift = cv2.SIFT_create()
     _,des1 = sift.compute(gray,kp)
     _,des2 = sift.compute(gray2,kp2)
-    #drawing the keypoint
+    #drawing the keypoints
     '''
     cv2.imshow("ori",out)
     cv2.imshow("scale", out2)
@@ -249,7 +249,6 @@ path = 'self-test.jpg'
 sca_SIFT(path)
 sca_FAST(path)
 sca_Harris(path)
-
 sca_ORB(path)
 
 

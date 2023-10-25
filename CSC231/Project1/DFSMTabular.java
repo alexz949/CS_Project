@@ -105,6 +105,8 @@ public class DFSMTabular {
         // TODO: UPDATE THIS ARRAYLIST TO INDICATE THE FINAL STATES
         // USING acceptStates.set(???, true); REPLACING ??? WITH THE INTEGER ID OF ANY ACCEPTING STATE
         // Then record which states are accepting
+
+        //set s8 and s10 to be accepting state
         acceptingStates.set(10,true);
 
         acceptingStates.set(8,true);
@@ -115,6 +117,7 @@ public class DFSMTabular {
         // ASSOCIATING OF AN INTEGER RESULT STATE FOR THE MOVE FROM THE CURRENT STATE
         // ON THE CURRENT INPUT
         // table[0][0] = ?;
+        // tabular implementation
         table[0][0]=4; table[0][1] = 1; table[0][2]=2; table[0][3]=-1;
         table[1][0]=4; table[1][1] = -1; table[1][2]=-1; table[1][3]=-1;
         table[2][0]=-1; table[2][1] = -1; table[2][2]=-1; table[2][3]=3;

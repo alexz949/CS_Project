@@ -26,7 +26,7 @@ class Stitcher:
         img_b_h, img_b_w, _ = imageB.shape
         orig_corners_img_b = self.get_corners_as_array(img_b_h, img_b_w)
         ans = self.transform_with_homography(H, orig_corners_img_b)
-        print(ans)
+        
         
         
         result = cv2.warpPerspective(imageA, H,

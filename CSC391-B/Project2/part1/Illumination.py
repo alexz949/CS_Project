@@ -15,7 +15,7 @@ def adjust_gamma(image, gamma):
 #start of four feature detecting functions
 #SIFT
 def ill_SIFT(path):
-    print("hello world")
+    #read image
     img = cv2.imread(path)
     gray= cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
     #Do SIFT for original image
@@ -84,7 +84,7 @@ def ill_FAST(path):
     fast2 = cv2.FastFeatureDetector_create()
     kp2 = fast2.detect(gray2,None)
 
-    #DO SIFT descriptor
+    #DO SIFT descriptor for two images
     sift = cv2.SIFT_create()
     _,des1 = sift.compute(img2,kp)
     _,des2 = sift.compute(img2,kp2)
@@ -144,7 +144,7 @@ def ill_Harris(path):
     img2 = cv2.imread(path)
     img2 = adjust_gamma(img2,ga)
 
-     #do harris again
+    #do harris again
     gray2  = cv2.cvtColor(img2,cv2.COLOR_BGR2GRAY)
 
     gray2 = np.float32(gray2)
@@ -219,8 +219,6 @@ def ill_ORB(path):
 
 
 
-
-    
 
     # create BFMatcher object
     bf = cv2.BFMatcher()

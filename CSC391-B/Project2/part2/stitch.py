@@ -15,8 +15,7 @@ ap.add_argument("-s", "--second", required=True,
     help="path to the second image")
 ap.add_argument("-t", "--third", required=True,
     help="path to the third image")
-ap.add_argument("-d", "--fourth", required=False,
-    help="Feature detector ('sift','orb','harris','brisk')")
+
 args = vars(ap.parse_args())
 
 
@@ -25,8 +24,7 @@ args = vars(ap.parse_args())
 imageA = cv2.imread(args["first"])
 imageB = cv2.imread(args["second"])
 imageC = cv2.imread(args["third"])
-#choosing which feature matcher to use by editing
-det = args["fourth"]
+#choosing which feature matcher to use by editing 'harris' ,'sift', 'orb', 'brisk'
 det = "harris"
 
 imageA = imutils.resize(imageA, width=400)
@@ -52,6 +50,5 @@ cv2.imshow("result2", result2)
 #write the output
 #cv2.imwrite("result.jpg",result2)
 
-
-
 cv2.waitKey(0)
+

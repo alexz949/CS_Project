@@ -23,7 +23,6 @@ def rot_SIFT(path):
     out2 = cv2.drawKeypoints(gray2,kp2, img2)
 
 
-
     # create BFMatcher object
     bf = cv2.BFMatcher()
 
@@ -49,7 +48,7 @@ def rot_SIFT(path):
 def rot_FAST(path):
     img = cv2.imread(path)
     gray= cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-    #Do FAST for original image
+    #Do FAST for original image, SIFT as descriptor
     fast1 = cv2.FastFeatureDetector_create()
     sift1 = cv2.SIFT_create()
     kp1 = fast1.detect(gray,None)
@@ -62,7 +61,7 @@ def rot_FAST(path):
    
     gray2 = cv2.cvtColor(img2,cv2.COLOR_BGR2GRAY)
     
-    #Do FAST for rotated image
+    #Do FAST for rotated image and use SIFT as descriptor
     fast2 = cv2.FastFeatureDetector_create()
     sift2 = cv2.SIFT_create()
     
@@ -141,9 +140,6 @@ def rot_Harris(path):
     sift = cv2.SIFT_create()
 
     _,des2 = sift.compute(gray2,kp2)
-
-
-
 
     # create BFMatcher object
     bf = cv2.BFMatcher()
