@@ -1,0 +1,56 @@
+\documentclass{article}
+\title{STA247 HW3}
+\author{Alex Zhang}
+\date{Oct 2023}
+\textwidth=16.00cm 
+\textheight=22.00cm 
+\topmargin=0.00cm
+\oddsidemargin=0.00cm 
+\evensidemargin=0.00cm 
+\headheight=0cm 
+\headsep=0.5cm
+\textheight=610pt
+\usepackage{graphicx}
+\usepackage{multicol}
+
+\graphicspath{ {./images/} }
+
+\usepackage{latexsym,array,delarray,amsthm,amssymb,epsfig}
+\usepackage{amsmath}
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily,
+  mathescape
+}
+
+\newcommand{\bmat}[1]{\begin{bmatrix} #1 \end{bmatrix}}
+\newcommand{\mat}[1]{\mathbf{#1}}
+
+\let\ds\displaystyle
+
+\begin{document}
+\maketitle
+
+\section*{Problem 1}
+\subsection*{(a)}
+1. The finite population correction is $(1-\frac{n}{N}) = (1-\frac{400}{4000}) = 0.9$\\
+2. The finite population correction is $(1-\frac{30}{300}) = 0.9$\\
+3. The finite population correction is $(1-\frac{3000}{300000000}) =0.99999 $\\
+Based on the calculation, the third design has a finite population correction closest to 1.
+\subsection*{(b)}
+The variance for statistic that estimate a population mean can be calculated as 
+$$Var[\hat{y}] = \frac{\sigma^2}{n}(1-\frac{n}{N})$$
+Variance for 1 will be,
+$$0.9\frac{\sigma^2}{400} = 0.0022\sigma^2$$
+Variance for 2 will be,
+$$0.9\frac{\sigma^2}{30} = 0.03\sigma^2$$
+Vairance for 3 will be,
+$$0.99999\frac{\sigma^2}{3000} = 0.0003\sigma^2$$
+I think the third design will have the best precision for estimating a population mean.
+
+\section*{Problem 2}
+\section*{Problem 3}
+
+
+
+\end{document}
