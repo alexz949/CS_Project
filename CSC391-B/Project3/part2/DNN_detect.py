@@ -1,18 +1,20 @@
+# USAGE
+# python detect_faces.py --image rooster.jpg --prototxt deploy.prototxt.txt --model res10_300x300_ssd_iter_140000.caffemodel
+
 # import the necessary packages
 import numpy as np
 import argparse
 import cv2
-# construct the argument parse and parse the arguments
-
-
 
 
 # load our serialized model from disk
 print("[INFO] loading model...")
 net = cv2.dnn.readNetFromCaffe('deploy.prototxt.txt', 'res10_300x300_ssd_iter_140000.caffemodel')
+
 # load the input image and construct an input blob for the image
 # by resizing to a fixed 300x300 pixels and then normalizing it
 image = cv2.imread('test_main.jpg')
+image = cv2.rotate(image, cv2.ROTATE_90_CLOCKWISE)
 (h, w) = image.shape[:2]
 blob = cv2.dnn.blobFromImage(cv2.resize(image, (300, 300)), 1.0,
 	(300, 300), (104.0, 177.0, 123.0))
@@ -23,12 +25,12 @@ print("[INFO] computing object detections...")
 net.setInput(blob)
 detections = net.forward()
 
-
 # loop over the detections
 for i in range(0, detections.shape[2]):
 	# extract the confidence (i.e., probability) associated with the
 	# prediction
 	confidence = detections[0, 0, i, 2]
+
 	# filter out weak detections by ensuring the `confidence` is
 	# greater than the minimum confidence
 	if confidence > 0.5:
@@ -39,12 +41,11 @@ for i in range(0, detections.shape[2]):
  
 		# draw the bounding box of the face along with the associated
 		# probability
-		text = "{:.2f}%".format(confidence * 100)
+		
 		y = startY - 10 if startY - 10 > 10 else startY + 10
 		cv2.rectangle(image, (startX, startY), (endX, endY),
 			(0, 0, 255), 2)
-		cv2.putText(image, text, (startX, y),
-			cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 0, 255), 2)
+
 # show the output image
 cv2.imshow("Output", image)
 cv2.waitKey(0)
