@@ -24,16 +24,13 @@ face_cascade = cv2.CascadeClassifier(
     f'{cv2.data.haarcascades}haarcascade_frontalface_default.xml')
 eye_cascade = cv2.CascadeClassifier(
     f'{cv2.data.haarcascades}haarcascade_eye.xml')
-mask = cv2.imread('emoji.png', cv2.IMREAD_UNCHANGED)
+mask = cv2.imread('blank.png', cv2.IMREAD_UNCHANGED)
 print("Here")
 camera = cv2.VideoCapture(0)
 while (cv2.waitKey(1) == -1):
     success, frame = camera.read()
     if success:
-        scale = 0.75
-        a, b = int(640*scale), int(320*scale)
-        cw, ch = int(a/2), int(b/2)            
-        frame = cv2.resize(frame,(a, b))   
+                 
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         faces = face_cascade.detectMultiScale(
             gray, 1.1, 5, minSize=(120, 120))
@@ -62,9 +59,14 @@ while (cv2.waitKey(1) == -1):
                         mask_inverse * frame[y_offset:y_end, x_offset:x_end, c]
                     )
                     
-                frame = cv2.rectangle(frame, (x, y), (x+w, y+h), (255, 255, 0), 2)
-                       
-                frame = convex(frame, (a, b, 3), (cw, ch, 100))
+            roi_gray = gray[y:y+h, x:x+w]
+            eyes = eye_cascade.detectMultiScale(
+                roi_gray, 1.09, 5, minSize=(40, 40))
+            for (ex, ey, ew, eh) in eyes:  
+                
+                a, b = frame[y+ey:y+ey+eh,x+ex:x+ex+ew].shape[1],frame[y+ey:y+ey+eh,x+ex:x+ex+ew].shape[0]
+                cw, ch = int(a/2), int(b/2)             
+                frame[y+ey:y+ey+eh,x+ex:x+ex+ew] = convex(frame[y+ey:y+ey+eh,x+ex:x+ex+ew], (a, b, 3), (cw, ch, 100))
     
                 
 
