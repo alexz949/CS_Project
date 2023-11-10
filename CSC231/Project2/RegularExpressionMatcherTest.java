@@ -74,6 +74,7 @@ public class RegularExpressionMatcherTest {
         wordsToTest.add("0422");
         wordsToTest.add("02-30");
         wordsToTest.add("04/01");
+        wordsToTest.add("123-123");
 
         Language2Matcher l2m = new Language2Matcher();
         l2m.setWordsToCompareAgainst(wordsToTest);

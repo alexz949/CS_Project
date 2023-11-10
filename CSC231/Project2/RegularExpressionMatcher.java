@@ -38,6 +38,10 @@ public class RegularExpressionMatcher {
         ArrayList<String> matchingList = new ArrayList<String>();
 
         // YOUR INSTRUCTIONS GO HERE
+        for (int i = 0; i < wordsToCompareAgainst.size(); i++) {
+            if(pattern.matcher(wordsToCompareAgainst.get(i)).matches())
+                matchingList.add(wordsToCompareAgainst.get(i));
+        }
 
         return matchingList;
     }

@@ -1,0 +1,47 @@
+\documentclass{article}
+\title{CSC231 Project2}
+\author{Alex Zhang}
+\date{November 2023}
+\textwidth=16.00cm 
+\textheight=22.00cm 
+\topmargin=0.00cm
+\oddsidemargin=0.00cm 
+\evensidemargin=0.00cm 
+\headheight=0cm 
+\headsep=0.5cm
+\textheight=610pt
+\usepackage{graphicx}
+\usepackage{multicol}
+
+\usepackage{relsize}
+
+
+
+
+\graphicspath{ {./images/} }
+
+\usepackage{latexsym,array,delarray,amsthm,amssymb,epsfig}
+\usepackage{amsmath}
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily,
+  mathescape
+}
+
+
+\newcommand{\bmat}[1]{\begin{bmatrix} #1 \end{bmatrix}}
+\newcommand{\mat}[1]{\mathbf{#1}}
+
+\let\ds\displaystyle
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+    \item Regular Expression for Language 1 is $(GT|C|\epsilon)(AG(AG)^*)(CT(CT)^*)G(GC|\epsilon)$
+    \item Regular Expression for Language 2 is $(04|06|09|11)-((0[0-9])|(1[0-9])|(2[0-9]|30))\\
+    |((01|03|05|07|08|10|12)-((0[0-9])|(1[0-9])|(2[0-9])|30|31))\\
+    |02-((0[0-9])|(1[0-9])|20|21|22|23|24|25|26|27|28)$
+    \item Regular Expression for Language 3 is $(00^*11^*22^*11^*00^*)|(00^*22^*00^*)$
+\end{enumerate}
+[0-9] means the number 
+\end{document}
