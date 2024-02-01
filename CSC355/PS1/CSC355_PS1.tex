@@ -1,0 +1,103 @@
+\documentclass{article}
+\title{CSC355 PS1}
+\author{Alex Zhang}
+\date{Jan 2024}
+\textwidth=16.00cm 
+\textheight=22.00cm 
+\topmargin=0.00cm
+\oddsidemargin=0.00cm 
+\evensidemargin=0.00cm 
+\headheight=0cm 
+\headsep=0.5cm
+\textheight=610pt
+\usepackage{graphicx}
+\usepackage{multicol}
+
+\graphicspath{ {./images/} }
+
+\usepackage{latexsym,array,delarray,amsthm,amssymb,epsfig}
+\usepackage{amsmath}
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily,
+  mathescape
+}
+
+\newcommand{\bmat}[1]{\begin{bmatrix} #1 \end{bmatrix}}
+\newcommand{\mat}[1]{\mathbf{#1}}
+
+\let\ds\displaystyle
+
+\begin{document}
+\maketitle
+
+\section{Problem 1}
+\subsection*{1.}
+Given $f(x) = (1-x) \ln x$, $P_3(x)$ at $x_0 = 1$ will be
+\begin{align}
+    P_3(x) &= f(x_0) + f^\prime (x_0)(x-x_0) + \frac{f^2(x_0)}{2}(x-x_0)^2 + \frac{f^3(x_0)}{6}(x-x_0)^3 \nonumber \\
+    &= 0 + 0/1(x-x_0) + -2/2(x-x_0)^2 + 3/6(x-x_0)^3 \nonumber \\ 
+    &= -(x-1)^2 + \frac{1}{2}(x-1)^3 \nonumber
+\end{align}
+residual function $R_3(x)$ will be 
+$$R_3(x) = \frac{f^4(c(x))}{24}(x-1)^4$$
+
+
+\subsection*{2.}
+Plug in x = 0.5, $P_3(0.5)$ equals,
+$$P_3(0.5) = -(0.5)^2 + \frac{1}{2}(-0.5)^3 = - 0.3125$$
+The residual function $R_3(0.5)$ will be $-\frac{0.0625}{24} \cdot \frac{2c(0.5) + 6}{c(0.5)^4} = -0.0026 \cdot \frac{2c(0.5) + 6}{c(0.5)^4}$.
+Because $c(x)$ is bound by $0.5$ and $1$, we can use the Extreme Value Theorem to find an absolute maximum value given that interval.
+\\
+\\
+Taking the first derivative of $\frac{2c(0.5) + 6}{c(0.5)^4}$ equals,
+$$-\frac{6c(x)+24}{c(x)^5}$$
+We can see that when $c(x) = -4$, there is one extreme value, but it is not in the interval.
+We then calculate two end points.
+\\
+\\
+$$\frac{2\cdot 0.5 + 6}{0.0625} = 112$$
+$$\frac{2\cdot 1 + 6}{1} = 8$$
+So the maximum value is 112, which means $|R_3(0.5)|$ is bounded by,
+$$|R_3(0.5)| \leq \frac{0.0625}{24} \cdot 112 = 0.2917$$
+which is the upper bound for $|f(0.5) - P_3(0.5)|$
+\\
+The actual error is 0.0341, which I think there is a huge difference.
+
+\subsection*{3.}
+Finding the bound of error $|f(x) - P_3(x)|$ for any $x \in [0.5,1.5]$ is the same as finding bound for $|R_3(x)|$ in the same interval.
+We know that the choice of $c(x)$ in residual function is bounded by $x$ and $x_0$, which in this case we can just assume $c(x)$ is in interval $[0.5,1.5]$ given $x_0=1$.
+\\
+Based on the previous problem, the interval does not reach $-4$, we can still calculate end points to get maximum value of that fourth derivative.
+$$\frac{2\cdot 0.5 + 6}{0.0625} = 112$$
+$$\frac{2\cdot 1.5 + 6}{1.5^4} = 1.7778$$
+For the maximum value of $\frac{(x-1)^4}{24}$ for $x \in [0.5,1.5]$, we can still use the extreme value theorem.
+Compared the end points and point where derivative is zero, we found out the maximum value of $\frac{(x-1)^4}{24}$ is $0.0625/24$.
+The bound for the error $|f(x) - P_3(x)|$ for any $x \in [0.5, 1.5]$ is $\frac{0.0625}{24} * 112 = 0.2917$.
+\subsection*{4.}
+The integral value of $\int_{0.5}^{1.5}P_3(x)dx$ will be,
+\begin{align}
+    \int_{0.5}^{1.5}P_3(x)dx &= \int_{0.5}^{1.5}-(x-1)^2 + 1/2(x-1^3)dx \nonumber \\
+    &= \int_{0.5}^{1.5} -x^2 + 2x - 1 + \frac{x^3}{2} - \frac{3x^2}{2} + \frac{3x}{2} - \frac{1}{2}dx \nonumber \\
+    &= -\frac{x^3}{3} + x^2 -x + \frac{x^4}{8} - \frac{x^3}{2} + \frac{3x^2}{4} - \frac{x}{2}\Bigg|_{0.5}^{1.5} \nonumber\\
+    &= - \frac{1}{12} \nonumber
+\end{align}
+
+
+
+\subsection*{5.}
+The integral $\int_{0.5}^{1.5}|R_3(x)|dx$ can be rewritten into
+$$\int_{0.5}^{1.5}|R_3(x)|dx = \frac{1}{24}\int_{0.5}^{1.5}(x-1)^4 \frac{2c(x)+6}{c(x)^4}dx$$
+We know that $\frac{2c(x)+6}{c(x)^4}$ in this interval is smaller than $112$.
+This integral will be always smaller than
+$$\frac{112}{24}\int_{0.5}^{1.5}(x-1)^4dx$$
+Calculating this integral, we get $112/24 * 0.0125 = 0.05833$, which is the upper bound for the absolute error in 4.
+\\
+The actual error for that two expression is $|0.08802 - 0.83333| = 0.004687$. I think the upper bound for the absolute error is relatively large compared to the actual integral error.
+
+\section*{Problem 2}
+
+
+
+
+\end{document}

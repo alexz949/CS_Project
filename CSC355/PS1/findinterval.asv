@@ -1,0 +1,28 @@
+function [a,b] = findinterval(f,x0)
+
+    a = x0;
+    b = x0;
+    dx = 0.001;
+    
+    
+    while (f(a) >= 0) == (f(b) >= 0)
+        
+        a = a - dx;
+        
+        
+        b = b + dx;
+        
+        
+        dx = 2 * dx;
+        
+        assert(abs(f(a)) < realmax , "")
+
+       
+        
+    end
+   
+
+    
+
+
+end
