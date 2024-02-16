@@ -1,5 +1,5 @@
 ---
-title: "STA363_Client Challenge 1"
+title: "STA363_Client_Challenge_1"
 author: "Alex Zhang"
 date: "2024-02-02"
 output:
@@ -16,17 +16,15 @@ I will not recommend just removing 71 students from the data and proceed.
 The first thing is that by deleting these students, we also reduced our sample size by about 11%. 
 Generally we should keep every student because everyone in this sample could mean certain pattern in the population.
 The second thing is that we may lose the representative nature of our sample.
-We may not be able to capture more patterns in this sample to represent the whole population.
-The third thing is that I think this data is missing for a reason.
-Some student may never heard or use ChatGPT before.
-This is either they do not have computer at home or just no one tells them.
-If we delete these students, our sample maybe bias on overestimating the impact of ChatGPT on middle school students.
+It is possible that these student miss this question for a reason.
+They may not heard ChatGPT before either because they do not have a computer at home or they are too young to know technology.
+We cannot delete these students because then we assume every student in this sample knows ChatGPT and eventually overestimate the impact of ChatGPT on middle school students.
 
 
 ## Part 2
 The corrected code is:
 ```r
-# Create new column to store the imputations value
+# Create new column to store the imputations values
 middleschool[, "CountUsedChatGPTonHW_New"] <- middleschool[ , "CountUsedChatGPTonHW"]
 
 # Train the regression model
@@ -38,9 +36,9 @@ middleschool[3, "CountUsedChatGPTonHW_New"] <- predict( model, newdata = middles
 ```
 The Colleague B is trying to use what calls regression imputation on handling the missing data.
 Basically we try to train a statistical model we have chosen based on the information we know.
-we then decided to use a linear regression model to impute the values of missing data.
-In this model, we chose the count number to be our response variable and we tried to parameterize the relationship between count and student's age and whether his home has a computer.
-After we have our trained model, we use the model to obtain predictions for the missing values and fill that predicted value into row 3.
+In this case, we think there is a linear relationship between the count of using ChatGPT on homework and student's age and whether his home has a computer.
+We would use these two features to create a linear model and use this model to predict the missing number of count in row 3.
+
 
 
 

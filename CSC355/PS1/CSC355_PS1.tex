@@ -40,7 +40,7 @@ Given $f(x) = (1-x) \ln x$, $P_3(x)$ at $x_0 = 1$ will be
     &= -(x-1)^2 + \frac{1}{2}(x-1)^3 \nonumber
 \end{align}
 residual function $R_3(x)$ will be 
-$$R_3(x) = \frac{f^4(c(x))}{24}(x-1)^4$$
+$$R_3(x) = \frac{f^4(c(x))}{24}(x-1)^4 = -\frac{2c(x) + 6}{24c(x)^4}(x-1)^4$$
 
 
 \subsection*{2.}
@@ -96,6 +96,16 @@ Calculating this integral, we get $112/24 * 0.0125 = 0.05833$, which is the uppe
 The actual error for that two expression is $|0.08802 - 0.83333| = 0.004687$. I think the upper bound for the absolute error is relatively large compared to the actual integral error.
 
 \section*{Problem 2}
+
+There are total two files for this problem.
+One is called findinterval.m which is the function script.
+The second one is called test.m which is the test script.
+For function findinterval it is a function that does what the description says.
+It will terminate until two end points have different signs or either function value or input value exceed maximum real number in MATLAB.
+More descriptions can be found typing help findinterval.
+\\
+The test.m script just includes two start points which the first one is the successful case and the second one is unsuccessful case.
+It will print two end points value if success.
 
 
 

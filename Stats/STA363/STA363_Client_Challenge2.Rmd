@@ -1,0 +1,150 @@
+---
+title: "STA363_Client_Challenge2"
+author: "Alex Zhang"
+date: "2024-02-09"
+output:
+  pdf_document: default
+  word_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Part 1
+
+I will recommend linear regression approach.
+
+If we want to see how different features relate to the response variable, a linear regression is often used. In this case, it will provide a formal mathematical equation with all parameters explaining the relation between different features and how it will affect the number of times student used ChatGPT for their homework. We are able to tell, for example, whether increasing students' age will increase the number of times student used ChatGPT. If so, we can tell by how much from the regression model.
+
+KNN is not helpful if we are trying to find out relation between features and response variable. KNN computes the similarity between different rows of the data, and predicts the value based on some closest rows. We could not tell whether a feature has a positive or negative relation to the number of times for using ChatGPT. We can only get predicted values.
+
+
+
+## Part 2
+I will not recommend proceeding with the plan the colleague has suggested.
+
+The first potential problem is that the training size has been reduced a lot. Reminds from handling the missing data part, missing about 11% of the data is already unacceptable. With this approach, we reduced our training size about 20%. Losing this amount of data may lead to a failure of capturing all possible patterns given that this dataset is not big.
+
+The second potential problem is the way of choosing training set and validation set. 
+We cannot just move the first 520 rows into training set because we haven't checked how data is arranged.
+It is possible that this data is sorted based on whether a student has a computer at home.
+This may cause the training set to only contain student who has a computer at home
+and validation set only contains the student who do not.
+In this case, the predictive ability may not be really good because training set has missed a pattern.
+
+Even if each row in the data is randomly placed, there is still a problem for this method.
+The predictive ability of our model will change if we move first 130 rows into validation set and the rest into training set.
+Though this time the numbers of rows in two sets are exactly the same as the colleague's plan,
+the predictive power will change since we do not have the same rows in training and validation set.
+we cannot determine whether this linear regression approach is good or not based on various predicting performances.
+
+## Part 3
+
+```{r, warning=FALSE}
+suppressMessages(library(StatMatch))
+library(readr)
+```
+
+
+```{r}
+train <- read_csv("C:/Users/Administrator/Desktop/CS_Project/Stats/STA363/train.csv",show_col_types = FALSE)
+test <- read_csv("C:/Users/Administrator/Desktop/CS_Project/Stats/STA363/test.csv",show_col_types = FALSE)
+
+train <- data.frame(train)
+test <- data.frame(test)
+
+
+
+
+# Convert room type to an indicator
+train$room_type_new <-(train$room_type == "Entire Home/apt")
+test$room_type_new <-(test$room_type == "Entire Home/apt")
+
+
+knnGower <- function(trainX, testX, trainY, k){
+  
+  # Find the Gower Distance
+  gowerHold <- StatMatch::gower.dist( testX, trainX)
+  
+  # For each row, find the k smallest
+  neighbors <- apply(gowerHold, 1, function(x) which(x %in% sort(x)[1:k]))
+  
+  # Take the mean to get the prediction
+  preds <- lapply(neighbors, function(x) mean(trainY[x]))
+  
+  # Return the predictions
+  unlist(preds) 
+}
+
+compute_RMSE <- function(truth, predictions){
+
+  # Part 1
+  part1 <- truth - predictions
+  
+  #Part 2
+  part2 <- part1^2
+  
+  #Part 3: RSS 
+  part3 <- sum(part2)
+  
+  #Part4: MSE
+  part4 <- 1/length(predictions)*part3
+  
+  # Part 5:RMSE
+  sqrt(part4)
+}
+```
+
+
+
+
+
+
+
+
+
+```{r, echo=TRUE}
+# Create data frame to store the value
+KNNRMSE <- data.frame("K" = rep(NA, 23), "valRMSE" = rep(NA, 23))
+KNNRMSE$K <- as.integer(KNNRMSE$K)
+
+
+for(i in 1:23){
+  # Perform KNN with training and testing set given k from 3 to 25 
+  knnPred <- knnGower(train[,-c(1:2)],test[,-c(1:2)], train[,2], k = (i+2))
+  
+  # Store each k values and corresponding RMSE values
+  KNNRMSE[i,"K"] <- (i+2);
+  KNNRMSE[i, "valRMSE"] <- compute_RMSE(test$price, knnPred)
+  
+}
+# Change data type for K
+KNNRMSE$K <- as.integer(KNNRMSE$K)
+```
+
+
+
+
+```{r, echo=TRUE}
+# Create a table to show all values
+knitr::kable(KNNRMSE)
+```
+
+
+Based on the result we get from the table, we should choose our K = 14. Because we have the smallest RMSE value this time. This means on average our predicted values are closest to the true test values.
+
+
+
+
+
+
+
+
+
+
+
+
+
+

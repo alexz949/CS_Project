@@ -1,17 +1,15 @@
 function [fp,p] = bisection(f,a,b)
     maxiter = 1076;
-    TOL = 10^-14;
+    TOL = 100 *eps;
     fa = f(a);
     i = 1;
-    while i < maxiter
+    while abs(f(a)) > TOL
         
         p =  a + (b-a) / 2;
         fp = f(p);
         
 
-        if abs(fp) < TOL
-            break;
-        end
+        
       
         if abs(b-a) / 2 <= TOL
            break;
