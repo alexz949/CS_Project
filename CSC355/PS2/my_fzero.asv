@@ -1,0 +1,18 @@
+function p = my_fzero(f,df,x0)
+    %p = my_fzero(f, df, x0) tried to find a zero of the function f near
+    %x0, if x0 is a scalar. It first finds an interval containing x0 where
+    %the function values of the interval endpoints differ in sign, then
+    %search that interval for a zero. f is a function handle and df is the
+    %function handle which is the first derivative of f. It will give out
+    %an error message if it fails to find a valid interval. 
+    %
+    %It finds the interval using findinterval.m file. Once the inter
+
+    [a,b] = findinterval(f,x0);
+
+    
+    p = newbis(f,df,a,b);
+    
+    fprintf("Zoer found in the interval [%3f,%3f]\n", a,b);
+
+end
