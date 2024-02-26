@@ -5,10 +5,10 @@ function yq = eval_newton(c, x, xq)
     
     for i = 1:m
         yq(i) = c(1);
-        w = (xq(i) - x(1));
+        w = c(2) * (xq(i) - x(1)
         for j = 2:n
-            yq(i) = yq(i) + c(j) * w;
-            w = w * (xq(i) - x(j));
+            yq(i) = yq(i) + w;
+            w = c(j) *w * (xq(i) - x(j));
             
         end
     end
