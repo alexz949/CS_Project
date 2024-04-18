@@ -1,0 +1,134 @@
+\documentclass{article}
+\title{CSC355 PS3}
+\author{Alex Zhang}
+\date{\today}
+\textwidth=16.00cm 
+\textheight=22.00cm 
+\topmargin=0.00cm
+\oddsidemargin=0.00cm 
+\evensidemargin=0.00cm 
+\headheight=0cm 
+\headsep=0.5cm
+\textheight=610pt
+\usepackage{graphicx}
+\usepackage{multicol}
+
+
+\graphicspath{ {./images/} }
+
+\usepackage{latexsym,array,delarray,amsthm,amssymb,epsfig}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{enumerate}
+\usepackage{enumitem} 
+\lstset{
+  basicstyle=\ttfamily,
+  mathescape
+}
+
+\newcommand{\bmat}[1]{\begin{bmatrix} #1 \end{bmatrix}}
+\newcommand{\mat}[1]{\mathbf{#1}}
+
+\let\ds\displaystyle
+
+\begin{document}
+\maketitle
+\section*{Problem 1}
+\subsection*{(a)}
+The gradient of $f(x,y)$ will be
+$$\nabla f = \bmat{\frac{\partial f}{\partial x} \\ \\
+\frac{\partial f}{\partial y}} $$
+$\frac{\partial f}{\partial x} = -c(4x(y-x^2)) - 2(1-x)$, $\frac{\partial f}{\partial y} = 2c(y-x^2) + 0$
+$$\nabla f = \bmat{-4c(x(y-x^2)) - 2(1-x) \\ 2c(y-x^2)}$$
+The Hessian of $f$ will be
+$$\nabla^2 f = \bmat{\frac{\partial^2 f}{\partial x \partial x} &  \frac{\partial^2 f}{\partial x \partial y}\\
+                    \frac{\partial^2 f}{\partial y \partial x} &  \frac{\partial^2 f}{\partial y \partial y} }$$
+where $\frac{\partial^2 f}{\partial x \partial x} = -c(4y - 12x^2) + 2$, $\frac{\partial^2 f}{\partial y \partial x} = -4cx$, and $\frac{\partial^2 f}{\partial y \partial y} = 2c$
+$$\nabla^2 f =  \bmat{-c(4y - 12x^2) + 2 & -4cx \\ -4cx &2c }$$
+\subsection*{(b)}
+
+\section*{Problem 2}
+
+\subsection*{(b)}
+When $c = 1$, the output is,
+\begin{verbatim}
+    >> [X,FVAL,EXITFLAG,OUTPUT,GRAD] = fminunc(@(x) myfun(x,1),[.1;.1],options);
+                                                        First-order 
+ Iteration  Func-count       f(x)        Step-size       optimality
+     0           1           0.8181                          1.84
+     1           3         0.255493       0.272171          0.617  
+     2           4         0.172388              1          0.491  
+     3           5        0.0215888              1          0.208  
+     4           6        0.0111538              1          0.449  
+     5           7      0.000208418              1         0.0618  
+     6           8      1.69733e-06              1        0.00284  
+     7           9      5.79977e-09              1       0.000145  
+     8          10      6.11888e-12              1       9.22e-06  
+     9          11      1.81422e-16              1       5.51e-08  
+
+Local minimum found.
+
+Optimization completed because the size of the gradient is less than
+the value of the optimality tolerance.
+\end{verbatim}
+When $c = 1000$, the output is,
+\begin{verbatim}
+    >> [X,FVAL,EXITFLAG,OUTPUT,GRAD] = fminunc(@(x) myfun(x,1000),[.1;.1],options);
+                                                        First-order 
+ Iteration  Func-count       f(x)        Step-size       optimality
+     0           1             8.91                           180
+     1           3            0.987    0.000555556           29.3  
+     2           4         0.777219              1           1.75  
+     3           6         0.764588             10           2.68  
+     4           7         0.735046              1           15.4  
+     5           8         0.702228              1           7.45  
+     6           9         0.650868              1           2.95  
+     7          11         0.578572       0.618962           10.8  
+     8          12          0.53324              1           10.8  
+     9          13         0.448368              1            5.3  
+    10          15         0.385863       0.367553             10  
+    11          16         0.364507              1           4.81  
+    12          17         0.305381              1           10.3  
+    13          18         0.263112              1           3.55  
+    14          20         0.235968       0.480082           8.98  
+    15          21         0.199458              1           6.02  
+    16          22         0.162378              1           2.85  
+    17          24         0.152655        0.32329           8.84  
+    18          25         0.113748              1           8.99  
+    19          26         0.104463              1           9.91  
+                                                        First-order 
+ Iteration  Func-count       f(x)        Step-size       optimality
+    20          27        0.0723461              1           8.18  
+    21          28        0.0666479              1            1.4  
+    22          29        0.0526213              1           2.72  
+    23          31        0.0447515       0.435248           7.91  
+    24          32        0.0343863              1           4.77  
+    25          33        0.0245107              1           5.56  
+    26          34        0.0180499              1           6.58  
+    27          36       0.00815378       0.416144           3.51  
+    28          37       0.00702843              1            2.8  
+    29          39       0.00484113       0.645221           4.64  
+    30          40       0.00213087              1           3.66  
+    31          42      0.000347732       0.486442          0.821  
+    32          43      0.000253146              1           1.12  
+    33          44      4.19498e-05              1          0.431  
+    34          45      5.90551e-06              1          0.103  
+    35          46      4.22069e-07              1         0.0797  
+    36          47      1.24377e-07              1         0.0436  
+    37          48      1.60385e-12              1       3.36e-05  
+
+Local minimum found.
+
+Optimization completed because the size of the gradient is less than
+the value of the optimality tolerance.
+\end{verbatim}
+\subsection*{(c)}
+
+\begin{enumerate}[label= \roman*.]
+    \item fminunc uses 'quasi-newton' method to find local minimum
+    \item When switching from $1$ to $1000$, fminunc seems to do one extra run because it fails to find a local minimum at first.
+    \item It stops when the maximum absolute value in gradient is smaller than the tolerance($1e-06$).
+\end{enumerate}
+
+
+\end{document}
